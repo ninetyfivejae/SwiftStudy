@@ -120,3 +120,55 @@ print(toDoDic2)
 for (k, v) in toDoDic2{
     print("key: \(k), value: \(v)")
 }
+
+func hello(name: String) -> String{
+    return "Hello~ " + name
+}
+
+func hello2(name: String){
+    
+}
+
+let message = hello(name: "jae")
+
+//개발자 문서 보는 방법
+//option 누르면서 마우스 갖다대면 물음표 표시
+//맨 오른쪽 레이아웃 물음표 표시
+//help - developer documentation 검색
+
+print("Hi~~")
+print(123)
+print(message)
+//separator : 사이사이 구분하는 문자, 기본은 빈칸 하나
+//terminator : 마지막을 알려주는 문자, \n으로 끝내고 싶지 않다 하면 terminator:"" 이렇게 써주면된다
+print(123, "Hello", true, 123.456, separator:"---", terminator:"")
+
+func addTwoNumbers(num1: Int, num2: Int = 100) -> Int {
+    return num1 + num2
+}
+
+addTwoNumbers(num1: 5, num2: 10)
+addTwoNumbers(num1: 5)
+
+//let 상수
+//var 변수
+//차이는 초기화 후 값이 변경되면 변수, 안 바뀌면 상수
+//스코프 변수와 상수의 사용 가능 범위, 메모리 효율적 사용과 관계가 있음,
+
+func addNumbers(numbers: Int...) -> Int{
+    var sum = 0
+    for num in numbers{
+        sum += num
+    }
+    return sum
+}
+
+addNumbers(numbers: 1,2,3,4,5)
+
+func myInfo() -> (name: String, weight: Int){
+    return ("jae", 70)
+}
+
+let info = myInfo()
+print(info.name)
+print(info)
