@@ -172,3 +172,35 @@ func myInfo() -> (name: String, weight: Int){
 let info = myInfo()
 print(info.name)
 print(info)
+
+
+//argument label을 통해서 입력값에 대한 설명을 명시해줄 수 있다
+//함수를 외부에 노출할 때 argument label을 통해서 입력값에 대한 설명을 보여줄 수 있음
+//함수 내부에서는 간략한 parameter naming을 가지고 간결하게 구현할 수 있음
+//생략하려고 하면 _ underscore로 표시
+func calculate(multiflyFirstNumber num1: Int, bySecondNumber num2: Int) -> Int{
+    return num1 + num2
+}
+
+func calculate(_ num1: Int, _ num2: Int) -> Int{
+    return num1 * num2
+}
+
+//argument label이 달라도 함수 오버로딩이 된다
+calculate(1, 2)
+calculate(multiflyFirstNumber: 1, bySecondNumber: 10)
+
+//매개변수들은 let키워드로 상수임을 알 수 있다.
+//함수 인자로 전달해준 값들을 실수로 함수 안에서 값을 변경하지 못하게 하기 위해서이다
+func addTwoNumber(num1: Int, num2: inout Int) -> Int{
+    num2 = 7
+    return num1 + num2
+}
+
+var test1 = 1
+var test2 = 2
+
+//test1에 저장돼있는 값이 복사되어서 넘어감. call by value
+//test2 변수 자체가 넘어가서(변수의 메모리 주소를 넘겨줌) 값이 변경되면 똑같이 test2 변수도 변함. call by reference
+addTwoNumber(num1: test1, num2: &test2)
+print(test2)
