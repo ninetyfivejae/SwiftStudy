@@ -219,3 +219,53 @@ print(test2)
 0b1111 == 0xf
 0b11111111 == 0xff
 
+
+
+//클래스 이름 대문자, 변수 상수 함수 이름은 소문자 - 나중에 네이밍컨벤션 참고하기
+class Circle{
+    var radius: Double
+    let pi = 3.1415926535
+    
+    init(){
+        radius = 10.0
+    }
+    
+    init(radius: Double){
+        self.radius = radius
+    }
+    
+    func area() -> Double {
+        return radius * radius * pi
+    }
+}
+
+//변수 상수 함수는 클래스 안에 있으면 불리는 이름이 달라짐
+//변수 상수는 클래스 안에 들어가면 property, 함수는 클래스의 method라고 불림
+//instance는 전통적으로 object라고도 하지만, swift 공식문서에 보면 기능적인 측면에 초점을 맞춰서 객체object라는 단어보다는 instance라는 단어를 사용한다는 언급이 있음
+//그래서 instance라는 단어를 자주 사용함
+
+//클래스에 초기값을 설정을 안 해주면 에러가 발생함
+//초기값 설정시 변수는 선언만 하고 생성자에서 값을 넣어줘도 된다
+//생성자는 기본 생성자 이외에 여러개의 생성자 생성 가능
+
+//Circle 클래스의 circle instance
+let circle = Circle()
+circle.area()
+
+//이런식으로 직접 생성자메소드를 불러올 수 있지만 Circle() 생성하면 자동으로 불려지기 때문에 굳이 이렇게 사용 안 함
+let circle2 = Circle.init()
+
+
+
+//이런식으로 값을 넣어서 변수, 상수를 만들고 사용했음. 이런 값들을 literal이라고 얘기함
+var weight2 = 65
+var message2 = "Hello"
+
+//근데 생성자를 이용하여 변수나 상수를 만들 수 있음
+var weight3 = Init(65)
+var message3 = String("Hello")
+
+//swift에서 Int String Datatype 자료형들은 structure로 구현돼있음
+var evenNumber2 = [Int](arrayLiteral: 2, 4, 6, 8)
+var oddNumbers2 = Array<Int>()
+
