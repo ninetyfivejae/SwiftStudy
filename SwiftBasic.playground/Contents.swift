@@ -262,10 +262,122 @@ var weight2 = 65
 var message2 = "Hello"
 
 //근데 생성자를 이용하여 변수나 상수를 만들 수 있음
-var weight3 = Init(65)
+var weight3 = Int(65)
 var message3 = String("Hello")
 
 //swift에서 Int String Datatype 자료형들은 structure로 구현돼있음
 var evenNumber2 = [Int](arrayLiteral: 2, 4, 6, 8)
 var oddNumbers2 = Array<Int>()
 
+
+
+//inheritance, overriding
+class Notebook{
+    var name = ""
+    
+    func turnOn(){
+        print("Booting")
+    }
+}
+
+class MacBook:Notebook{
+    var hasTouchBar = true
+    var macOSVersion = "10.13"
+    
+    func turnOnTouchBar(){
+
+    }
+    
+    override func turnOn() {
+        super.turnOn()
+        print("\(name)'s current macOSVersion is \(macOSVersion)")
+    }
+}
+
+let macBook = MacBook()
+macBook.name = "MacBook Pro"
+macBook.turnOn()
+
+
+
+//[클래스 구조체 공통점]
+//속성(property)정의
+//메소드(method) 정의
+//생성자를 통한 초기 설정
+//extension, protocol 사용 가능
+
+//[클래스만의 추가적인 특징]
+//inheritance
+//type casting
+//소멸자를 통한 리소스 관리
+//참조 타입(reference tyep) : class는 변수나 상수에 할당이 되거나 함수 인자로 넘길 때 참조 횟수만 증가하는 reference 타입, 구조체는 변수나 상수에 할당이 되거나 함수 인자로 넘길 때 복사가 되는 value 타입
+
+//소멸자 예제, class 말고 struct로 하면 소멸자 사용 못함
+class Circle2{
+    var radius = 0
+    
+    init(){
+        print("Initializer called")
+    }
+    
+    deinit{
+        print("Deinitializer called")
+    }
+}
+
+if true{
+    var circleTest = Circle2()
+}
+
+//값 타입, 참조 타입
+struct Circle3{ //class로 했을 때와 struct로 했을 때, struct는 circle_two를 하나 더 따로 만들지만 / class는 같은 circle_one 객체를 참조함
+    var radius = 0
+}
+
+var circle_one = Circle3()
+var circle_two = circle_one
+circle_two.radius = 10
+
+print(circle_two.radius)
+print(circle_one.radius)
+
+//클래스 구조체 선택 기준 공식 문서 참고해서 보면
+//일반적인 구조체 선택 기준
+//1. 몇가지 간단한 데이터 값을 캡슐화, 사각형의 너비 등등
+//2. 할당 및 전달 시 복사가 합리적일 때
+//3. 모든 속성도 값 타입 - 복사가 맞을 때
+//4. 상속이 필요 없을 때
+//반드시 구조체를 사용하는 경우가 많지 않기 때문에, 대부분의 경우 클래스를 정의하고 인스턴스를 만들어서 사용하면 된다
+
+
+
+//열거형(Enumeration) - naming 대문자로 시작
+//데이터타입이 String Int 등 여러 타입 가능
+//데이터타입에 맞는 rawValue를 설정해줄 수 있음
+enum AppleOS: String{
+    case iOS = "iPad"
+    case macOS = "MacBook Pro"
+    case tvOS
+    case watchOS
+}
+
+var osType: AppleOS = AppleOS.iOS
+var osType2: AppleOS = .macOS
+
+print(osType.rawValue)
+print(osType2.rawValue)
+
+func printAppleDevice(osType: AppleOS){
+    switch osType{
+    case.iOS:
+        print("iPhone")
+    case .macOS:
+        print("iMac")
+    case .tvOS:
+        print("Apple TV")
+    case .watchOS:
+        print("Apple watch")
+    }
+}
+
+printAppleDevice(osType: .watchOS)
