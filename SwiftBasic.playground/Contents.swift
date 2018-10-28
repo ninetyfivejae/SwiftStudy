@@ -381,3 +381,9 @@ func printAppleDevice(osType: AppleOS){
 }
 
 printAppleDevice(osType: .watchOS)
+
+//ios 앱은 운영체제의 프레임워크를 통해 아이폰 등의 ios기기 하드웨어를 제어하고, 그 프레임워크 안 에는 각각 비슷한 범주의 클래스가 존재하고, 그 클래스 안에는 연관된 속성 및 기능을 하는 메소드들이 존재함
+
+//access control 접근 제어, 캡슐화와 연관 있음
+//캡슐화는 프레임워크나 클래스 등에서 내부 구현을 꼭 필요한 부분을 노출을 하는 것임. 그러면 외부에서는 그 모듈을 좀 더 쉽고 올바르게 사용 가능하고, 외부로 노출되면 안 되는 것은 숨길 수 있다는 장점이 있음
+//open, public, internal, fileprivate, private
