@@ -114,10 +114,35 @@
                 // couldn't load file :(
             }
         }
+        
+        //실제 아이폰 flashlight 켜는 함수
+        //You will need to import the AVFoundation framework, because that's where the AVCaptureDevice class comes from.
+        func toggleTorch(on: Bool) {
+            guard let device = AVCaptureDevice.default(for: .video) else { return }
+            
+            if device.hasTorch {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    if on == true {
+                        device.torchMode = .on
+                    } else {
+                        device.torchMode = .off
+                    }
+                    
+                    device.unlockForConfiguration()
+                } catch {
+                    print("Torch could not be used")
+                }
+            } else {
+                print("Torch is not available")
+            }
+        }
     
         @IBAction func switchTapped(_ sender: Any) {
             isOn = !isOn
             soundPlayer?.play()
+            toggleTorch(on: isOn)
     
             //image literal 사용. 이미지 자체를 넣는다는 의미. image치면 image literal이 나오는거로 설정하면 된다. Asset에 있는 이미지만 사용 가능
             if isOn == true {
@@ -151,4 +176,7 @@
   - new group without folder(노란 폴더 + 화살표) : 실제에서는 폴더가 안 생기는데, 옆에 프로젝트 트리에서만 참고로 볼 수 있음
   - folder reference(파란색 폴더) : 디렉토리를 참조하는거라 안에 파일들을 사용하려면 경로를 명시를 해줘야함(아직 자세한 것은 아님)
 
-- 
+- 아이폰에서 앱 실행
+
+  - 설정 - 일반 - 기기관리 - 신뢰
+  - signing에서 provisioning profile은 무료로 앱을 아이폰에 설치가능한데 기간이 일주일이라 일주일 지나면 앱을 사용못하니까 다시 설치를 해주면 된다.
