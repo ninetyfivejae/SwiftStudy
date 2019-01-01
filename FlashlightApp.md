@@ -1,10 +1,4 @@
-# SwiftStudy
-
-## 1. [SwiftBasicExamples](https://github.com/ninetyfivejae/SwiftStudy/blob/master/SwiftBasicExamples.md#swiftbasicexamples)
-
-## 2. 애플리케이션
-
-### Flashlight Application
+# Flashlight App
 
 - 1x 이미지는 아이폰 3gs와 대응이 되고,
 
