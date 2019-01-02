@@ -4,6 +4,6 @@
 
 ## 2. [Flashlight App](https://github.com/ninetyfivejae/SwiftStudy/blob/master/FlashlightApp.md#flashlight-app)
 
-## 3. [En# SwiftStudy](https://github.com/ninetyfivejae/SwiftStudy/blob/master/En%23SwiftStudy.md#en-swiftstudy)
+## 3. [En# SwiftStudy](https://github.com/ninetyfivejae/SwiftStudy/blob/master/En%23SwiftStudy/En%23SwiftStudy.md#en-swiftstudy)
 
 
