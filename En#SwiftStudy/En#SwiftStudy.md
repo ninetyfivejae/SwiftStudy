@@ -64,21 +64,3 @@
 - 사진 앨범 or 미니 Todo 앱
 ```
 
-## 1주차
-
-- property 차이점 등등 자세하게, 자유롭게 정리해서 설명
-  컬렉션 타입 3가지에 대한 차이점을 정리 설명
-  값타입 참조타입 등등 차이점에 대해서
-  optional / optional binding에 대한 설명
-
-- 토요일까지 과제
-
-  - 상수와 변수, 함수 정의 및 사용법 (필수)
-  - Property(Stored, Computed, Class) (필수)
-
-  - 콜렉션(Array, Dictionary, Set) (필수)
-  - Class / Struct / Enum
-  - Optional / Optional Binding
-
-- 다음 스터디 이번주 토요일 12시 서현역 토즈 분당서현점
-- 
