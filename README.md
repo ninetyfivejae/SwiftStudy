@@ -2,8 +2,8 @@
 
 ## 예습
 
-- [SwiftBasicExamples]()
-- [Flashlight App]()
+- [SwiftBasicExamples](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%98%88%EC%8A%B5/SwiftBasicExamples.md#swiftbasicexamples)
+- [Flashlight App](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%98%88%EC%8A%B5/FlashlightApp.md#flashlight-app)
 
 ## En#SwiftStudy
 
