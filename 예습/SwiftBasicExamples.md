@@ -213,7 +213,9 @@
   - argument label을 통해서 입력값에 대한 설명을 명시해줄 수 있다
   - 함수를 외부에 노출할 때 argument label을 통해서 입력값에 대한 설명을 보여줄 수 있음
   - 함수 내부에서는 간략한 parameter naming을 가지고 간결하게 구현할 수 있음
+  - Argument label은 길고 자세하게 작성, parameter는 짧고 간결하게 작성하는 경우가 많다고 함
   - 생략하려고 하면 _ underscore로 표시
+  - 중요, 함수의 이름이 같더라도 argument label이나 parament label으로 구분 가능하면 따로 사용 가능함
 
   ```swift
   func calculate(multiflyFirstNumber num1: Int, bySecondNumber num2: Int) -> Int{

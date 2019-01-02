@@ -2,41 +2,27 @@ import UIKit
 
 var str = "Hello, playground"
 
-func hello(name: String) -> String{
-    return "Hello~ " + name
+func test(number x: Int, numbers list: Int...) -> Int{
+    return list[0]
 }
 
-func hello2(name: String){
-    
-}
-
-let message = hello(name: "jae")
-
-
-
-func addTwoNumbers(num1: Int, num2: Int = 100) -> Int {
+func calculate(multiflyFirstNumber num1: Int, bySecondNumber num2: Int) -> Int{
     return num1 + num2
 }
 
-addTwoNumbers(num1: 5, num2: 10)
-addTwoNumbers(num1: 5)
+test(number: 1, numbers: 1,2,3,4,5)
 
 
 
-func addNumbers(numbers: Int...) -> Int{
-    var sum = 0
-    for num in numbers{
-        sum += num
-    }
-    return sum
+func add(_ a: Int, _ b: Int) -> Int{
+    print(#function)
+    return a+b
 }
 
-addNumbers(numbers: 1,2,3,4,5)
+let calc: (Int, Int) -> Int = add
 
-func myInfo() -> (name: String, weight: Int){
-    return ("jae", 70)
-}
+var result = add(1, 2)
+print(result)
 
-let info = myInfo()
-print(info.name)
-print(info)
+result = calc(1, 2)
+print(result)
