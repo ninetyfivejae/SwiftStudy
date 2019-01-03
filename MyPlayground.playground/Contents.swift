@@ -1,28 +1,158 @@
 import UIKit
 
-var str = "Hello, playground"
+//배열 리터럴, 이 경우에는 빈 배열 생성 불가
+let stringArray = ["one", "two", "three"]
+//생성자
+//let stringArray = Array<Int>(["one", "two", "three"])
 
-func test(number x: Int, numbers list: Int...) -> Int{
-    return list[0]
+//빈 array 생성
+var integers: Array<Int> = Array<Int>()
+integers.append(1)
+integers.append(100)
+integers.append(100)
+
+integers.contains(100)
+integers.contains(99)
+
+integers.remove(at: 0)
+integers.removeFirst()
+integers.removeLast()
+integers.removeAll()
+integers.popLast()
+
+
+integers.removeAll(keepingCapacity: true) //요소를 모두 삭제를 하지만 메모리공간을 할당 해제를 하지 않음. 삭제 후 요소들을 다시 채우게 되는 경우 사용하면 불필요한 메모리 할당해제가 일어나지 않아서 좋음
+
+integers.count
+
+if !integers.isEmpty{
+    print("\(integers.count) element(s)")
+}else{
+    print("Empty array")
 }
 
-func calculate(multiflyFirstNumber num1: Int, bySecondNumber num2: Int) -> Int{
-    return num1 + num2
+integers.startIndex
+integers.endIndex
+
+integers.index(of: 1)
+
+var alphabet = ["A", "B", "C", "D", "E"]
+var lower = ["a", "b", "c", "d", "e"]
+if alphabet == lower{
+    print("alphabet == lower")
+}else{
+    print("alphabet != lower")
+}
+if alphabet.elementsEqual(lower, by: {$0.lowercased() == $1.lowercased()}){
+    print("alphabet == lower")
+}else{
+    print("alphabet != lower")
 }
 
-test(number: 1, numbers: 1,2,3,4,5)
+alphabet.replaceSubrange(0..<2, with: ["X", "Y"])
+alphabet.replaceSubrange(alphabet.startIndex..<alphabet.endIndex.advanced(by: -1), with: ["X", "Y"])
+alphabet[alphabet.startIndex..<alphabet.endIndex.advanced(by: -1)] = ["X", "Y"]
+
+alphabet.sorted() //배열을 변경하지는 않음
+alphabet
+alphabet.sort() //새롭게 정렬한 배열로 변경
+alphabet
+
+alphabet.reverse()
+alphabet.reverse()
+alphabet.reversed()
+var result2: [String] = alphabet.reversed()
+result2
+
+let subArray = alphabet[1..<3]
+print(subArray)
+var result = alphabet.dropLast()
+result = alphabet.dropFirst(2)
 
 
 
-func add(_ a: Int, _ b: Int) -> Int{
-    print(#function)
-    return a+b
+
+
+
+
+let words = ["A": "Apple", "B": "Banana", "C": "City"]
+let anotherWords = ["B": "Banana", "C": "City", "A": "Apple"]
+let countryCodes = ["KR": "South Korea", "US": "United States"]
+let upperWords = ["A": "APPLE", "B": "BANANA", "C": "CITY"]
+
+let countOfWords = words.count
+
+if !words.isEmpty{
+    print("\(countOfWords) element(s)")
+}else{
+    print("empty dictionary")
 }
 
-let calc: (Int, Int) -> Int = add
+let keys = Array(words.keys)
+print(keys)
 
-var result = add(1, 2)
-print(result)
+let values = Array(words.values)
+print(values)
 
-result = calc(1, 2)
-print(result)
+if words.contains(where: {(key, value) -> Bool in return key == "A"}){
+    print("contains A key.")
+}
+
+if words.contains(where: {$0.1 == "City"}){
+    print("contains City value.")
+}
+
+if words == anotherWords{
+    print("words == anotherWords")
+}else{
+    print("word != anotherWords")
+}
+
+if words == countryCodes{
+    print("words == countryCodes")
+}else{
+    print("word != countryCodes")
+}
+
+let equals = words.elementsEqual(upperWords){(lhs, rhs) -> Bool in
+    return lhs.0.lowercased() == rhs.0.lowercased()
+        && lhs.1.lowercased() == rhs.1.lowercased()
+}
+
+print(equals)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let array = ["Apple", "Orange", "Melon"]
+for value in array {
+    if let index = array.index(of: value){
+        print("\(index) ~ \(value)")
+    }
+}
+
+let set = Set(array)
+for value in set{
+    print(value)
+}
+
+//enumerate() 메소드를 사용하면 순회의 각 단계마다 인덱스와 값으로 구성된 튜플을 얻을 수 있다. 배열을 순회할 때마다 인덱스를 사용할 때 유용
+for t in alphabet.enumerated(){
+    print("\(t.0) - \(t.1)")
+}
+
+for (index, char) in alphabet.enumerated(){
+    print("\(index) - \(char)")
+}
+
