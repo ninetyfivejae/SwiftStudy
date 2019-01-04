@@ -6,13 +6,36 @@
     값타입 참조타입 등등 차이점에 대해서
     optional / optional binding에 대한 설명
   - 토요일까지 과제
-    - 상수와 변수, 함수 정의 및 사용법 (필수)
-    - Property(Stored, Computed, Class) (필수)
+    - 상수와 변수, 함수 정의 및 사용법
+    - Property(Stored, Computed, Class)
 
-    - 콜렉션(Array, Dictionary, Set) (필수)
+    - 콜렉션(Array, Dictionary, Set)
     - Class / Struct / Enum
     - Optional / Optional Binding
   - 다음 스터디 이번주 토요일 12시 서현역 토즈 분당서현점
+
+```
+함수
+    Formal Parameter와 Argument
+    Argument Label & Parameter Name
+    파라미터 기본 값 설정
+    가변 파라미터 ...
+    입출력 파라미터 inout
+    복합 Return 값
+    Function Types
+    Nested Functions
+Property(Stored, Computed, Class)
+	Stored Property
+	Lazy Stored Property
+	Computed Property
+	Type Property
+	Property Observer
+	전역변수와 지역변수
+Collection (Array, Dictionary, Set)
+	Array
+	Dictionary
+	Set
+```
 
 ## 상수와 변수
 
@@ -417,7 +440,7 @@ let message = hello(name: "jae")
   - Reference type인 클래스도 let으로 선언된 length의 값을 바꾸진 못함
   - 위 구조체에서는 rangeOfThreeItems를 let으로 바꾸자마자 rangeOfThreeItems의 firstValue를 바꾸는 코드가 에러가 났었는데, 클래스는 에러가 나지 않음.
   - 클래스는 Reference type이기 때문에, 원본에 바로 접근하기 때문에 상수 인스턴스로도 변수 변경 가능
-  - 원본의 firstValue는 var였기 때문에 **여전히 값의 변경이 가능**하지만, 원본의 length는 let으로 선언되어있기때문에 값을 바꾸지 못하는 것임
+  - 원본의 firstValue는 var였기 때문에 여전히 값의 변경이 가능하지만, 원본의 length는 let으로 선언되어있기때문에 값을 바꾸지 못하는 것임
 
   ```swift
   class FixedLengthRange {
@@ -489,7 +512,7 @@ let message = hello(name: "jae")
 
 - 클래스, 구조체, 열거형에 사용된다
 
-- var로 선언해야한다
+- **var로 선언해야한다**
 
 - 클래스, 구조체, 열거형에 값을 저장할 저장 프로퍼티가 하나 있어야한다. 연산 프로퍼티 자기 자신을 리턴하거나 값을 지정할 수 없음
 
@@ -545,11 +568,11 @@ let message = hello(name: "jae")
 
 - 타입프로퍼티에는,  **Stored Type Property(저장 타입 프로퍼티)**와 **Computed Type Property(연산 타입 프로퍼티)**가 있음
 
-  - Stored type Property는 상수/변수 일 수 있음
+  - Stored Type Property는 상수/변수 일 수 있음
 
-  - Stored instance property와 달리 **Stored type Property**에는 항상 기본값을 줘야한다. 왜냐하면 초기화 시에, 타입 자체에는 Stored type Property에 값을 할당할 initializer가 없기 때문.
+  - Stored instance property와 달리 **Stored Type Property에는 항상 기본값을 줘야한다. 왜냐하면 초기화 시에, 타입 자체에는 Stored type Property에 값을 할당할 initializer가 없기 때문**
 
-  - **Computed type property**는 변수로만 선언 가능
+  - **Computed Type property는 변수로만 선언 가능**
 
   - **Stored type Property는 Lazy Stored Property처럼 최초 접근 시점에 초기화된다**. 굳이 lazy 키워드를 명시적으로 추가할 필요 없음. 다수의 쓰레드에 의해 동시에 엑세드 되고 있어도 한 번만 초기화되는 것이 보장되기 때문에 사용할 필요 없음
 
@@ -597,8 +620,8 @@ let message = hello(name: "jae")
     }
     ```
 
-    - 클래스에서는 `static`과 `class` 이렇게 2가지 형태로 타입 프로퍼티를 선언할 수 있는데 두 가지 경우의 차이는서브클래스에서 `overriding`가능 여부입니다.
-    - `class`로 선언된 프로퍼티는 서브클래스에서 오버라이드 가능합니다.
+    - 클래스에서는 `static`과 `class` 이렇게 2가지 형태로 타입 프로퍼티를 선언할 수 있는데 두 가지 경우의 차이는서브클래스에서 `overriding`가능 여부이다.
+    - **`class`로 선언된 프로퍼티는 서브클래스에서 오버라이드 가능**
 
     ```swift
     class Account{
@@ -641,9 +664,9 @@ let message = hello(name: "jae")
 
 - 프로퍼티 옵저버는 새로운 값이 프로퍼티의 현재값과 동일하더라도 속성의 값이 설정될 때 마다 호출
 
-- lazy 저장 프로퍼티를 제외하고, 정의된 저장 프로퍼티에 프로퍼티 옵저버를 추가할 수 있음
+- **lazy 저장 프로퍼티를 제외하고, 정의된 저장 프로퍼티에 프로퍼티 옵저버를 추가할 수 있음**
 
-- 또한, 하위 클래스 내의 프로퍼티를 재정의하여, 상속된 프로퍼티(저장프로퍼티 or 연산프로퍼티 어느것이든)에도 프로퍼티 옵저버를 추가할 수 있습니다.
+- **또한, 하위 클래스 내의 프로퍼티를 재정의하여, 상속된 프로퍼티(저장프로퍼티 or 연산프로퍼티 어느것이든)에도 프로퍼티 옵저버를 추가할 수 있습니다**
 
   - `willSet` : 값이 저장되기 바로 직전에 호출 됨
 
@@ -702,9 +725,9 @@ let message = hello(name: "jae")
   - 전역변수: 함수, 메소드, 클로저 또는 type context외부에 정의되는 변수
 
   - 지역변수: 함수, 메소드 또는 closure context내에서 정의되는 변수
-    - 전역상수와 전역변수는 항상 게으르게 연산된다. 즉, 필요할 때 초기화해줘야함
-    - 전역상수와 전역변수는 연산 프로퍼티와는 다르게 lazy키워드가 필요없다
-    - 지역상수와 지역변수는 게으르게 연산되지 않는다
+    - **전역상수와 전역변수는 항상 게으르게 연산된다. 즉, 필요할 때 초기화해줘야함**
+    - **전역상수와 전역변수는 연산 프로퍼티와는 다르게 lazy키워드가 필요없다**
+    - **지역상수와 지역변수는 게으르게 연산되지 않는다**
 
 ## Collection (Array, Dictionary, Set)
 
@@ -1049,3 +1072,11 @@ let message = hello(name: "jae")
       print("\(index) - \(char)")
   }
   ```
+
+## Class / Struct / Enum
+
+- 
+
+## Optional / Optional Binding
+
+- 
