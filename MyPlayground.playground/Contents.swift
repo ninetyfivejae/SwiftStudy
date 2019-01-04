@@ -156,3 +156,46 @@ for (index, char) in alphabet.enumerated(){
     print("\(index) - \(char)")
 }
 
+class AClass{
+    static var typeProperty: Int = 0
+}
+//static var typeProperty: Int = 0
+
+
+var person: (String, Int, Double) = ("yagom", 100, 182.5)
+print("\(person.0), \(person.1), \(person.2)")
+
+var person2: (name: String, age: Int, height: Double) = ("yagom", 100, 182.5)
+print("\(person2.name), \(person2.age), \(person2.height)")
+
+typealias PersonTuple = (name: String, age: Int, height: Double)
+let yagom: PersonTuple = ("yagom", 100, 178.5)
+let eric: PersonTuple = ("eric", 100, 178.5)
+
+print("\(yagom.name), \(yagom.age), \(yagom.height)")
+
+
+
+
+
+
+
+
+let englishClassStudents: Set<String> = ["john", "chulsoo", "yagom"]
+let koreanClassStudents: Set<String> = ["jenny", "yagom", "chulsoo", "haha", "minsoo"]
+
+let intersectSet: Set<String> = englishClassStudents.intersection(koreanClassStudents)
+let symmetricDiffSet: Set<String> = englishClassStudents.symmetricDifference(koreanClassStudents)
+let unionSet: Set<String> = englishClassStudents.union(koreanClassStudents)
+let subtractSet: Set<String> = englishClassStudents.subtracting(koreanClassStudents)
+
+print(unionSet.sorted())
+
+let 새: Set<String> = ["비둘기", "닭", "기러기"]
+let 포유류: Set<String> = ["사자", "호랑이", "곰"]
+let 동물: Set<String> = 새.union(포유류)
+
+print(새.isDisjoint(with: 포유류))
+print(새.isSubset(of: 동물))
+print(동물.isSuperset(of: 포유류))
+print(동물.isSuperset(of: 새))

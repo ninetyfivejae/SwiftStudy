@@ -16,46 +16,43 @@
 
 ## 상수와 변수
 
+### let 상수, var 변수
+
 - let (this variable) X = (equal to) 10 이런 의미에서 고정된 값인 상수 keyword가 let으로 됨
-
-- let 상수, var 변수
-
 - 간단하게 초기화 후 값이 변경되면 변수, 안 바뀌면 상수
-
 - 변수는 저장된 값을 마음대로 변경할 수 있지만 상수는 값을 저장한 후 새로운 값으로 변경할 수 없음.
-
 - 스코프 변수와 상수의 사용 가능 범위, 메모리 효율적 사용과 관계가 있음
 
-- NamingConvention
+### NamingConvention
 
-  - 변수의 이름 소문자로 시작. 영문자와 _문자로 시작할 수 있지만, 숫자나 다른 특수문자로 사용할 수 없음
-  - swift는 유니코드로 표현할 수 있는 한글이나 이모티콘 등을 변수 이름으로 사용 가능하지만 가독성 측면에서 불리하여 사용 안 함
-  - 헝가리언 표기법 사용 안 함. 가령 nAge, bSuccess, szNmae 등등
-  - UpperCamelCase, lowerCamelCase 사용
-    - UpperCamelCase: 클래스, 구조체, 블록, 열거형, 익스텐션, 프로토콜
-    - lowerCamelCase: 변수, 메소드, 속성, 파라미터
-    - bookStore, userName, age, _internalName 등등 사용 가능
+- 변수의 이름 소문자로 시작. 영문자와 _문자로 시작할 수 있지만, 숫자나 다른 특수문자로 사용할 수 없음
+- swift는 유니코드로 표현할 수 있는 한글이나 이모티콘 등을 변수 이름으로 사용 가능하지만 가독성 측면에서 불리하여 사용 안 함
+- 헝가리언 표기법 사용 안 함. 가령 nAge, bSuccess, szNmae 등등
+- UpperCamelCase, lowerCamelCase 사용
+  - UpperCamelCase: 클래스, 구조체, 블록, 열거형, 익스텐션, 프로토콜
+  - lowerCamelCase: 변수, 메소드, 속성, 파라미터
+  - bookStore, userName, age, _internalName 등등 사용 가능
 
-- 상수, 변수 초기화
+### 상수, 변수 초기화
 
-  - 선언과 동시에 변수 초기화
+- 선언과 동시에 변수 초기화
 
-  - ```swift
-    var a: Int = 0
-    let a: Int = 100
-    ```
+- ```swift
+  var a: Int = 0
+  let a: Int = 100
+  ```
 
-  - 선언하고 나중에 초기화
+- 선언하고 나중에 초기화
 
-  - ```swift
-    var a: Int
-    a = 0
-    
-    let a: Int
-    a = 100
-    ```
+- ```swift
+  var a: Int
+  a = 0
+  
+  let a: Int
+  a = 100
+  ```
 
-  - 상수는 선언 후에 최초 한 번에 한해서 초기값을 할당할 수 있도록 개선됐음.
+- 상수는 선언 후에 최초 한 번에 한해서 초기값을 할당할 수 있도록 개선됐음.
 
 - 예제
 
@@ -68,11 +65,12 @@
   var a: Int, b: Float, c: String
   ```
 
+
 ## 함수 정의 및 사용법
 
 ### 기본 예제
 
-- func 키워드, 함수이름, (parameter name: 데이터 타입), return arrow, 반환타입
+- func 키워드 / 함수이름 / (parameter name: 데이터 타입) / return arrow 반환타입
 
 ```swift
 func hello(name: String) -> String{
@@ -101,7 +99,7 @@ let message = hello(name: "jae")
   그래서 instance라는 단어를 자주 사용함
   ```
 
-- 함수도 변수와 상수처럼 lowerCamelCase로, log, write, read와 같이 자주 사용되는 단어는 지양. 구체적인 함수 이름을 사용
+- 함수도 변수와 상수처럼 lowerCamelCase로 하고 구체적인 함수 이름을 사용하면 되고, log, write, read와 같이 자주 사용되는 단어는 지양
 
 ### Formal Parameter와 Argument
 
@@ -122,7 +120,6 @@ let message = hello(name: "jae")
 
   ```swift
   //error: MyPlayground.playground:6:7: error: cannot assign to value: 'x' is a 'let' constant
-  
   func test(_ x: Int) -> Int{
       x = x + 1
       return x
@@ -166,6 +163,8 @@ let message = hello(name: "jae")
 - 상수를 선언하는 것과 달리 형식 추론을 사용할 수 없으니 자료형을 생략할 수 없다
 
 - 함수 호출할 때 모호함을 방지하기 위해 argument label을 명시해줘야한다
+
+- 구체적인 예시로 print함수 separator, terminator
 
   ```swift
   //기본값을 적용하는 경우
@@ -307,7 +306,7 @@ let message = hello(name: "jae")
 
 ### Nested Functions
 
-- 함수 내부에 함수를 구현할 수 있음.
+- 함수 내부에 함수를 구현할 수 있음
 
 - 내포된 함수의 사용 범위는 자신을 포함하고 있는 함수의 범위로 제한된다
 
@@ -354,19 +353,19 @@ let message = hello(name: "jae")
 
 ## Property(Stored, Computed, Class)
 
-- property 속성 lowerCamelCase
+- lowerCamelCase
 - 간단히
   - Stored Property(저장 프로퍼티)는 상수와 변수 값을 인스턴스의 일부로 저장함. 클래스와 구조체에서만 사용
   - 반면에 Computed Property(연산 프로퍼티)는 값을 연산함(저장(store)하기 보다는) 그때그때 특정 연산은 수행하여 값을 반환함. 클래스, 구조체 그리고 **열거형**에서 사용
-  - 이렇게 Stored Property(저장 프로퍼티)와  Computed Property(연산 프로퍼티)는 일반적으로 특정 타입의 인스턴스와 연결된다. 그러나 프로퍼티를 타입 자체와 연결할 수도 있음. 이러한 프로퍼티를 Type Property(타입 프로퍼티)라고 한다.
+  - 이렇게 Stored Property(저장 프로퍼티)와  Computed Property(연산 프로퍼티)는 일반적으로 특정 타입의 인스턴스와 연결된다. 그러나 프로퍼티를 타입 자체와 연결할 수도 있음. 이러한 프로퍼티를 **Type Property**(타입 프로퍼티)라고 한다.
 
 ### Stored Property
 
 - 클래스와 구조체의 인스턴스의 일부가 되는 상수, 변수
 
-- 변수 저장 프로퍼티: 변수를 저장하는 저장 프로퍼티
+- **변수 저장 프로퍼티**: 변수를 저장하는 저장 프로퍼티
 
-- 상수 저장 프로퍼티: 상수를 저장하는 저장프로퍼티
+- **상수 저장 프로퍼티**: 상수를 저장하는 저장프로퍼티
 
 - 구조체 사용 예제
 
@@ -544,13 +543,15 @@ let message = hello(name: "jae")
   - 타입 프로퍼티는 모든 타입이 사용할 수 있는 상수 프로퍼티(constants property) (ex : C의 static 상수)
   - 또는 글로번 변수 프로퍼티와 같이 특정 타입의 모든 인스턴스에 공통적인 값을 정의하는 데 유용함. ( ex: C의 static 변수)
 
-- 타입프로퍼티에는,  저장 타입 프로퍼티와 연산 타입 프로퍼티가 있음
+- 타입프로퍼티에는,  **Stored Type Property(저장 타입 프로퍼티)**와 **Computed Type Property(연산 타입 프로퍼티)**가 있음
 
   - Stored type Property는 상수/변수 일 수 있음
 
-  - Stored instance property와 달리 Stored type Property에는 항상 기본값을 줘야한다. 왜냐하면 초기화 시에, 타입 자체에는 Stored type Property에 값을 할당할 initializer가 없기 때문.
+  - Stored instance property와 달리 **Stored type Property**에는 항상 기본값을 줘야한다. 왜냐하면 초기화 시에, 타입 자체에는 Stored type Property에 값을 할당할 initializer가 없기 때문.
 
-  - Stored type Property는 Lazy Stored Property처럼 최초 접근 시점에 초기화된다. 굳이 lazy 키워드를 명시적으로 추가할 필요 없음. 다수의 쓰레드에 의해 동시에 엑세드 되고 있어도 한 번만 초기화되는 것이 보장되기 때문에 사용할 필요 없음
+  - **Computed type property**는 변수로만 선언 가능
+
+  - **Stored type Property는 Lazy Stored Property처럼 최초 접근 시점에 초기화된다**. 굳이 lazy 키워드를 명시적으로 추가할 필요 없음. 다수의 쓰레드에 의해 동시에 엑세드 되고 있어도 한 번만 초기화되는 것이 보장되기 때문에 사용할 필요 없음
 
     ```swift
     struct SomeStructure {
@@ -597,7 +598,24 @@ let message = hello(name: "jae")
     ```
 
     - 클래스에서는 `static`과 `class` 이렇게 2가지 형태로 타입 프로퍼티를 선언할 수 있는데 두 가지 경우의 차이는서브클래스에서 `overriding`가능 여부입니다.
-    -  `class`로 선언된 프로퍼티는 서브클래스에서 오버라이드 가능합니다.
+    - `class`로 선언된 프로퍼티는 서브클래스에서 오버라이드 가능합니다.
+
+    ```swift
+    class Account{
+        static let dollarExchangeRate: Double = 1000.0
+        
+        var credit: Int = 0
+        var dollarValue: Double{
+            get{
+                return Double(credit) / Account.dollarExchangeRate
+            }
+            set{
+                credit = Int(newValue * Account.dollarExchangeRate)
+                print("잔액을 \(newValue) 달러로 변경 중입니다")
+            }
+        }
+    }
+    ```
 
 - 타입 프로퍼티의 접근과 설정 (Querying and Setting Type Properties)
 
@@ -691,17 +709,44 @@ let message = hello(name: "jae")
 ## Collection (Array, Dictionary, Set)
 
 - 구조체로 구현된 값 형식
+
   - Array: 순서가 있는 리스트 컬렉션
   - Dictionary: key와 value의 쌍으로 이뤄진 컬렉션
   - Set: 순서가 없고 멤버가 유일한 컬렉션
+
 - Swift 컬렉션은 별도의 자료형으로 구분하지 않고 let, var 키워드를 통해 컬렉션의 가변셩을 결정함
   - 불변 컬렉션에 가변 문자열이 저장되어 있으면, 컬렉션에 새로운 가변 문자열을 추가하는 것은 불가능하지만 물자열 자체의 내용을 변경하는 것은 가능
   - 가변 컬렉션에 불변 문자열이 저장되어 있으면, 컬렉션에 새로운 문자열을 추가할 수 있지만 문자열의 내용은 변경할 수 없음
   - 이렇게 가변형과 불변형으로 나누는 이유는 스레드의 안정성을 얻기 위함. 불변 컬렉션은 동시에 여러 스레드에서 접근해도 안전. 가변 컬렉션은 여러 스레드가 동시에 값을 변경하는 경우 오류가 발생하거나 의도하지 않는 결과를 가져올 수 있음
 
+- 참고: 튜플
+
+  - 이름이 따로 지정되어 있지 않은 마음대로 만드는 타입. 지정된 데이터의 묶음
+
+  - 각 요소를 이름 대신 숫자로 표시하거나, 요소마다 이름을 붙여줄 수 있음
+
+  - 사용 예제
+
+    ```swift
+    var person: (String, Int, Double) = ("yagom", 100, 182.5)
+    print("\(person.0), \(person.1), \(person.2)")
+    
+    var person2: (name: String, age: Int, height: Double) = ("yagom", 100, 182.5)
+    print("\(person2.name), \(person2.age), \(person2.height)")
+    
+    //일일이 타입을 명시해가면서 튜플을 사용하기 번거로워서, typealias를 사용하여 튜플에 별칭 부여
+    typealias PersonTuple = (name: String, age: Int, height: Double)
+    let yagom: PersonTuple = ("yagom", 100, 178.5)
+    let eric: PersonTuple = ("eric", 100, 178.5)
+    
+    print("\(yagom.name), \(yagom.age), \(yagom.height)")
+    ```
+
 ### Array
 
 - element 요소를 순서대로 정렬하는 컬렉션
+
+- 배열이지만 버퍼 크기가 고정되어 있는 것이 아니라, 자동으로 버퍼의 크기를 조절해주므로 요소 삽입, 삭제가 자유롭다
 
 - 예제
 
@@ -750,6 +795,10 @@ let message = hello(name: "jae")
   integers.startIndex
   integers.endIndex
   
+  //맨 처음 요소, 맨 마지막 요소 가져오기
+  integers.first
+  integers.last
+  
   //요소의 인덱스를 옵셔널로 반환
   integers.index(of: 1)
   
@@ -787,8 +836,6 @@ let message = hello(name: "jae")
   alphabet.reversed()
   var result2: [String] = alphabet.reversed()
   result2
-  
-  
   ```
 
   ```swift
@@ -808,6 +855,14 @@ let message = hello(name: "jae")
 
 ### Dictionary
 
+- key: value.
+
+- 하나의 Dictionary 안에서 key는 중복해서 사용할 수 없음. 키는 값을 대변하는 유일한 식별자
+
+- Let 사용하여 상수로 선언을 하면 변경불가, var 사용하여 변수로 선언하면 변경 가능. 불변/가변 컬렉션
+
+- 배열과 다르게 dictionary 내부에 없는 키로 접근해도 오류가 발생하지 않음. Nil 반환함
+
 - 예제
 
   ```swift
@@ -820,6 +875,7 @@ let message = hello(name: "jae")
   anyDictionary["someKey"] = "dictionary"
   anyDictionary //["someKey": "dictionary", "anotherKey": 100]
   
+  //삭제
   anyDictionary.removeValue(forKey: "anotherKey")
   anyDictionary["someKey"] = nil
   anyDictionary.removeAll()
@@ -882,6 +938,14 @@ let message = hello(name: "jae")
 
 ### Set
 
+- 같은 타입의 데이터를 순서 없이 하나의 묶음으로 저장하는 형태의 컬렉션 타입
+
+- 세트 내의 값은 모두 유일한 값이 존재하고, 중복된 값이 존재하지 않음
+
+- 그래서 세트는 보통 순서가 중요하지 않거나 각 요소가 유일한 값이어야 하는 경우에 사용
+
+- 배열과 달리 축약형이 없음
+
 - 예제
 
   ```swift
@@ -914,6 +978,27 @@ let message = hello(name: "jae")
   ```
 
   ```swift
+  let englishClassStudents: Set<String> = ["john", "chulsoo", "yagom"]
+  let koreanClassStudents: Set<String> = ["jenny", "yagom", "chulsoo", "haha", "minsoo"]
+  
+  let intersectSet: Set<String> = englishClassStudents.intersection(koreanClassStudents)
+  let symmetricDiffSet: Set<String> = englishClassStudents.symmetricDifference(koreanClassStudents)
+  let unionSet: Set<String> = englishClassStudents.union(koreanClassStudents)
+  let subtractSet: Set<String> = englishClassStudents.subtracting(koreanClassStudents)
+  
+  print(unionSet.sorted())
+  
+  let 새: Set<String> = ["비둘기", "닭", "기러기"]
+  let 포유류: Set<String> = ["사자", "호랑이", "곰"]
+  let 동물: Set<String> = 새.union(포유류)
+  
+  print(새.isDisjoint(with: 포유류))
+  print(새.isSubset(of: 동물))
+  print(동물.isSuperset(of: 포유류))
+  print(동물.isSuperset(of: 새))
+  ```
+
+  ```swift
   let fruits: Set<String> = ["Apple", "Orange", "Melon"]
   var countOfFruits = fruits.count
   
@@ -938,12 +1023,6 @@ let message = hello(name: "jae")
   }else{
       print("favoriteFruits != tropicalFruits")
   }
-  //부분집합
-  if yellowFruits.isSubset(of: tropicalFruits){
-      print("yellowFruits is tropicalFruits")
-  }
-  //여집합
-  let exclusiveSet = favoriteFruits.symmetricDifference(tropicalFruits)
   ```
 
 ### Fast Enumeration
