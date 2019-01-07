@@ -232,10 +232,17 @@ print(Weekday.mon.hashValue)
 //
 //print(result)
 
-var yourName: String? = "aaa"
-print(yourName)  //nil값이라서 런타임 오류 발생
+var yourName: String? = "jae"
+print(yourName)
+
 if let name = yourName {
     print(name)
 }
 
 yourName! + "aaa"
+
+var myName: String! = "yagom"
+print(myName) //yagom
+myName = nil
+
+myName.isEmpty //오류

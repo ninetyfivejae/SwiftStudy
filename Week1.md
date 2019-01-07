@@ -1317,6 +1317,7 @@ let message = hello(name: "jae")
   - 순환 열거형은 열거형 항목의 연관 값이 열거형 자신의 값이고자 할 때 사용
   - Indirect 키워드를 사용하여 순환 열거형을 명시
   - 특정 항목에만 한정하고 싶다면 case 키워드 앞에 indirect, 열거형 전체에 적용하고 싶다면 enum 키워드 앞에 indirect
+  - indirect 키워드는 이진 탐색 트리 등의 순환 알고리즘을 구현할 때 유용하게 사용 가능
 
   ```swift
   enum ArithmeticExpression {
@@ -1356,19 +1357,148 @@ let message = hello(name: "jae")
 
 ## Optional / Optional Binding
 
-- 옵셔널
+### Optional
 
-  - 상수에는 nil 안 됨. 근데 초기화때는 nil이 들어갈 수 있음
+- 스위프트에서 안전성을 문법으로 담보하는 기능
 
-    ```swift
-    let test: String? = nil
-    ```
+- 변수나 상수 등에 꼭 값이 있다는 것을 보장할 수 없다. 변수 또는 상수의 값이 nil일 수도 있다는 것을 의미
 
-  - ? ! 
+- 옵셔널과 옵셔널이 아닌 값은 철저히 다른 타입으로 인식하기 때문에 컴파일할 때 바로 오류를 걸러낼 수 있음
 
-  - Class person 이름 성별 나이는 무조건 있지만, 애인 차 집 없을 수 있음 이게 옵셔널. 무조건 있어야하는거는 옵셔널로 하지 않는게 좋다
+  - 전달인자로 NULL이 전달되어도 되는지 문서를 봐야 알 수 있는 다른 언어와 다르게, 스위프트에서는 옵셔널 문법적 표현만으로 이 의미를 충분히 표현 가능함.
+  - 매개변수를 굳이 넘기지 않아도 된다는 뜻으로 매개변수의 타입을 옵셔널로 정의함. 물음표 하나로 암묵적인 커뮤니케이션 가능
 
-  - Person.car.carNumber
+- 옵셔널 정의
+
+  - 옵셔널은 제네릭이 적용된 열거형
+  - 옵셔널이 값을 갖는 케이스와 그렇지 못한 케이스 두 가지로 정의
+  - nil일때는 none 케이스, 값이 있는 경우 some 케이스 with 연관 값 Wrapped. 옵셔널에 값이 있으면 연관값인 Wrapped에 값이 할당된다. 그래서 옵셔널 값 print하면 Optional("jae") 이렇게 출력된다.
+
+  ```swift
+  public enum Optional<Wrapped> : ExpressibleByNilLiteral {
+      case none
+      case some(Wrapped)
+      public init(_ some: Wrapped)
+      //중략
+  }
+  ```
+
+  ```swift
+  let numbers: [Int?] = [2, nil, -4, nil, 100]
+  
+  for number in numbers {
+      switch number {
+          case .some(let value) where value < 0:
+          	print("Negative value!! \(value)")
+          case .some(let value) where value > 10:
+          	print("Large value!! \(value)")
+          case .some(let value):
+          	print("Value \(value)")
+          case .none:
+          	print("nil")
+      }
+  }
+  
+  //Value 2
+  //nil
+  //Negative value!! -4
+  //nil
+  //Large Value!! 100
+  ```
+
+### 옵셔널 추출
+
+- 열거형의 case some에 숨어있는 옵셔널의 값을 옵셔널이 아닌 값으로 추출하는 optional unwrapping
+
+- 옵셔널 강제 추출방식은 옵셔널의 값을 추출하는 가장 간단하지만 가장 위험한 방법. 런타임 오류가 일어날 가능성이 가장 높기 때문
+
+  ```swift
+  var myName: String? = "yagom"
+  //옵셔널이 아닌 yagom 변수에 옵셔널 값이 들어갈 수 없으니 !강제 추출하여 할당함
+  var yagom: String = myName!
+  //값이 존재하여 오류가 나지 않지만 나중에 nil 값을 넣으면 오류가 나니까 위험함
+  myName = nil
+  yagom = myName! //오류
+  ```
+
+### 옵셔널 바인딩
+
+- if 구문을 통해 myName이 nil인지 먼저 확인하고 옵셔널 값을 강제 추출하는 방법은 다른 언어에서 NULL값을 체크하는 방식과 비슷
+
+- 만약 옵셔널 값이 있다면 옵셔널에서 추출한 값을 일정 블록 안에서 사용할 수 있는 상수나 변수로 할당해서 옵셔널이 아닌 형태로 사용할 수 있도록 해줌
+
+  ```swift
+  var myName: String? = "yagom"
+  
+  if let name = myName {
+      print("My name is \(name)")
+  } else {
+      print("myName == nil")
+  }
+  //My name is yagom
+  
+  if var name = myName {
+      name = "wizplan"
+      print("My name is \(name)")
+  } else {
+      print("myName == nil")
+  }
+  //My name is wizplan
+  ```
+
+  - Optional로 Wrapped 값이 나오기때문에, Optional binding으로 값을 추출하여 사용
+
+  ```swift
+  var yourName: String? = "jae"
+  print(yourName)
+  //"Optional("jae")\n" ==> Optional로 Wrapped 값이 나오기때문에
+  
+  if let name = yourName {
+      print(name)
+  }
+  //"jae\n" ==> Optional binding으로 값을 추출하여 사용
+  ```
+
+- if 구문을 실행하는 블록 안 쪽에서만 name이라는 임시 상수를 사용할 수 있음
+
+- 쉼표를 사용해 바인딩할 옵셔널을 나열 가능
+
+  ```swift
+  var myName: String? = "yagom"
+  var yourName: String? = nil
+  
+  //friend에 바인딩이 되지 않으므로 실행 안 됨
+  if let name = myName, let friend = yourName {
+      print("We are friend!")
+  }
+  
+  yourName = "eric"
+  
+  if let name = myName, let friend = yourName {
+      print("We are friend! \(name) & \(friend)")
+  }
+  //We are friend! yagom & eric
+  ```
+
+### 암시적 추출 옵셔널
+
+- 암시적 추출 옵셔널로 지정된 타입은 일반 값처럼 사용가능하고 여전히 옵셔널이기 때문에 nil도 할당 가능
+
+- 그러나 nil이 할당되어 있을 때 접근을 시도하면 런타임 오류 발생
+
+  ```swift
+  var myName: String! = "yagom"
+  print(myName) //yagom
+  myName = nil
+  
+  myName.isEmpty //오류
+  ```
+
+### 추가 설명
+
+- 옵셔널을 사용할 때는 강제 추출 또는 암시적 추출 옵셔널을 사용하기보다는 옵셔널 바인딩, nil 병합 연산자, 옵셔널 체이닝 등의 방법을 사용하는 편이 훨씬 안전함
+- Class person 이름 성별 나이는 무조건 있지만, 애인 차 집 없을 수 있음 이게 옵셔널. 무조건 있어야하는거는 옵셔널로 하지 않는게 좋다
+- Person.car.carNumber
 
 ## 추가 설명들
 

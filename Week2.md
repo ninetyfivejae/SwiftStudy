@@ -22,6 +22,18 @@ NSConstraint에 대해서,
 ```
 
 ```
+재혁
+iOS App Lifecycle
+UITextView
+UITextField
+——————————————
+지호
+iOS viewController LifeCycle
+UILabel
+UIButton
+```
+
+```
 과제 목차
 
 ```
