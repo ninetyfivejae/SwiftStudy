@@ -41,3 +41,27 @@ UIButton
 ## Autolayout
 
 - 
+
+## iOS App Lifecycle
+
+- 
+
+## iOS viewController LifeCycle
+
+- 
+
+## UITextView
+
+- 
+
+## UITextField
+
+- 
+
+## UILabel
+
+- 
+
+## UIButton
+
+- 
