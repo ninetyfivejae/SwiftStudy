@@ -8,31 +8,40 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextViewDelegate {
+class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     
     //UITextViewDelegate를 프로토콜을 준수하여 (Document 참고) UITextView와 communicate
-    
     @IBOutlet weak var myUITextView: UITextView!
-    @IBOutlet weak var myUITextField: UITextField!
     @IBOutlet weak var myUILabel: UILabel!
-    @IBOutlet weak var myUIButton: UIButton!
+    
+    @IBOutlet weak var userNameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var phoneNumberField: UITextField!
+    @IBOutlet weak var dataTextView: UITextView!
+    @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //view controller들에게 delegate function들을 적용시키기 위해
+        //myUITextView에 delegate function들을 적용시키기 위해
         self.myUITextView.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateTextView(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateTextView(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        self.userNameField.delegate = self
+        self.passwordField.delegate = self
+        self.phoneNumberField.delegate = self
     }
     
     //키보드 사라지게 하기위해서 touchesBegan func override를 해서 구현
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
-        //self.view.endEditing(true) // 모든 UITextView에 적용하고 싶은 경우
-        self.myUITextView.resignFirstResponder() //특정 UITextView에만 적용하고 싶은 경우
+        self.view.endEditing(true) // 모든 UITextView에 적용하고 싶은 경우
+        //self.myUITextView.resignFirstResponder() //특정 UITextView에만 적용하고 싶은 경우
+        //self.userNameField.resignFirstResponder()
+        //self.passwordField.resignFirstResponder()
     }
     
     //UITextView 터치 시
@@ -56,9 +65,9 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     //글자수 제한 기능
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        myUILabel.text = "\(myUITextView.text.characters.count)"
+        myUILabel.text = "\(myUITextView.text.count)"
 
-        return textView.text.characters.count + (text.characters.count - range.length) <= 100
+        return textView.text.count + (text.count - range.length) <= 100
     }
     
     @objc func updateTextView(notification: Notification) {
@@ -74,13 +83,35 @@ class ViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    
-    @IBAction func controlMyUITextField(_ sender: UITextField) {
-        
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("Editing is about to begin")
+        return true
     }
     
-    @IBAction func controlMyUIButton(_ sender: UIButton) {
-        
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.backgroundColor = UIColor.green
+        print("Editing is began")
     }
     
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("Editing is about to end")
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("Editing ended")
+        textField.backgroundColor = UIColor.white
+    }
+    
+    @IBAction func submitButtonTapped(_ sender: Any) {
+        dataTextView.text = "Username: \(userNameField.text!)\nPassword: \(passwordField.text!)\nPhone Number: \(phoneNumberField.text!)"
+    }
 }
+
+//extension ViewController: UITextFieldDelegate {
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
+//}
