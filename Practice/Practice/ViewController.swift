@@ -20,6 +20,9 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate 
     @IBOutlet weak var dataTextView: UITextView!
     @IBOutlet weak var submitButton: UIButton!
     
+    //Outlet collection으로 생성하여 버튼들을 배열로 사용
+    @IBOutlet var optionButtons: [UIButton]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +35,11 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate 
         self.userNameField.delegate = self
         self.passwordField.delegate = self
         self.phoneNumberField.delegate = self
+        
+        //outlet collection 버튼 배열을 순회하여 색 변경
+        for button in optionButtons {
+            button.setTitleColor(UIColor.red, for: .normal)
+        }
     }
     
     //키보드 사라지게 하기위해서 touchesBegan func override를 해서 구현
@@ -106,6 +114,19 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate 
     
     @IBAction func submitButtonTapped(_ sender: Any) {
         dataTextView.text = "Username: \(userNameField.text!)\nPassword: \(passwordField.text!)\nPhone Number: \(phoneNumberField.text!)"
+    }
+    
+    @IBAction func triggerOption(_ sender: Any) {
+        //ViewController 오른쪽 마우스로 클릭 후 ReceivedActions에서 버튼 이벤트로 touchup inside 연결을 시켜줌
+        //option 버튼 마다 tag를 설정해줘서 tag로 구별. text내용으로 구별도 가능
+        let button = sender as! UIButton
+        if button.titleLabel?.text == "Option1" {
+            print("Option1 pressed")
+        } else if button.tag == 2 {
+            print("Option2 pressed")
+        } else if button.tag == 3 {
+            print("Option3 pressed")
+        }
     }
 }
 

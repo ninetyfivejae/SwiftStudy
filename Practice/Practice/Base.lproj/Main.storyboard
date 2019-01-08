@@ -72,6 +72,39 @@
                                     <action selector="submitButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DIU-z4-GhR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1n-oY-qMv">
+                                <rect key="frame" x="229" y="372" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Option3">
+                                    <color key="titleColor" red="0.4823529412" green="0.63529411759999999" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="triggerOption:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GfX-gE-QbP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BX-dO-ale">
+                                <rect key="frame" x="153" y="372" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Option2">
+                                    <color key="titleColor" red="0.4823529412" green="0.63529411759999999" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="triggerOption:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FwV-0T-4FV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDj-UI-h4G">
+                                <rect key="frame" x="77" y="372" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Option1">
+                                    <color key="titleColor" red="0.4823529412" green="0.63529411759999999" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="triggerOption:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELS-Az-fYb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.4823529412" green="0.63529411759999999" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -84,6 +117,9 @@
                         <outlet property="phoneNumberField" destination="NBb-ZM-heP" id="ahT-TW-19b"/>
                         <outlet property="submitButton" destination="ajB-uN-W1G" id="gUb-gc-UJD"/>
                         <outlet property="userNameField" destination="g2Y-Bw-3Hc" id="NHB-BE-Bjh"/>
+                        <outletCollection property="optionButtons" destination="pDj-UI-h4G" collectionClass="NSMutableArray" id="YOH-kp-7vs"/>
+                        <outletCollection property="optionButtons" destination="0BX-dO-ale" collectionClass="NSMutableArray" id="SbG-7u-ry5"/>
+                        <outletCollection property="optionButtons" destination="t1n-oY-qMv" collectionClass="NSMutableArray" id="ox6-T2-S9P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
