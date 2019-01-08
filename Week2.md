@@ -271,9 +271,94 @@ UIButton
 ## UILabel
 
 - A view that displays one or more lines of read-only text, often used in conjunction(결합, 연결) with controls to describe their intended purpose.
-- The appearance of labels is configurable, and they can display attributed strings, allowing you to customize the appearance of substrings within a label
+
+- The appearance of labels is configurable(수정 가능), and they can display attributed strings, allowing you to customize the appearance of substrings within a label
+
+- 코드로 생성
+
+  ```swift
+  let label = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 40)) self.view.addSubview(label)
+  ```
+
+- **NSTextAlignment**
+
+  - .justified 는 언뜻보기로 .left 와 차이가 없게 느껴지나, linebreak 설정에 의해 행이 바뀔 때 들쭉날쭉해지는 문단의 마지막 부분을 뷰 넓이에 맞춰서 글자간격을 조정하는 것을 확인할 수 있음
+  - .natural 도 .left 와 비슷하게 느껴지나, 지역화가 아랍어인 경우 자동으로 .right 정렬 되도록 합니다. (iOS 6.0+)
+
+  ```swift
+  label.textAlignment = .left //좌측 정렬.
+  label.textAlignment = .center //중앙 정렬.
+  label.textAlignment = .right //우측 정렬.
+  label.textAlignment = .justified //행맞추기
+  label.textAlignment = .natural
+  ```
+
+- **Baseline**: 20pt 폰트, 10pt 폰트 서로 다른 폰트 크기의 UILabel 들을 정렬할 때, 기준이 모호해진다. UILabel들은 세로 가운데 정렬은 되었지만 출력되는 글자들은 위/아래로 들쭉날쭉하게 보이게 된다. 이때 사용되는 정력하기 위한 속성
+
+- **numberOfLines**: Label 에서 출력가능한 line 수를 정합니다. 0 은 제한이 없음을 표시합니다. AttributedString 의 경우도 마찬가지로 적용이됩니다.
+
+- **adjustsFontSizeToFitWidth**: YES 로 설정한 경우, Label 의 bound 영역이 줄어들면 텍스트도 minimumScaleFactor 에 맞춰서 줄어든다
+
+- **allowsDefaultTighteningForTruncation**: YES 로 설정한 경우, truncation 텍스트 자르기 가 발생하기 전에 최대한 글자 간격을 좁힌다. font, 라인의 넓이, line break mode 등 정보에 기인하여 적정한 간격이 선정된다
+
+- **shadowColor, ShadowOffset**: 그림자 속성을 넣음
+
+- **isHighlighted, highlightedTextColor**: 하이라이트 된 경우와 그렇지 않은 경우에 대한 컬러 속성을 지정
+
+- 출처: http://goodyoda.tistory.com/392
+
+- [Document](https://developer.apple.com/documentation/uikit/uilabel)
 
 ## UIButton
 
 - A control that executes your custom code in response to user interactions.
+
+- When you tap a button, or select a button that has focus, the button performs any actions attached to it. You communicate the purpose of a button using a text label, an image, or both. The appearance of buttons is configurable, so you can tint buttons or format titles to match the design of your app.
+
+- 유용한 기능들
+
+  - Outlet collection으로 버튼 3개를 배열로 선언해서 배열을 순회하면서 한 번에 속성을 변경시킴
+  - 여러개의 버튼에 triggerOption이라는 하나의 이벤트를 걸어준다(ViewController 오른쪽 마우스로 클릭 후 ReceivedActions에서 버튼 이벤트로 touchup inside 연결을 시켜줌) 
+  - 그리고 버튼마다 tag를 부여하여 버튼을 구별하고, 버튼 마다의 이벤트를 지정해준다.
+
+- 위에 예제 코드 이어서, UIButton 기능 추가
+
+  ```swift
+  import UIKit
+  
+  class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+      
+      //Outlet collection으로 생성하여 버튼들을 배열로 사용
+      @IBOutlet var optionButtons: [UIButton]!
+      
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          
+          //outlet collection 버튼 배열을 순회하여 색 변경
+          for button in optionButtons {
+              button.setTitleColor(UIColor.red, for: .normal)
+          }
+      }
+      
+      @IBAction func triggerOption(_ sender: Any) {
+          //ViewController 오른쪽 마우스로 클릭 후 ReceivedActions에서 버튼 이벤트로 touchup inside 연결을 시켜줌
+          //option 버튼 마다 tag를 설정해줘서 tag로 구별. text내용으로 구별도 가능
+          let button = sender as! UIButton
+          if button.titleLabel?.text == "Option1" {
+              print("Option1 pressed")
+          } else if button.tag == 2 {
+              print("Option2 pressed")
+          } else if button.tag == 3 {
+              print("Option3 pressed")
+          }
+      }
+  }
+  ```
+
+- 출처: https://youtu.be/NEf0uUIKPIo
+
+- [Document](https://developer.apple.com/documentation/uikit/uibutton)
+
+## asdf
+
 - 
