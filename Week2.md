@@ -76,9 +76,23 @@ NSConstraint에 대해서,,,
 
 - Main Event Loop를 실행(touch, text input등 유저의 액션을 받는 루프) 및 기타 설정
 
+  - ![mainRunLoopImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/event_draw_cycle_a_2x.png)
+  - 사용자 발생 이벤트 처리.
+    UIApplication object sets up the main run loop at launch time and uses it to process events and handle updates to view-based interfaces. 앱의 메인쓰레드에서 실행. user-related events 순차적으로 처리.
+  - UIKit으로 setup된 포트로 터치와 같은 사용자가 발생한 이벤트를 전달받음. EventQueue에 들어온 이벤트들을 순차적으로 처리함. 
+
 - 앱 실행
 
 - 종료
+
+  - 앱은 언제든지 종료될 수 있도록 준비되어야하며, 사용자 데이터를 저장하거나 다른 중요한 작업을 수행 할 때까지 기다려서는 안 된다
+  - System-initiated termination is a normal part of an app’s life cycle.
+    동작이랑 반응 없는 앱을 종료하여 사용자에 의해 실행된 다른 앱들을 위해 메모리 공간을 확보한다
+  - Suspended apps receive no notification when they are terminated; the system kills the process and reclaims the corresponding memory.
+  - User-initiated termination 또한 suspended app 종료와 같은 방식으로 종료된다
+    The app’s process is killed and no notification is sent to the app
+  - background에서 동작하고 있는(not suspended) 앱인 경우, 종료 전에`applicationWillTerminate:` 가 호출된다
+  - 디바이스가 reboot 다시시작할 때는 이 메소드 호출되지 않는다
 
 - AppDelegate클래서의 delegate메소드들
 
@@ -102,6 +116,9 @@ NSConstraint에 대해서,,,
     Tells the delegate when the app has finished launching.
     Don’t use. Instead, use application(_:didFinishLaunchingWithOptions:)
     ```
+
+    - willFinishLaunchingWithOptions: This method is your app’s first chance to execute code at launch time
+    - didFinishLaunchingWithOptions: This method allows you to perform any final initialization before your app is displayed to the user
 
   - applicationWillResignActive: - 앱이 active 에서 inactive로 이동될 때 실행
 
