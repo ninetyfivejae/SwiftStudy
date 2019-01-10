@@ -40,6 +40,24 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate 
         for button in optionButtons {
             button.setTitleColor(UIColor.red, for: .normal)
         }
+        
+        print("1st viewDidload")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("1st viewWillAppear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("1st viewDidAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("1st viewWillDisappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("1st viewDidDisappear")
     }
     
     //키보드 사라지게 하기위해서 touchesBegan func override를 해서 구현
