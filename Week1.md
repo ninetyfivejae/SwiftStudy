@@ -1166,7 +1166,7 @@ let message = hello(name: "jae")
 
 ### Struct
 
-- [클래스 구조체 공통점]
+- [클래스와 구조체 공통점]
 
   - 속성(property)정의
   - 메소드(method) 정의
@@ -1180,18 +1180,34 @@ let message = hello(name: "jae")
   - 소멸자를 통한 리소스 관리
   - 참조 타입(reference type) : class는 변수나 상수에 할당이 되거나 함수 인자로 넘길 때 참조 횟수만 증가하는 reference 타입, 구조체는 변수나 상수에 할당이 되거나 함수 인자로 넘길 때 복사가 되는 value 타입
 
+- [struct만의 특징]
+
+  - 값(Value)이다. 정확히, 값의 타입을 정의하기 위해 사용한다. 객체(Object) 레퍼런스 타입을 정의하는 class 와는 다르다. Object가 아니기 때문에 AnyObject로의 캐스팅이 되지 않는다.
+  - 대입 명령 시 내용이 복사된다. (단 데이터 변동이 없으면 레퍼런스 대입 형태로 동작한다)
+  - 참조 카운트가 없어서 메모리 관리에 안전하다.
+  - 레퍼런스 형태가 아니기 때문에 공유가 불가능하다.
+  - 불변성(Immutable) 구현에 유리하다.
+  - 상속이 불가능하다. 하지만 프로토콜은 사용 할 수 있다.
+  - 멀티스레딩에 안전하다.
+
+- [struct를 사용하면 좋은 경우]
+
+  - 불변성(Immutable)이 필요한 데이터 타입
+  - 적은 데이터, 즉 멤버 프로퍼티의 갯수나 차지하는 메모리 용량이 적은 타입
+  - 대입 보다는 생성되는 경우가 많은 타입
+  - 공유될 필요가 없는 타입
+  - 클래스 타입 등 레퍼런스에 기반한 자료형을 저장용 프로퍼티로 쓰지 않는 경우
+
+- [참고: 언제 class 대신 struct를 사용하는가](http://seorenn.blogspot.com/2016/04/swift-class-struct.html)
+
 - 값 타입, 참조 타입
 
   - class로 했을 때와 struct로 했을 때, struct는 circleTwo를 하나 더 따로 만들지만 / class는 같은 circleOne 객체를 참조함
-
   - 클래스 구조체 선택 기준 공식 문서 참고해서 보면 일반적인 구조체 선택 기준은
-
     1. 몇가지 간단한 데이터 값을 캡슐화, 사각형의 너비 등등
     2. 할당 및 전달 시 복사가 합리적일 때
     3. 모든 속성도 값 타입 - 복사가 맞을 때
     4. 상속이 필요 없을 때
-
-    - 반드시 구조체를 사용하는 경우가 많지 않기 때문에, 대부분의 경우 클래스를 정의하고 인스턴스를 만들어서 사용하면 된다
 
   ```swift
   struct Circle { 
@@ -1205,6 +1221,23 @@ let message = hello(name: "jae")
   print(circleTwo.radius)
   print(circleOne.radius)
   ```
+
+### [Choosing Between Structures and Classes](https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes)
+
+- document에서 명시한 5가지
+  - Choose structures by default
+    - 구조체는 값 타입이기 때문에, using stuctures makes it easier to reason about a portion of your code without needing to consider the whole state of your app
+    - 변경 되는 부분을 명확하게 알 수 있다
+  - Use classes when you need Objective-C interoperability(상호 운용)
+  - Use classes when you need to control identity
+    - 앱 전역에서 접근가능한 instance identity를 사용하려면 use classes
+    - 참조 타입이니까
+  - Use structures when you don't control identity
+    - 안전하게 데이터 복사 전달 가능. 불변성이 필요한 데이터 타입에 struct 사용
+    - 값 타입이니까
+  - Use stuctures and protocols to model inheritance and share behavior. 상속이나 공유를 하게 되는 모델을 구성할 때 structure and protocol을
+    - 구조체는 protocol 상속만 가능, 클래스 상속은 클래스만 가능. 근데 클래스 상속은 protocol 상속 구조로도 구현가능
+    - 그래서 우선적으로는 protocol 상속 구조로 구현을 해라
 
 ### Enum
 
