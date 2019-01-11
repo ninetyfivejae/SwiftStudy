@@ -4,7 +4,6 @@
 
 ```
 2주차 - UIKit 사용해보기
-NSConstraint에 대해서,,,
 - 스토리보드
 - Frame, Bounds
 - Autolayout
@@ -17,10 +16,6 @@ NSConstraint에 대해서,,,
 - UIResponder, User Interaction
 - 버튼 동작해보기
 ```
-
-## Autolayout
-
-- 
 
 ## iOS App Lifecycle
 
@@ -79,7 +74,7 @@ NSConstraint에 대해서,,,
   - ![mainRunLoopImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/event_draw_cycle_a_2x.png)
   - 사용자 발생 이벤트 처리.
     UIApplication object sets up the main run loop at launch time and uses it to process events and handle updates to view-based interfaces. 앱의 메인쓰레드에서 실행. user-related events 순차적으로 처리.
-  - UIKit으로 setup된 포트로 터치와 같은 사용자가 발생한 이벤트를 전달받음. EventQueue에 들어온 이벤트들을 순차적으로 처리함. 
+  - UIKit으로 setup된 포트로 터치와 같은 사용자가 발생한 이벤트를 전달받음. EventQueue에 들어온 이벤트들을 순차적으로 처리함
 
 - 앱 실행
 
@@ -131,6 +126,60 @@ NSConstraint에 대해서,,,
   - applicationWillTerminate: - 앱이 종료될 때 실행
 
 - 위의 함수를 모두 구현 할 필요는 없고 상황에 맞춰 필요한 함수만 구현하면 되고, 위 함수들에는 없지만 원하는 delegate를 추가해도 된다.
+
+### [Strategies for Handling App State Trasitions](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/StrategiesforHandlingAppStateTransitions/StrategiesforHandlingAppStateTransitions.html#//apple_ref/doc/uid/TP40007072-CH8-SW1)
+
+#### 1. The Launch Cycle
+
+- At launch time, the system automatically loads your app’s main storyboard file and loads the initial view controller.
+  - Use the `application:willFinishLaunchingWithOptions:` method to show your app window and to determine if state restoration should happen at all.
+  - Use the `application:didFinishLaunchingWithOptions:` method to make any final adjustments to your app’s user interface.
+  - Your `application:willFinishLaunchingWithOptions:` and `application:didFinishLaunchingWithOptions:` methods should always be as lightweight as possible to reduce your app’s launch time. Apps are expected to launch, initialize themselves, and start handling events in less than 5 seconds. If an app does not finish its launch cycle in a timely manner, the system kills it for being unresponsive. Thus, any tasks that might slow down your launch (such as accessing the network) should be scheduled performed on a secondary thread.
+- Launching an app into the foreground
+  - To determine whether your app is launching into the foreground or background, check the `applicationState` property of the shared `UIApplication`object in your `application:willFinishLaunchingWithOptions:` or `application:didFinishLaunchingWithOptions:` delegate method.
+  - When the app is launched into the foreground, this property contains the value `UIApplicationStateInactive`. When the app is launched into the background, the property contains the value `UIApplicationStateBackground` instead.
+  - ![launchingAppForegroundImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_fg_2x.png)
+- Launching an app into the background
+  - 그냥 똑같이 실행시키는데, app window를 보여주지 않는 것임
+  - ![launchingAppBackground](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_bg_2x.png)
+
+#### 2. Launching in Landscape Mode
+
+- 가로로된 화면으로 실행시키는 경우 설정할 것
+  - Add the `UIInterfaceOrientation` key to your app’s `Info.plist` file and set the value of this key to either `UIInterfaceOrientationLandscapeLeft`or `UIInterfaceOrientationLandscapeRight`.
+  - Lay out your views in landscape mode and make sure that their layout or autosizing options are set correctly.
+  - Override your view controller’s `shouldAutorotateToInterfaceOrientation:` method and return `YES` for the left or right landscape orientations and `NO`for portrait orientations.
+
+#### 3. Installing App-Specific Data Files at First Launch
+
+#### 4. App is Interrupted Temporarily
+
+- Alert-based interruptions result in a temporary loss of control by your app.
+- 앱이 Foreground에서 동작하고 있다가 아무런 터치 이벤트를 받지 않게 되면 `applicationWillResignActive:`메소드가 호출되고, 여기에 아래와 같은 작업들을 수행해야한다
+  - Save data and any relevant state information.
+  - Stop timers and other periodic tasks.
+  - Stop any running metadata queries.
+  - Do not initiate any new tasks.
+  - Pause movie playback (except when playing back over AirPlay).
+  - Enter into a pause state if your app is a game.
+  - Throttle back OpenGL ES frame rates.
+  - Suspend any dispatch queues or operation queues executing non-critical code. (You can continue processing network requests and other time-sensitive background tasks while inactive.)
+- 다시 active 상태로 돌아오게 되면 `applicationWillResignActive:` method에서 수행했던 작업들을 다시 되돌려야한다
+- alert-based interruption, 가령 전화가 오는 경우 아래와 같이 cycle이 수행된다
+- ![temporaryInterruptionCycleImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_interruptions_2x.png)
+
+#### 5. App Enters the Foreground
+
+- Returning to the foreground is your app’s chance to restart the tasks that it stopped when it moved to the background
+- The `applicationWillEnterForeground:` method should undo anything that was done in your `applicationDidEnterBackground:` method
+- The `applicationDidBecomeActive:` method should continue to perform the same activation tasks that it would at launch time.
+- ![appEntersForegroundCycleImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_enter_foreground_2x.png)
+- Queued Notifications
+- Handle iCloud, Locale, Settings changes
+
+#### 6. App Enters the Background
+
+- 
 
 - [출처1](https://medium.com/ios-development-with-swift/%EC%95%B1-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0-app-lifecycle-vs-%EB%B7%B0-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0-view-lifecycle-in-ios-336ae00d1855) / [출처2 objective-c 생명주기](http://j2enty.tistory.com/entry/iOS-iOS-Application-Life-Cycle) / [출처3 UIApplication클래스](https://zeddios.tistory.com/539?category=682195) / [출처4 AppDelegate.swift](https://zeddios.tistory.com/218?category=682195)
 
@@ -400,6 +449,12 @@ NSConstraint에 대해서,,,
       }
   }
   ```
+
+- Memory Management
+
+  - didReceiveMemoryWarning() method: built-in support for reducing their memory footprint at critical times. Releases unneeded memory. 
+  - 
+    Sent to the view controller when the app receives a memory warning.
 
 - 출처: https://www.journaldev.com/22238/ios-uitextview-and-uitextviewdelegate
 
