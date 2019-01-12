@@ -70,6 +70,7 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate 
         //self.passwordField.resignFirstResponder()
     }
     
+    //UITextViewDelegate protocol optional methods
     //UITextView 터치 시
     func textViewDidBeginEditing(_ textView: UITextView) {
         myUITextView.backgroundColor = UIColor.lightGray
