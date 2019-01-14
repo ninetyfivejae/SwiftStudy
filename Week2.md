@@ -243,10 +243,12 @@
 
     - Called after the controller's view is loaded into memory: 뷰의 컨트롤러가 메모리에 로드되고 난 후 호출된다
     - viewDidLoad 메소드는 뷰의 로딩이 완료 되었을 때, 시스템에 의해 자동으로 호출되기 때문에 일반적으로 리소스를 초기화하거나 초기 화면을 구성하는 용도로 주로 사용한다. 화면이 처음 만들어질 때 한 번만 실행되므로, 처음 한 번만 실행해야 하는 초기화 코드가 있을 경우 이 메소드 내부에 작성하면 된다
+    - loadView를 호출하면 viewDidLoad는 자동으로 호출됨
 
   - **viewWillAppear**
 
     - 뷰가 나타나기 직전에 호출
+    - 예를 들어, viewWillAppear, viewWillDisappear 메소드는 아이폰 카톡이나 크롬 등등에서 옆으로 슬라이드하면 이전 화면으로 가는 기능에서 호출이 된다
 
   - **viewDidAppear**
 
@@ -352,7 +354,7 @@
   
   그래서 api 불러오는 작업을 viewDidAppear에서 실행을 하여 일단 화면을 먼저 띄운 후에 작업을 진행하라고 하는 의견도 있었음
   
-  어디에서 작업을 하든 상관없이 비동기로 작업을 하게 되니까 api를 불러오는 작업을 어디에서 호출하든 상관이 없는지?
+  어디에서 작업을 하든 상관없이 비동기로 작업을 하게 되니까 api를 불러오는 작업을 어디에서 호출하든 상관이 없는지? 그러함
   ```
 
 - 출처: https://zeddios.tistory.com/44
@@ -595,6 +597,12 @@
 
 - The appearance of labels is configurable(수정 가능), and they can display attributed strings, allowing you to customize the appearance of substrings within a label
 
+- UILabel, UIButton은 UIControl 또는 UIView를 subclass 하여 구현된 view이다
+
+  - UIButton은 UIControl을 상속받기 때문에 클릭 이벤트 가능. **Protocol을 채택하여 준수한다는 용어 사용**
+  - UISwitch또한 UIControl을 상속 받음. UIControl은 IBAction을 상속받아 구현 가능. 눌렀을 때의 액션을 정의 가능
+  - UILable은 UIView를 가지고 UIControl은 안 가지기 때문에 누를 수 없음
+
 - 코드로 생성
 
   ```swift
@@ -769,7 +777,162 @@
   scrollView.bounds.origin.y = 500
   ```
 
-### asdf
+## Interface Builder
 
+- 코드를 작성하지 않고도 전체 user interface를 간단하게 디자인할 수 있음
+- windows, buttons, text fields 등의 objects를 끌어다 놓기만 하면 작동하는 userinterface를 만들 수 있음
+
+> Storyboards, Assistant, Auto Layout, Preview
+> https://developer.apple.com/xcode/interface-builder/
+
+Interface Builder에서 사용되는 속성이라고 인식 하기 위해 내부적으로 변환되어 동작
+
+```swift
+#ifndef IBOutlet
+#define IBOutlet
+#endif
+```
+
+```swift
+#ifndef IBAction
+#define IBAction void
+#endif
+```
+
+### frame
+
+- The frame rectangle, which describes the view’s location and size in its <b>superview’s</b> coordinate system.
+
+#### Declaration
+
+```swift
+var frame: CGRect { get set }
+```
+
+### bounds
+
+- The bounds rectangle, which describes the view’s location and size in <b>its own</b> coordinate system.
+
+#### Declaration
+
+```swift
+var bounds: CGRect { get set }
+```
+
+## Frame-Based Layout
+
+- 직관적인 위치 명시. 디바이스마다 또는 화면 변경시마다 일일이 프레임 위치 명시해줘야함
+- 뷰 계층 구조에서 각 뷰마다 frame을 설정하여 user interface를 배치
+- 어떤 뷰의 크기나 위치가 바뀌면 영향 받는 뷰들의 frame을 재계산해야 함.
+- 간단한 user interface라도 설계, 디버그, 유지관리에 상당한 비용 발생
+- origin(x, y) / height / width
+- ![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_views_2x.png)
+
+## Auto Layout
+
+- 뷰의 frame 대신, 뷰들의 relationships을 생각하는 방식. 뷰와뷰 사이의 관계를 사용
+- Auto Layout은 일련의 constraints를 사용하여 user interface를 정의
+  - Constraints는 일반적으로 2개의 view  사이의 관계를 타냄
+- Constraints에 기반하여 각각의 뷰는 크기와 위치를 계산
+- 어느 위치에, x좌표 y좌표 지정해주고 너비, 높이 지정하면 뷰를 그릴 수 있음. 근데 이 중 하나를 명시를 하지 않으면 조건이 다 만족됐을 시에는 가변적인 크기로 지정이 된다.
+- ![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_constraints_2x.png)
+
+## Auto Layout을 왜 쓰는가
+
+1. 화면 크기와 디바이스 방향에 따라 유연하게 업데이트 되는 UI를 비교적 쉽게 구현
+2. 향후 새로운 해상도의 디바이스가 출시되더라도 업데이트 없이 일관된 UI를 유지 가능
+3. 화면 좌표를 직접 계산하거나 수많은 분기 코드를 작성할 필요가 없음
+4. 우선 순위와 활성화 속성을 활용하여 특정 조건에 따라 업데이트 되는 UI를 구현 가능
+5. 지역화 문자열을 사용할 때 문자열의 너비에 따라 버튼이나 레이블의 너비가 자동으로 업데이트
+6. Content Hugging과 Compression Resistance의 우선 순위를 조절하여 동적인 UI를 더욱 세부적으로 제어 가능
+7. 뷰 애니메이션, 모션 이펙트와 함께 사용 가능
+8. 동일한 계층구조에 존재하지 않는 뷰 사이의 관계를 설정 가능
+9. 스토리보드에서 제약을 쉽게 추가할 수 있으며, 코드를 통해 런타임에 동적으로 추가하거나 제거 가능
+
+## Constraint
+
+- 일련의 선형 방정식으로 정의 가능
+- ![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/view_formula_2x.png)
+
+## NSLayoutConstraint
+
+- Autolayout 환경에서 충족되어야할 두개의 user interface 객체 사이의 관계
+- [NSLaytoutConstraint](https://developer.apple.com/documentation/uikit/nslayoutconstraint)
+
+### firstItem
+
+- The first object participating in the constraint.
+
+```swift
+unowned(unsafe) var firstItem: AnyObject? { get }
+```
+
+### firstAttribute
+
+- The attribute of the first object participating in the constraint.
+
+```swift
+var firstAttribute: NSLayoutConstraint.Attribute { get }
+```
+
+### relation
+
+- The relation between the two attributes in the constraint.
+
+```swift
+var relation: NSLayoutConstraint.Relation { get }
+```
+
+### secondItem
+
+- The second object participating in the constraint.
+
+```swift
+unowned(unsafe) var secondItem: AnyObject? { get }
+```
+
+### secondAttribute
+
+- The attribute of the second object participating in the constraint.
+
+```swift
+var secondAttribute: NSLayoutConstraint.Attribute { get }
+```
+
+### multiplier
+
+- The multiplier applied to the second attribute participating in the constraint.
+
+```swift
+var multiplier: CGFloat { get }
+```
+
+### constant
+
+- The constant added to the multiplied second attribute participating in the constraint.
+
+```swift
+var constant: CGFloat { get set }
+```
+
+## Auto Layout Attributes
+
+- four edges (leading / trailing / top / bottom)
+- height, width
+- centerX(horizontal), centerY(vertical)
+- baseline
+- Not An Attribute
+- [NSLaytoutAttribute](https://developer.apple.com/documentation/uikit/nslayoutattribute)
+  ![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/attributes_2x.png)
+
+## Creating Nonambiguous, Satisfiable Layouts
+
+- Constraint는 각 뷰의 사이즈와 위치가 정의되어야만 함.
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/constraint_examples_2x.png)
+
+## 추가 설명
+
+- Xcode 프리뷰 기능, 빌드하지 않고 어떻게 나오는지 확인하는 기능
+- Xcode 메모리 릭 확인하는 기능도 찾아볼 것
 - 
-
