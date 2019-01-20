@@ -3,12 +3,17 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/jaehyukshin/Documents/SwiftStudy/MyPlayground.playground#CharacterRangeLen=1540&amp;CharacterRangeLoc=0&amp;EndingColumnNumber=0&amp;EndingLineNumber=78&amp;StartingColumnNumber=0&amp;StartingLineNumber=0&amp;Timestamp=569489248.94115"
+         documentLocation = "file:///Users/jaehyukshin/Documents/SwiftStudy/MyPlayground.playground#CharacterRangeLen=1540&amp;CharacterRangeLoc=0&amp;EndingColumnNumber=0&amp;EndingLineNumber=78&amp;StartingColumnNumber=0&amp;StartingLineNumber=0&amp;Timestamp=569663397.166326"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/jaehyukshin/Documents/SwiftStudy/MyPlayground.playground#CharacterRangeLen=1540&amp;CharacterRangeLoc=0&amp;EndingColumnNumber=0&amp;EndingLineNumber=78&amp;StartingColumnNumber=0&amp;StartingLineNumber=0&amp;Timestamp=569489248.9413069"
+         documentLocation = "file:///Users/jaehyukshin/Documents/SwiftStudy/MyPlayground.playground#CharacterRangeLen=1540&amp;CharacterRangeLoc=0&amp;EndingColumnNumber=0&amp;EndingLineNumber=78&amp;StartingColumnNumber=0&amp;StartingLineNumber=0&amp;Timestamp=569663397.166556"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/jaehyukshin/Documents/SwiftStudy/MyPlayground.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1540&amp;EndingColumnNumber=0&amp;EndingLineNumber=78&amp;StartingColumnNumber=0&amp;StartingLineNumber=78&amp;Timestamp=569663397.166705"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
