@@ -22,15 +22,12 @@
 - 프로토콜, 익스텐션
 - 제네릭 개요 및 타입 캐스팅, as 키워드
 
-지호
-- segue란?
-- show, show detail, present modally, pop over presentation, custom
-
-재혁
 - 테이블뷰, 콜렉션뷰 셀 재사용, dequeueResusable ~~
 - 장점 및 주의할 점
 
-복습 및 형이 보내준 링크 공부. 오토 레이아웃 디멘션
+- segue란?
+- show, show detail, present modally, pop over presentation, custom
+- 복습 및 형이 보내준 링크 공부. 오토 레이아웃 디멘션
 ```
 
 ## Type Casting
@@ -1339,7 +1336,7 @@
 
 - 이와 같은 문제를 방지하기 위해서는 재사용될 때 값이 초기화가 되어야한다
 
-- ![prepareForReuseImage](https://iosimage.s3.amazonaws.com/2018/41-solve-duplicated-cell/prepareReuse.png)
+- ![prepareForReuseImage](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Image/prepareReuseImage.png?raw=true)
 
 - func tableView(**_** tableView: UITableView, cellForRowAt indexPath: IndexPath) 메소드는 Cell이 화면에 보여질 때마다 호출이 되는데, cell 재사용시 cell 객체가 재사용 가능하면 이 메소드 전에 prepareForReuse라는 메소드가 호출된다.
 
@@ -1379,27 +1376,62 @@
 
 ## UICollectionView
 
-- 
+- UITableView와 비슷함
 
-## 추가 정리
+  ```swift
+  import UIKit
+  
+  private let reuseIdentifier = "Cell"
+  
+  class CollectionViewController: UICollectionViewController {
+      
+      var collectionData = ["1 🐶", "2 🐱", "3 🐭", "4 🐹", "5 🐰", "6 🦊", "7 🐻", "8 🐼", "9 🐨", "10 🐯"]
+  
+      override func viewDidLoad() {
+          super.viewDidLoad()
+  
+          self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+      }
+  
+      override func numberOfSections(in collectionView: UICollectionView) -> Int {
+          return 1
+      }
+  
+      override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+          return 100
+      }
+  
+      override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+          
+          guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionCell", for: indexPath) as? CustomCollectionViewCell else {
+              return UICollectionViewCell()
+          }
+          
+          cell.customNameLabel.text = "✅"
+  
+          if indexPath.row % 2 == 0 {
+              cell.customNameLabel.isHidden = true
+          }
+      
+          return cell
+      }
+  }
+  ```
 
-### 인스턴스 생성 및 소멸
+  ```swift
+  class CustomCollectionViewCell: UICollectionViewCell {
+      
+      @IBOutlet weak var customImageView: UIImageView!
+      @IBOutlet weak var customNameLabel: UILabel!
+      
+      override func prepareForReuse() {
+          super.prepareForReuse()
+          
+          self.customNameLabel.isHidden = false
+      }
+  }
+  ```
 
-- 정리는 나중에, 책 읽고 먼저 이해하기
-
-### 상속
-
-- 정리는 나중에, 책 읽고 먼저 이해하기
-
-### 옵셔널 체이닝
-
-- 
-
-### 빠른종료. guard
-
-- `guard`도 `if`나 `switch` 같은 조건문을 만드는 데 쓰인다. 독특한 점은 항상 `else`를 동반한다
-- 
-
-### KVO
+- 마찬가지로 Cell 재사용 시 cell 속성 재설정해주는 부분 주의할 것
 
 - 
