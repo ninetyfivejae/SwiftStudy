@@ -9,11 +9,21 @@
 import UIKit
 
 class SecondViewController: UIViewController {
+    
+    @IBOutlet weak var informationLabel: UILabel!
+    var infoObject: String?
 
+    @IBOutlet weak var dataTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print("2st viewDidLoad")
+        
+        if infoObject != nil {
+            informationLabel.text = infoObject
+            dataTextView.text = infoObject
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,5 +40,9 @@ class SecondViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         print("2st viewDidDisappear")
+    }
+    
+    @IBAction func goBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

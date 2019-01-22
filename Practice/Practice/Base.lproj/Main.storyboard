@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZLh-c5-eYj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YrF-fs-NAv">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -70,6 +70,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DIU-z4-GhR"/>
+                                    <segue destination="EkH-xA-qiP" kind="show" identifier="ThirdVCSegue" id="M6p-wj-hzb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1n-oY-qMv">
@@ -81,6 +82,7 @@
                                 </state>
                                 <connections>
                                     <action selector="triggerOption:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GfX-gE-QbP"/>
+                                    <segue destination="EkH-xA-qiP" kind="custom" identifier="CustomSegue" customClass="CustomScaleSegue" customModule="Practice" customModuleProvider="target" id="sHz-rO-aSP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BX-dO-ale">
@@ -92,6 +94,7 @@
                                 </state>
                                 <connections>
                                     <action selector="triggerOption:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FwV-0T-4FV"/>
+                                    <segue destination="EkH-xA-qiP" kind="show" identifier="SecondVCSegue" id="gdN-PA-ixY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDj-UI-h4G">
@@ -109,13 +112,7 @@
                         <color key="backgroundColor" red="0.4823529412" green="0.63529411759999999" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Ryt-vG-4M4">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="GYG-SO-alw">
-                            <connections>
-                                <segue destination="EkH-xA-qiP" kind="show" id="dj0-NP-axj"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="Ryt-vG-4M4"/>
                     <connections>
                         <outlet property="dataTextView" destination="IAK-l6-G9d" id="p7X-tM-Dvv"/>
                         <outlet property="myUILabel" destination="wgM-rA-LaC" id="1bP-15-jnQ"/>
@@ -136,15 +133,54 @@
         <!--Second View Controller-->
         <scene sceneID="YgP-85-ib5">
             <objects>
-                <viewController id="EkH-xA-qiP" customClass="SecondViewController" customModule="Practice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondVC" id="EkH-xA-qiP" customClass="SecondViewController" customModule="Practice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XOE-Xc-ZEV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fBW-4l-Jfa">
+                                <rect key="frame" x="16" y="538" width="343" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.4823529412" green="0.63529411759999999" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhC-Jr-utU">
+                                <rect key="frame" x="143" y="396" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMS-Yn-eug">
+                                <rect key="frame" x="138" y="333" width="99" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="DismissButton"/>
+                                <connections>
+                                    <action selector="goBack:" destination="EkH-xA-qiP" eventType="touchUpInside" id="fa8-8m-Q8O"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEd-SZ-U6S">
+                                <rect key="frame" x="148" y="453" width="79" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CustomExit"/>
+                                <connections>
+                                    <action selector="goBack:" destination="EkH-xA-qiP" eventType="touchUpInside" id="2UO-TY-6Vm"/>
+                                    <segue destination="7Vc-na-tR6" kind="unwind" customClass="CustomUnwindScaleSegue" customModule="Practice" customModuleProvider="target" unwindAction="prepareForUnwindWithSegue:" id="v3j-p1-Hud"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="uzG-bg-ygE"/>
                     </view>
+                    <connections>
+                        <outlet property="dataTextView" destination="fBW-4l-Jfa" id="xVz-zV-GTz"/>
+                        <outlet property="informationLabel" destination="PhC-Jr-utU" id="DxJ-T3-BsI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CMI-8l-6rL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7Vc-na-tR6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1684" y="129"/>
         </scene>
@@ -247,10 +283,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tyler" translatesAutoresizingMaskIntoConstraints="NO" id="cUh-6E-zaq">
-                                            <rect key="frame" x="0.0" y="0.0" width="184" height="120.66666666666667"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="120.66666666666667"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzj-nq-c8U">
-                                            <rect key="frame" x="0.0" y="120.66666666666667" width="184" height="60.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="120.66666666666667" width="150" height="60.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -291,4 +327,7 @@
     <resources>
         <image name="tyler" width="535" height="562"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sHz-rO-aSP"/>
+    </inferredMetricsTieBreakers>
 </document>

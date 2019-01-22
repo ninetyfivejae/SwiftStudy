@@ -139,13 +139,41 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate 
         //ViewController 오른쪽 마우스로 클릭 후 ReceivedActions에서 버튼 이벤트로 touchup inside 연결을 시켜줌
         //option 버튼 마다 tag를 설정해줘서 tag로 구별. text내용으로 구별도 가능
         let button = sender as! UIButton
+        
         if button.titleLabel?.text == "Option1" {
-            print("Option1 pressed")
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            if let secondVC = sb.instantiateViewController(withIdentifier: "SecondVC") as? SecondViewController {
+                secondVC.infoObject = "[Present]: Hello, World!"
+                self.present(secondVC, animated: true, completion: nil)
+                //secondVC.informationLabel.text = "Hello, World!"
+            }
         } else if button.tag == 2 {
             print("Option2 pressed")
         } else if button.tag == 3 {
             print("Option3 pressed")
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SecondVCSegue" {
+            if let secondVC = segue.destination as? SecondViewController {
+                secondVC.infoObject = "[Segue]: Hello, World!"
+            }
+        } else if segue.identifier == "ThirdVCSegue" {
+            if let secondVC = segue.destination as? SecondViewController {
+                secondVC.infoObject = "Username: \(userNameField.text!)\nPassword: \(passwordField.text!)\nPhone Number: \(phoneNumberField.text!)"
+            }
+        }
+    }
+    
+    //이 메소드가 있어야 unwind를 할 수 있게 exit 설정해줄 수 있다
+    @IBAction func prepareForUnwind (segue: UIStoryboardSegue) {
+        
+    }
+    
+    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
+        let segue = CustomUnwindScaleSegue(identifier: unwindSegue.identifier, source: unwindSegue.source, destination: unwindSegue.destination)
+        segue.perform()
     }
 }
 

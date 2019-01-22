@@ -17,6 +17,7 @@
 		135AE98221E34703002A0A9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 135AE98021E34703002A0A9F /* Main.storyboard */; };
 		135AE98421E34706002A0A9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 135AE98321E34706002A0A9F /* Assets.xcassets */; };
 		135AE98721E34706002A0A9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 135AE98521E34706002A0A9F /* LaunchScreen.storyboard */; };
+		13C39ED221F7AAC20003B72B /* CustomScaleSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C39ED121F7AAC20003B72B /* CustomScaleSegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		135AE98321E34706002A0A9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		135AE98621E34706002A0A9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		135AE98821E34706002A0A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13C39ED121F7AAC20003B72B /* CustomScaleSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScaleSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				135AE97C21E34703002A0A9F /* AppDelegate.swift */,
 				135AE97E21E34703002A0A9F /* ViewController.swift */,
 				130930C121E6300D006E7711 /* SecondViewController.swift */,
+				13C39ED121F7AAC20003B72B /* CustomScaleSegue.swift */,
 				135AE98021E34703002A0A9F /* Main.storyboard */,
 				1356B38221F564C30088738C /* CustomTableViewCell.swift */,
 				135AE98321E34706002A0A9F /* Assets.xcassets */,
@@ -155,6 +158,7 @@
 				130930C221E6300D006E7711 /* SecondViewController.swift in Sources */,
 				1356B38321F564C30088738C /* CustomTableViewCell.swift in Sources */,
 				135AE97F21E34703002A0A9F /* ViewController.swift in Sources */,
+				13C39ED221F7AAC20003B72B /* CustomScaleSegue.swift in Sources */,
 				135AE97D21E34703002A0A9F /* AppDelegate.swift in Sources */,
 				1356B38121F47B8E0088738C /* TableViewController.swift in Sources */,
 			);
