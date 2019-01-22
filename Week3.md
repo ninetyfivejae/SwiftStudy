@@ -27,6 +27,7 @@
 
 - segue란?
 - show, show detail, present modally, pop over presentation, custom
+
 - 복습 및 형이 보내준 링크 공부. 오토 레이아웃 디멘션
 ```
 
@@ -1211,10 +1212,6 @@
   printIntegerKinds(numbers: [3, 19, -27, 0, -6, 0, 7])
   ```
 
-## Segue
-
-- 
-
 ## UITableView
 
 1. ViewController에 TableView를 얹은 다음, UITableViewDelegate와 UITableViewDatasource 프로토콜을 채택하여 구현하는 방법
@@ -1433,5 +1430,199 @@
   ```
 
 - 마찬가지로 Cell 재사용 시 cell 속성 재설정해주는 부분 주의할 것
+
+## Segue
+
+- An object that prepares for and performs the visual transition between two view controllers.
+- Segue: 화면 전환을 뜻함 / 세그웨이 사전적 의미: 하나에서 다른 것으로 부드럽게 넘어가다라는 뜻
+- 종류
+  - **show**: 화면에 보여지고 있는 마스터 또는 디테일 영역에 뷰를 로드한다. 마스터와 디테일 영역 모두 화면에 보여지고 있을 경우 로드되는 새로운 컨텐츠 뷰는 디테일 영역의 네비게이션 스택에 푸시된다. 마스터와 디테일 영역중 하나만 보여지고 있을 경우 현재 뷰컨트롤러 스택의 최상단에 푸시된다. 새 화면으로 이동하는데 Stack구조로서 새 화면이 원래 화면 위를 덮는 구조이다
+  - **show detail**: show와 매우 비슷하지만 푸시가 아닌 교체(replace)된다는 점이 크게 다르다. 마스터와 디테일 영역 모두 화면에 보여지고 있을 경우 로드되는 뷰는 디테일 영역을 교체하게 되며 둘중 하나만 보여지고 있을 경우 현재 뷰컨트롤러 스택의 최상단 뷰를 교체하게 된다. SplitView 구조에서 원래 화면을 Master, 새 화면을 Detail로 표시한다. 아이폰에서는 똑같아 보이지만 아이패드로 보면 화면이 둘로 분할되서 보이게 된다.
+  - **present modally**: 새로 로드하는 컨텐츠 뷰를 모달 형태로 띄운다. 원래 화면은 새 화면 뒤에 그대로 존재함. UIModalPresentationStyle 옵션을 이용하여 보여지는 스타일을 결정하거나 UIModalTransitionStyle 옵션을 사용하여 트랜지션 스타일을 설정할 수 있다.
+  - **popover presentation**: iPad만 해당. 현재 보여지고 있는 뷰 위에 앵커를 가진 팝업 형태로 컨텐츠 뷰를 로드한다. UIPopoverArrowDirection 옵션을 사용하여 창에 붙어있는 엣지의 방향을 설정 할 수 있다.
+  - **custom**: 사용자 정의 세그웨이를 만든다
+
+### [performSegueWithIdentifer](https://youtu.be/OZix7etsd8g)
+
+- 메인 ViewController에서 이동할 ViewController swift 파일 생성. 여기에서는 SecondViewController.swift 파일 사용
+
+  - 스토리보드에서 Custom class 파일 지정
+
+- 스토리보드에서 드래그하여 segue 생성. Segue identifier 지정. SecondVCSegue & ThirdVCSegue라고 지정함
+
+- 새로운 ViewController로 이동하기 위한 prepare 메소드 작성
+
+  - segue identifier에 따라 이동할 ViewController와 작업 지정
+
+  ```swift
+  import UIKit
+  class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+  
+      ...
+      
+      override func viewDidLoad() {
+          super.viewDidLoad()
+      }
+      
+      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          if segue.identifier == "SecondVCSegue" {
+              if let secondVC = segue.destination as? SecondViewController {
+                  secondVC.infoObject = "[Segue]: Hello, World!"
+              }
+          } else if segue.identifier == "ThirdVCSegue" {
+              if let secondVC = segue.destination as? SecondViewController {
+                  secondVC.infoObject = "Username: \(userNameField.text!)\nPassword: \(passwordField.text!)\nPhone Number: \(phoneNumberField.text!)"
+              }
+          }
+      }
+  }
+  ```
+
+- SecondViewController.swift / 두 번째 ViewController
+
+  - 속성 변경하기 위한 설정
+
+  ```swift
+  import UIKit
+  class SecondViewController: UIViewController {
+      
+      @IBOutlet weak var informationLabel: UILabel!
+      var infoObject: String?
+  
+      @IBOutlet weak var dataTextView: UITextView!
+      
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          
+          if infoObject != nil {
+              informationLabel.text = infoObject
+              dataTextView.text = infoObject
+          }
+      }
+  }
+  ```
+
+- 데이터 전달 시 주의사항
+
+  - Prepare 메소드에서 생성되지 않은 view의 속성을 변경하려고 하면 오류가 난다.
+  - infoObject라는 변수에 값을 담아두고 ViewController의 viewDidLoad 메소드 호출 시 할당을 해주면 된다
+
+### [instantiateViewController](https://youtu.be/-Rsr3hoSRes)
+
+- 메인 ViewController에서 이동할 ViewController swift 파일 생성. 여기에서는 SecondViewController.swift 파일 사용
+
+  - 스토리보드에서 Custom class 파일 지정
+  - ViewController의 storyboard id 지정. instantiateViewController메소드 사용 시 필요. instanSecondVC로 지정했음
+
+- 새로운 ViewController를 present할 액션 생성
+
+  - ViewController.swift / 첫 번째 ViewController의 present할 액션 메소드
+
+  ```swift
+  @IBAction func triggerOption(_ sender: Any) {
+          let button = sender as! UIButton
+          
+          if button.titleLabel?.text == "Option1" {
+              let sb = UIStoryboard(name: "Main", bundle: nil)
+              if let secondVC = sb.instantiateViewController(withIdentifier: "SecondVC") as? SecondViewController {
+                  secondVC.infoObject = "Hello, World!"
+                  self.present(secondVC, animated: true, completion: nil)
+                  //secondVC.informationLabel.text = "Hello, World!"
+              }
+          } else if button.tag == 2 {
+              print("Option2 pressed")
+          } else if button.tag == 3 {
+              print("Option3 pressed")
+          }
+      }
+  ```
+
+- SecondViewController.swift / 두 번째 ViewController
+
+  - 다시 이전 ViewController로 돌아갈 dismiss 수행을 위한 goBack 메소드 설정
+
+  ```swift
+  import UIKit
+  class SecondViewController: UIViewController {
+      
+      @IBOutlet weak var informationLabel: UILabel!
+      var infoObject: String?
+      
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          
+          if infoObject != nil {
+              informationLabel.text = infoObject
+          }
+      }
+      
+      @IBAction func goBack(_ sender: Any) {
+          self.dismiss(animated: true, completion: nil)
+      }
+  }
+  ```
+
+- 데이터 전달 시 주의사항
+
+  - present 하는 메소드에서 생성되지 않은 informationLabel의 text를 변경하려고 하면 오류가 난다.
+  - 그래서 present메소드 이후에 속성을 변경하거나,
+  - infoObject라는 변수에 값을 담아두고 ViewController의 viewDidLoad 메소드 호출 시 할당을 해주면 된다
+
+- Segue를 이용한 ViewController 전환과 다른 점
+
+  - asdf
+
+### [Custom Segue](https://www.youtube.com/watch?v=jn-93qElOT4)
+
+- CustomSegue클래스 생성
+
+  - override	perform 메소드
+
+  - Custom 액션 구현
+
+    ```swift
+    import UIKit
+    class CustomScaleSegue: UIStoryboardSegue {
+        override func perform() {
+            scale()
+        }
+        
+        func scale() {
+            let toViewController = self.destination
+            let fromViewController = self.source
+            
+            let containerView = fromViewController.view.superview
+            let originalCenter = fromViewController.view.center
+            
+            toViewController.view.transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+            toViewController.view.center = originalCenter
+            
+            containerView?.addSubview(toViewController.view)
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+                toViewController.view.transform = CGAffineTransform.identity
+            }, completion: { success in
+                fromViewController.present(toViewController, animated: false, completion: nil)
+            })
+        }
+    }
+    ```
+
+- 스토리보드에서 custom segue로 연결 후 직접 구현한 CustomSegue 클래스 설정
+
+- 다시 돌아가는 CustomSegue도 구현하고 적용하기 위해서, 다시 돌아갈 ViewController클래스에 prepareForUnwind 함수 구현해줘야 액션을 ViewController exit과 연결시킬 수 있음.
+
+- Unwind 메소드 override해서 직접 구현한 CustomUnwindSegue 메소드를 호출함
+
+  ```swift
+      @IBAction func prepareForUnwind (segue: UIStoryboardSegue) {
+          
+      }
+      
+      override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
+          let segue = CustomUnwindScaleSegue(identifier: unwindSegue.identifier, source: unwindSegue.source, destination: unwindSegue.destination)
+          segue.perform()
+      }
+  ```
 
 - 
