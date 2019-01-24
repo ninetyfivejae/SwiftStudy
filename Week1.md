@@ -1533,6 +1533,162 @@ let message = hello(name: "jae")
 - Class person 이름 성별 나이는 무조건 있지만, 애인 차 집 없을 수 있음 이게 옵셔널. 무조건 있어야하는거는 옵셔널로 하지 않는게 좋다
 - Person.car.carNumber
 
+### 옵셔널 체이닝
+
+- 옵셔널에 속해 있는 nil일지도 모르는 프로퍼티, 메소드, 서브스크립션 등을 가져오거나 호출할 때 사용할 수 있는 일련의 과정
+
+- 옵셔널에 값이 있다면 프로퍼티, 메소드, 서브스크립트 등을 호출할 수 있고 / 옵셔널이 nil이라면 프로퍼티, 메소드, 서브스크립트 등은 nil을 반환함
+
+- 예제
+
+  ```swift
+  class Room {
+      var number: Int
+      init(number: Int) {
+          self.number = number
+      }
+  }
+  
+  class Building {
+      var name: String
+      var room: Room?
+      init(name: String) {
+          self.name = name
+      }
+  }
+  
+  struct Address {
+      var province: String
+      var city: String
+      var street: String
+      var building: Building?
+      var detailAddress: String?
+      
+      init(province: String, city: String, street: String) {
+          self.province = province
+          self.city = city
+          self.street = street
+      }
+      
+      func fullAddress() -> String? {
+          var restAddress: String? = nil
+          
+          if let buildingInfo: Building = self.building {
+              restAddress = buildingInfo.name
+          } else if let detail = self.detailAddress {
+              restAddress = detail
+          }
+          
+          if let rest: String = restAddress {
+              var fullAddress: String = self.province
+              
+              fullAddress += " " + self.city
+              fullAddress += " " + self.street
+              fullAddress += " " + rest
+              
+              return fullAddress
+          } else {
+              return nil
+          }
+      }
+      
+      func printAddress() {
+          if let address: String = self.fullAddress() {
+              print(address)
+          }
+      }
+  }
+  
+  class Person {
+      var name: String
+      var address: Address?
+      
+      init(name: String) {
+          self.name = name
+      }
+  }
+  ```
+
+  ```swift
+  let yagom: Person = Person(name: "yagom")
+  //질문
+  yagom.address?.fullAddress()?.isEmpty
+  
+  let yagomRoomViaOptionalChaining: Int? = yagom.address?.building?.room?.number //nil
+  //let yagomRoomViaOptionalUnwraping: Int = yagom.address!.building!.room!.number //오류
+  
+  if let roomNumber: Int = yagom.address?.building?.room?.number {
+      print(roomNumber)
+  } else {
+      print("Can't find room number")
+  }
+  ```
+
+  - 값을 받아오는 것만 하는게 아니라, 값 할당도 가능
+
+  ```swift
+  //yagom이라는 인스턴스에 해당되는 프로퍼티가 존재하지 않기 때문에 값 할당 실패.
+  yagom.address?.building?.room?.number = 505
+  
+  //yagom이라는 인스턴스에 해당되는 모든 프로퍼티가 존재한다면 optional(505) 출력
+  yagom.address = Address(province: "충청북도", city: "청주시 청원구", street: "충청대로")
+  yagom.address?.building = Building(name: "곰굴")
+  yagom.address?.building?.room = Room(number: 0)
+  yagom.address?.building?.room?.number = 505
+  ```
+
+  - 서브스크립트
+
+  ```swift
+  var optionalArray: [Int]?
+  optionalArray?[1]
+  optionalArray = [1,2,3]
+  optionalArray?[1]
+  
+  var optionalDictionary: [String: [Int]]? = [String: [Int]]()
+  optionalDictionary?["numberArray"] = optionalArray
+  optionalDictionary?["numberArray"]?[2]
+  ```
+
+### 빠른종료. guard
+
+- EarlyExit의 핵심 키워드 guard: if 구문과 유사하게 Bool타입의 값으로 동작하는 기능
+
+- guard는 **실행되는 위치(enclosing scope)에서 벗어나는 것** 을 항상 필요로 하기 때문. Return, break, continue, throw 등의 제어문 전환 명령어를 쓸 수 없는 상황이라면 사용이 불가함.
+
+- 함수나 메소드, 반복문 등 특정 블록 내부에 위치하지 않는다면 사용이 제한된다. 함수 밖에서 사용을 하면 메인 프로그램을 종료를 할 수 있기 때문
+
+- 기존에 사용했던 if let 바인딩보다는 조금 더 깔끔하게 사용할 수 있음
+
+- 값이 nil이 아니어서 변수가 할당 된다면 이는 guard가 끝난 후에도 남아 있어서 값이 unwrap된 상태로 사용할 수 있음
+
+  ```swift
+  func myPrint(name: String?) {
+      guard let name = name else {
+          print("exiting...")
+          return
+      }
+      print("이름: \(name)")
+  }
+  
+  myPrint(name: "Tom")
+  myPrint(name: nil
+  ```
+
+- ```swift
+  //쉼표(,)로 추가 조건들을 나열하면  AND 논리연산과 같은 결과를 준다. &&로 바꿔서 사용해도 된다
+  func enterClub(name: String?, age: Int?) {
+      guard let name: String = name, let age: Int = age, age > 19, name.isEmpty == false else {
+          print("입장 거부")
+          return
+      }
+      
+      print("입장 허가")
+  }
+  ```
+
+- [guard 참고](https://hcn1519.github.io/articles/2017-05/swift_controlFlow)
+
 ## 추가 설명들
 
 - Typealias는 static 으로 설정이 된다
