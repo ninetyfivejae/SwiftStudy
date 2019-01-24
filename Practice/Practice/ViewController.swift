@@ -133,6 +133,8 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate 
     
     @IBAction func submitButtonTapped(_ sender: Any) {
         dataTextView.text = "Username: \(userNameField.text!)\nPassword: \(passwordField.text!)\nPhone Number: \(phoneNumberField.text!)"
+        
+        self.performSegue(withIdentifier: "ThirdVCSegue", sender: nil)
     }
     
     @IBAction func triggerOption(_ sender: Any) {

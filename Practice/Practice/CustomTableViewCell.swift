@@ -29,6 +29,6 @@ class CustomTableViewCell: UITableViewCell {
         // invoke superclass implementation
         super.prepareForReuse()
         
-        self.checkLabel.isHidden = false
+//        self.checkLabel.isHidden = false
     }
 }

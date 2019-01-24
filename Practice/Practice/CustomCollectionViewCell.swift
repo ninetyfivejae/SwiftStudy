@@ -17,6 +17,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
         // invoke superclass implementation
         super.prepareForReuse()
         
-        self.customNameLabel.isHidden = false
+//        self.customNameLabel.isHidden = false
     }
 }
