@@ -18,11 +18,6 @@
 ```
 
 ```
-- 프로토콜, 익스텐션
-- 제네릭 개요 및 타입 캐스팅, as 키워드
-
-- 복습 및 형이 보내준 링크 공부. 오토 레이아웃 디멘션
-
 Type Casting
 - 기존 언어의 타입 변환 vs 스위프트의 타입 변환
 - 스위프트 타입캐스팅
@@ -64,6 +59,7 @@ Segue
 - performSegueWithIdentifer
 - instantiateViewController
 - Custom Segue
+... 더 정리해야함
 ```
 
 ## Type Casting
@@ -310,9 +306,9 @@ Segue
 
 - 스위프트에 특정 타입을 지정하지 않고 여러 타입의 값을 할당할 수 있는 Any와 AnyObject 타입이 있음
 
-- Any: 함수 타입을 포함한 모든 타입
+- **Any: 함수 타입을 포함한 모든 타입**
 
-- AnyObject: 클래스 타입만을 뜻함
+- **AnyObject: 클래스 타입만을 뜻함**
 
   ```swift
   func checkType(of item: AnyObject) {
@@ -656,11 +652,11 @@ Segue
 
 - 프로토콜은 특정 인스턴스 메소드나 타입 메소드를 요구할 수 있음
 
-- 메소드의 이름, 매개변수, 반환 타입, 가변 매개변수 등을 명시할 수 있으나 매개변수 기본값은 지정할 수 없음
+- 메소드의 이름, 매개변수, 반환 타입, 가변 매개변수 등을 명시할 수 있으나 **매개변수 기본값은 지정할 수 없음**
 
-- 메소드를 요구할 때 타입 메소드를 명시하는 경우, static과 class 키워드 구분 가능함
+- 메소드를 요구할 때 **타입 메소드**를 명시하는 경우, **static과 class 키워드 구분 가능함**
 
-- 프로토콜에서는 static 키워드를 통해서 타입 메소드를 요구했지만, 클래스에서 실제로 구현할 때 class 타입 메소드로 구현할지, static 타입 메소드로 구현할지는 프로토콜을 채택하여 사용하는 클래스의 특성에 따라 골라 사용하면 된다
+- **프로토콜에서는 static 키워드를 통해서 타입 메소드를 요구했지만, 클래스에서 실제로 구현할 때 class 타입 메소드로 구현할지, static 타입 메소드로 구현할지는 프로토콜을 채택하여 사용하는 클래스의 특성에 따라 골라 사용하면 된다**
 
   ```swift
   protocol Receivable {
@@ -729,7 +725,7 @@ Segue
 
 ### 가변 메소드 요구
 
-- 프로토콜이 어떤 타입이든 간에 인스턴스 내부의 값을 변경해야 하는 메소드를 요구하려면 프로토콜의 메소드 정의 앞에 mutating 키워드를 명시해야함
+- 프로토콜이 어떤 타입이든 간에 **인스턴스 내부의 값을 변경해야 하는 메소드를 요구**하려면 프로토콜의 메소드 정의 앞에 **mutating 키워드**를 명시해야함
 
 - 참조 타입인 클래스의 메소드 앞에는 mutating 키워드를 명시하지 않아도 문제 없음
 
@@ -864,7 +860,7 @@ Segue
 
 - 프로토콜은 하나 이상의 프로토콜을 상속받아 기존 프로토콜의 요구사항보다 더 많은 요구사항을 추가할 수 있음
 
-- 프로토콜의 상속 리스트에 class 키워드를 추가해 프로토콜이 클래스 타입에만 채택될 수 있도록 제한할 수도 있음. 프로토콜의 상속 리스트의 맨 처음에 class 키워드가 위치해야함
+- 프로토콜의 상속 리스트에 class 키워드를 추가해 프로토콜이 **클래스 타입에만 채택될 수 있도록 제한**할 수도 있음. 프로토콜의 상속 리스트의 맨 처음에 class 키워드가 위치해야함
 
   ```swift
   protocol ClassOnlyProtocol: class, Readable, Writeable {
@@ -876,7 +872,7 @@ Segue
       func write() {}
   }
   
-  //이거는 오류가 남
+  //class 타입에만 채택될 수 있기 때문에, 이거는 오류가 남
   struct SomeStruct: ClassOnlyProtocol {
       func read() {}
       func write() {}
@@ -959,17 +955,16 @@ Segue
 
 ### 프로토콜의 선택적 요구
 
-- 프로토콜의 요구사항 중 일부를 선택적 요구사항으로 지정할 수 있음
+- 프로토콜의 요구사항 중 일부를 **선택적 요구사항으로 지정**할 수 있음.
+  가령, UIApplicationDelegate의 메소드들은 옵셔널이라 구현을 하든 안 하든 상관이 없다
 
-- 가령, UIApplicationDelegate의 메소드들은 옵셔널이라 구현을 하든 안 하든 상관이 없다
-
-- 선택적 요구사항을 정의하고 싶은 프로토콜은 @objc 속성이 부여된 프로토콜이어야 한다
+- 선택적 요구사항을 정의하고 싶은 프로토콜은 **@objc 속성**이 부여된 프로토콜이어야 한다
 
   - @objc 속성은 해당 프로토콜을 Objective-C 코드에서 사용할 수 있도록 만드는 역할
   - Objective-C 코드와 공유하고 싶지 않더라도 @objc 속성이 부여되어야만 선택적 요구사항을 정의할 수 있음
   - 그래서 @objc 속성이 부여되는 프로토콜은 Objective-C 클래스를 상속받은 클래스에서만 채택할 수 있음. 애플의 Foundation 프레임워크 모듈을 import해야함
 
-- Optional 식별자를 요구사항의 정의 앞에 붙여주면 된다. 그러면 메소드 자체의 타입이 옵셔널이 된다
+- **Optional 식별자**를 요구사항의 정의 앞에 붙여주면 된다. 그러면 메소드 자체의 타입이 옵셔널이 된다
 
   - Tiger, Bird 클래스는 각각 Objective-C의 클래스인 NSObject를 상속 받음
   - Movable 프로토콜 변수에 할당되었을 때는 인스턴스의 타입에 실제로 fly() 메소드가 구현 되어 있는지 알 수 없으므로, 옵셔널 체인을 이용하여 fly() 메소드 호출을 시도함
@@ -1034,9 +1029,11 @@ Segue
 
 ## Extension
 
-- extension으로 구조체, 클래스, 열거형, 프로토콜 타입에 새로운 기능을 추가할 수 있음. 타입만 알고 있다면 타입의 기능을 확장할 수 있음
-- extension은 타입에 새로운 기능을 추가할 수는 있지만, 기존에 존재하는 기능을 재정의할 수는 없음
-- 클래스의 상속은 특정 타입을 물려받아 하나의 새로운 타입을 정의하고 추가 기능을 구현하는 수직 확장이지만, 익스텐션은 기존의 타입에 기능을 추가하는 수평 확장이다. 상속은 재정의가 가능하지만, 익스텐션은 안 된다
+- extension으로 구조체, 클래스, 열거형, 프로토콜 타입에 새로운 기능을 추가할 수 있음.
+  타입만 알고 있다면 타입의 기능을 확장할 수 있음
+- extension은 타입에 **새로운 기능을 추가할 수는 있지만, 기존에 존재하는 기능을 재정의할 수는 없음**
+- 클래스의 상속은 특정 타입을 물려받아 하나의 새로운 타입을 정의하고 추가 기능을 구현하는 수직 확장이지만, 익스텐션은 기존의 타입에 기능을 추가하는 수평 확장이다.
+  상속은 재정의가 가능하지만, 익스텐션은 안 된다
 - 스위프트의 extension이 타입에 추가할 수 있는 기능
   - 연산 타입 프로퍼티 / 연산 인스턴스 프로퍼티
   - 타입 메소드 / 인스턴스 메소드
@@ -1049,7 +1046,7 @@ Segue
 
 - 저장 프로퍼티는 추가할 수 없음.
 
-- 타입에 정의되어 있는 기존의 프로퍼티에 프로퍼티 감시자를 추가할 수도 없음
+- 타입에 정의되어 있는 기존의 프로퍼티에 **프로퍼티 감시자를 추가할 수도 없음**
 
   ```swift
   extension Int {
@@ -1082,7 +1079,7 @@ Segue
           self = self.multiply(by: n)
       }
       
-      static func isIntTyeInstance(_ instance: Any) -> Bool {
+      static func isIntTypeInstance(_ instance: Any) -> Bool {
           return instance is Int
       }
   }
@@ -1106,9 +1103,10 @@ Segue
 
 ### 이니셜라이저 추가
 
-- 여러 종류의 이니셜라이저를 만들 수 있음. 타입 정의 부분에 이니셜라이저를 추가하지 않다라도 익스텐션을 통해 이니셜라이저를 추가할 수 있음
+- 여러 종류의 이니셜라이저를 만들 수 있음.
+  타입 정의 부분에 이니셜라이저를 추가하지 않다라도 익스텐션을 통해 이니셜라이저를 추가할 수 있음
 
-- 익스텐션으로 클래스는 편의 이니셜라이즈는 추가할 수 있지만, 지정 이니셜라이저를 추가할 수 없음. 값 타입은 상관이 없음
+- **익스텐션으로 클래스는 편의 이니셜라이즈는 추가할 수 있지만, 지정 이니셜라이저를 추가할 수 없음. 값 타입은 상관이 없음**
 
   ```swift
   extension String {
@@ -1142,7 +1140,7 @@ Segue
   print(someOne.name)
   ```
 
-- 익스텐션으로 값 타입에 이니셜라이저를 추가했을 때, 해당 값 타입이 다음 조건을 모두 성립한다면 익스텐션으로 사용자정의 이니셜라이저를 추가한 이후에도 해당 타입의 기본 이니셜라이저와 멤버와이즈 이니셜라이저를 호출할 수 있음
+- 익스텐션으로 값 타입에 이니셜라이저를 추가했을 때, 해당 값 타입이 다음 조건을 모두 성립한다면 익스텐션으로 사용자정의 이니셜라이저를 추가한 이후에도 해당 타입의 **기본 이니셜라이저와 멤버와이즈 이니셜라이저**를 호출할 수 있음
 
   1. 모든 저장 프로퍼티에 기본값이 있음
 
@@ -1348,24 +1346,24 @@ Segue
      }
      ```
 
-- override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {...}
-  - 이 함수가 몇 번 호출되는지 확인해보면, 테이블뷰의 셀 갯수만큼 호출이 되는 것을 알 수 있음
-  - 또 화면에서 사라졌다가 다시 화면으로 셀이 보이게 되면 그때 다시 호출이 된다
+- override func tableView(_ tableView: UITableView, **cellForRowAt** indexPath: IndexPath) -> UITableViewCell {...}
+  - 이 함수가 몇 번 호출되는지 확인해보면, **테이블뷰의 셀 갯수만큼 호출**이 되는 것을 알 수 있음
+  - **또 화면에서 사라졌다가 다시 화면으로 셀이 보이게 되면 그때 다시 호출이 된다**
   - indexPath는 [section, row]로 이루어져 있는 행을 식별하는 상대적인 경로이다
 
 ### dequeueReusableCell 사용 이유
 
-- dequeueReusableCell(withIdentifier:for:): Returns a reusable table-view cell object for the specified reuse identifier and adds it to the table.
+- dequeueReusableCell(withIdentifier:for:): Returns a reusable table-view cell object for the specified reuse identifier(TableViewCell의 identifier) and adds it to the table.
 
 - 천 개, 만 개 이상의 항목(엔트리)을 가지는 테이블이 있을 때, 천 개의 엔트리를 셀마다 만들고 모든 테이블 뷰 셀에 대해 메모리 할당이 이루어지게된다. 이렇게 되면 메모리 낭비가 되기 때문에 효과적으로 메모리를 사용하기 위해서 dequeueReusableCell 사용한다.
-- 이 dequeueReusableCell을 사용하게 되면, 화면에서 보이는 테이블 뷰 셀만 메모리에 할당하면 된다. 그리고 스크롤하면 화면에는 여전히 동일한 셀이 사용되지만, 데이터소스(DataSource)를 기반으로 셀 내용이 바뀌게 된다. 셀이 스크롤 화면 밖으로 밀려나면, 이 셀은 reuse pool에 들어가게 되고, 우리가 dequeueReusableCell을 호출할 때 테이블 셀에 의해 반환이 된다.
+- 이 dequeueReusableCell을 사용하게 되면 화면에서 보이는 테이블 뷰 셀만 메모리에 할당하면 된다. 그리고 스크롤하면 화면에는 여전히 동일한 셀이 사용되지만, 데이터소스(DataSource)를 기반으로 셀 내용이 바뀌게 된다. 셀이 스크롤 화면 밖으로 밀려나면, 이 셀은 reuse pool에 들어가게 되고, 우리가 dequeueReusableCell을 호출할 때 테이블 셀에 의해 반환이 된다.
 - [Cell 재사용하는 경우와 그렇지 않은 경우 메모리 비교](https://medium.com/ios-seminar/why-we-use-dequeuereusablecellwithidentifier-ce7fd97cde8e)
 
 ### Cell 재사용 시 주의사항
 
-- 말 그대로 Cell을 재사용하는 것이기 때문에 이전에 사용하고 남은 흔적들이 있을 수 있다.
+- 말 그대로 Cell을 재사용하는 것이기 때문에 **이전에 사용하고 남은 흔적들**이 있을 수 있다.
 
-- 이와 같은 문제를 방지하기 위해서는 재사용될 때 값이 초기화가 되어야한다
+- 이와 같은 문제를 방지하기 위해서는 **재사용될 때 속성 값이 초기화가 되어야한다**
 
 - ![prepareForReuseImage](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Image/prepareReuseImage.png?raw=true)
 
@@ -1373,7 +1371,7 @@ Segue
 
 - 그래서 prepareForReuse 메소드에 cell 속성들을 재설정해주면 된다
 
-  - If a `UITableViewCell` object is reusable, this method is invoked just before the object is returned from the `UITableView` method [`dequeueReusableCell(withIdentifier:)`](https://developer.apple.com/documentation/uikit/uitableview/1614891-dequeuereusablecell).
+  - If a `UITableViewCell` object is reusable, prepareForReuse method is invoked just before the object is returned from the `UITableView` method [`dequeueReusableCell(withIdentifier:)`](https://developer.apple.com/documentation/uikit/uitableview/1614891-dequeuereusablecell).
   - For performance reasons, you should only reset attributes of the cell that are not related to content, for example, alpha, editing, and selection state.
   - The table view's delegate in [`tableView(_:cellForRowAt:)`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/1614861-tableview) should *always* reset all content when reusing a cell. If the cell object does not have an associated reuse identifier, this method is not called. If you override this method, you must be sure to invoke the superclass implementation.
 
@@ -1475,6 +1473,9 @@ Segue
   - **present modally**: 새로 로드하는 컨텐츠 뷰를 모달 형태로 띄운다. 원래 화면은 새 화면 뒤에 그대로 존재함. UIModalPresentationStyle 옵션을 이용하여 보여지는 스타일을 결정하거나 UIModalTransitionStyle 옵션을 사용하여 트랜지션 스타일을 설정할 수 있다.
   - **popover presentation**: iPad만 해당. 현재 보여지고 있는 뷰 위에 앵커를 가진 팝업 형태로 컨텐츠 뷰를 로드한다. UIPopoverArrowDirection 옵션을 사용하여 창에 붙어있는 엣지의 방향을 설정 할 수 있다.
   - **custom**: 사용자 정의 세그웨이를 만든다
+- [참고, 가장 잘 정리해놓은 블로그 및 코드](https://digitalleaves.com/define-segues-programmatically/)
+- [tip & tricks](https://medium.com/@biz84/ios-segues-tips-and-tricks-78847484d2ba)
+- [segue trigger 되는 과정](https://soooprmx.com/archives/8873)
 
 ### [performSegueWithIdentifer](https://youtu.be/OZix7etsd8g)
 
@@ -1539,7 +1540,14 @@ Segue
 - 데이터 전달 시 주의사항
 
   - Prepare 메소드에서 생성되지 않은 view의 속성을 변경하려고 하면 오류가 난다.
+
   - infoObject라는 변수에 값을 담아두고 ViewController의 viewDidLoad 메소드 호출 시 할당을 해주면 된다
+
+  - The order of the last steps might vary slightly. However, what never changes is that prepareForSegue: is always called after the destination view controller has been initialized, and just before its viewDidLoad method is invoked.
+
+    Why is this important? Because if you are defining a property of the destination view controller, you will only be able to use it from viewDidLoad, not before. Thus, generally speaking, you can use a property passed through a segue in viewDidLoad, viewWillAppear and viewDidAppear safely.
+
+    ![lifeCycleOfViewControllersDuringSegues](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Image/lifeCycleOfViewControllersDuringSegues.png?raw=true)
 
 ### [instantiateViewController](https://youtu.be/-Rsr3hoSRes)
 
