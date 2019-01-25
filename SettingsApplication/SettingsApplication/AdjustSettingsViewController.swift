@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AdjustSettingsViewController.swift
 //  SettingsApplication
 //
 //  Created by 신재혁 on 25/01/2019.
@@ -8,13 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AdjustSettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        
     }
-
-
 }
-
