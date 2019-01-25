@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131B900A21FB33A9001FFB11 /* AdjustTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131B900921FB33A9001FFB11 /* AdjustTableViewCell.swift */; };
+		131B900D21FB68B7001FFB11 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 131B900C21FB68B7001FFB11 /* music.mp3 */; };
 		1346486321FADAAE00ECE5A1 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1346486221FADAAE00ECE5A1 /* SettingsTableViewCell.swift */; };
 		1346486521FB08B000ECE5A1 /* AdjustSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1346486421FB08B000ECE5A1 /* AdjustSettingsViewController.swift */; };
 		134A731C21FA1F9E00B8FA44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A731B21FA1F9E00B8FA44 /* AppDelegate.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		131B900921FB33A9001FFB11 /* AdjustTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustTableViewCell.swift; sourceTree = "<group>"; };
+		131B900C21FB68B7001FFB11 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		1346486221FADAAE00ECE5A1 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		1346486421FB08B000ECE5A1 /* AdjustSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustSettingsViewController.swift; sourceTree = "<group>"; };
 		134A731821FA1F9E00B8FA44 /* SettingsApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SettingsApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		131B900B21FB6874001FFB11 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				131B900C21FB68B7001FFB11 /* music.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		134A730F21FA1F9E00B8FA44 = {
 			isa = PBXGroup;
 			children = (
@@ -65,9 +77,11 @@
 				134A731B21FA1F9E00B8FA44 /* AppDelegate.swift */,
 				134A731D21FA1F9E00B8FA44 /* ConfigureProfileViewController.swift */,
 				1346486421FB08B000ECE5A1 /* AdjustSettingsViewController.swift */,
+				131B900B21FB6874001FFB11 /* Sounds */,
 				134A731F21FA1F9E00B8FA44 /* Main.storyboard */,
 				134A732F21FACF4400B8FA44 /* ProfileTableViewCell.swift */,
 				1346486221FADAAE00ECE5A1 /* SettingsTableViewCell.swift */,
+				131B900921FB33A9001FFB11 /* AdjustTableViewCell.swift */,
 				134A732D21FAC12000B8FA44 /* MainTableViewController.swift */,
 				134A732221FA1FA000B8FA44 /* Assets.xcassets */,
 				134A732421FA1FA000B8FA44 /* LaunchScreen.storyboard */,
@@ -134,6 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				131B900D21FB68B7001FFB11 /* music.mp3 in Resources */,
 				134A732621FA1FA000B8FA44 /* LaunchScreen.storyboard in Resources */,
 				134A732321FA1FA000B8FA44 /* Assets.xcassets in Resources */,
 				134A732121FA1F9E00B8FA44 /* Main.storyboard in Resources */,
@@ -148,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1346486521FB08B000ECE5A1 /* AdjustSettingsViewController.swift in Sources */,
+				131B900A21FB33A9001FFB11 /* AdjustTableViewCell.swift in Sources */,
 				134A731E21FA1F9E00B8FA44 /* ConfigureProfileViewController.swift in Sources */,
 				134A733021FACF4400B8FA44 /* ProfileTableViewCell.swift in Sources */,
 				134A732E21FAC12000B8FA44 /* MainTableViewController.swift in Sources */,

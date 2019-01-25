@@ -14,6 +14,7 @@ class ConfigureProfileViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var configureProfileView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameTextField: UITextField!
     
     let picker = UIImagePickerController()
     
@@ -23,12 +24,13 @@ class ConfigureProfileViewController: UIViewController {
         //Delegate 채택 및 UIImagePickerController 인스턴스 생성
         picker.delegate = self
         
+        nameTextField.placeholder = "설정한 이름"
+        
         //configureProfileView 원형으로 변경
         self.configureProfileView.layer.cornerRadius = self.configureProfileView.frame.size.width / 2;
         self.configureProfileView.clipsToBounds = true;
         
-        
-
+        //UIView에 TapGesture 추가
         var tapGesture = UITapGestureRecognizer()
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(ConfigureProfileViewController.configureProfileViewTapped(_:)))
         tapGesture.numberOfTapsRequired = 1
@@ -78,7 +80,9 @@ class ConfigureProfileViewController: UIViewController {
     }
     
     @IBAction func confirmAction(_ sender: Any) {
-        //변경사항 저장
+        //변경사항 저장 후
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
