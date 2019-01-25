@@ -100,6 +100,7 @@
                         <outlet property="cancelButton" destination="XHS-oX-LKg" id="ao7-wO-Exa"/>
                         <outlet property="configureProfileView" destination="8S6-It-an8" id="7e3-eh-Ptz"/>
                         <outlet property="confirmButton" destination="yLI-Bx-1iT" id="HuH-Vp-9a3"/>
+                        <outlet property="profileImageView" destination="JeI-RV-RDs" id="A86-bY-DPv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -119,7 +120,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dO-lg-laO">
-                                    <rect key="frame" x="20" y="50" width="150" height="44"/>
+                                    <rect key="frame" x="20" y="40" width="150" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="150" id="EFO-tG-80U"/>
                                         <constraint firstAttribute="height" constant="44" id="Nx5-lJ-bC7"/>
@@ -132,7 +133,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="4dO-lg-laO" firstAttribute="leading" secondItem="cvg-le-FC2" secondAttribute="leading" constant="20" id="SHc-xu-SrX"/>
-                                <constraint firstItem="4dO-lg-laO" firstAttribute="top" secondItem="cvg-le-FC2" secondAttribute="top" constant="50" id="Y6c-Sl-EIa"/>
+                                <constraint firstItem="4dO-lg-laO" firstAttribute="top" secondItem="cvg-le-FC2" secondAttribute="top" constant="40" id="Y6c-Sl-EIa"/>
                             </constraints>
                         </view>
                         <prototypes>
