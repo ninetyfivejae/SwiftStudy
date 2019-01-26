@@ -24,7 +24,7 @@ class ConfigureProfileViewController: UIViewController {
         //Delegate 채택 및 UIImagePickerController 인스턴스 생성
         picker.delegate = self
         
-        nameTextField.placeholder = "설정한 이름"
+        setLastState()
         
         //configureProfileView 원형으로 변경
         self.configureProfileView.layer.cornerRadius = self.configureProfileView.frame.size.width / 2;
@@ -81,8 +81,18 @@ class ConfigureProfileViewController: UIViewController {
     
     @IBAction func confirmAction(_ sender: Any) {
         //변경사항 저장 후
-        
+        saveCurrentState()
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func setLastState() {
+        profileImageView.image = UserDefaults.standard.imageForKey(key: "currentProfileImage")
+        nameTextField.text = UserDefaults.standard.string(forKey: "currentProfileName")
+    }
+    
+    func saveCurrentState() {
+        UserDefaults.standard.setImage(image: profileImageView.image, forKey: "currentProfileImage")
+        UserDefaults.standard.set(nameTextField.text, forKey: "currentProfileName")
     }
 }
 
@@ -95,5 +105,22 @@ extension ConfigureProfileViewController: UIImagePickerControllerDelegate, UINav
             print(info)
         }
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension UserDefaults {
+    func imageForKey(key: String) -> UIImage? {
+        var image: UIImage?
+        if let imageData = data(forKey: key) {
+            image = NSKeyedUnarchiver.unarchiveObject(with: imageData) as? UIImage
+        }
+        return image
+    }
+    func setImage(image: UIImage?, forKey key: String) {
+        var imageData: NSData?
+        if let image = image {
+            imageData = NSKeyedArchiver.archivedData(withRootObject: image) as NSData?
+        }
+        set(imageData, forKey: key)
     }
 }

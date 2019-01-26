@@ -111,7 +111,7 @@
         <!--Main Table View Controller-->
         <scene sceneID="orp-dr-fc8">
             <objects>
-                <tableViewController id="Inb-vZ-Gqa" customClass="MainTableViewController" customModule="SettingsApplication" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MainVC" id="Inb-vZ-Gqa" customClass="MainTableViewController" customModule="SettingsApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eRY-J3-qY0" customClass="Main">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -145,7 +145,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="zyO-QQ-hun">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="zyO-QQ-hun">
                                             <rect key="frame" x="10" y="5" width="69.5" height="69.5"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" button="YES" image="YES"/>
@@ -210,7 +210,7 @@
                                 <connections>
                                     <outlet property="optionIconImageView" destination="y0G-Ef-RYd" id="8ky-ZR-OQf"/>
                                     <outlet property="optionLabel" destination="EmZ-pQ-Q6f" id="DJS-tg-rso"/>
-                                    <segue destination="WXp-Vy-tgd" kind="show" id="tTI-b2-3RC"/>
+                                    <segue destination="WXp-Vy-tgd" kind="show" identifier="AdjustSegue" id="slL-XI-9JZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -237,7 +237,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="f0t-s7-LIV" customClass="AdjustTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SoundAdjustTableViewCell" id="f0t-s7-LIV" customClass="SoundAdjustTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f0t-s7-LIV" id="6Hm-8m-yMC">
@@ -261,7 +261,7 @@
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6XH-dj-pOS">
                                                     <rect key="frame" x="51.5" y="7" width="272" height="31"/>
                                                     <connections>
-                                                        <action selector="sliderAdjusted:" destination="f0t-s7-LIV" eventType="valueChanged" id="krD-Mw-suQ"/>
+                                                        <action selector="sliderAdjusted:" destination="f0t-s7-LIV" eventType="valueChanged" id="aTX-Xj-ATN"/>
                                                     </connections>
                                                 </slider>
                                             </subviews>
@@ -280,7 +280,53 @@
                                         <connections>
                                             <outlet property="maximumIconImageView" destination="onX-Z1-TyK" id="OUE-dZ-qm9"/>
                                             <outlet property="minimumIconImageView" destination="0aZ-wF-lXN" id="HHu-bW-h0K"/>
-                                            <outlet property="slider" destination="6XH-dj-pOS" id="3ZL-xk-B5B"/>
+                                            <outlet property="slider" destination="6XH-dj-pOS" id="Yzt-Gw-KZF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DisplayAdjustTableViewCell" id="VJm-de-y54" customClass="DisplayAdjustTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VJm-de-y54" id="OPG-Dl-eyD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X5F-j9-Wzn">
+                                                    <rect key="frame" x="10" y="5" width="33.5" height="33.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="33.5" id="x4S-gP-jQi"/>
+                                                        <constraint firstAttribute="width" constant="33.5" id="yNN-ca-5o4"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CCB-kz-qfv">
+                                                    <rect key="frame" x="331.5" y="5" width="33.5" height="33.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="33.5" id="89S-e4-WNT"/>
+                                                        <constraint firstAttribute="width" constant="33.5" id="mkI-j8-KP2"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bnQ-dR-0YO">
+                                                    <rect key="frame" x="51.5" y="7" width="272" height="31"/>
+                                                    <connections>
+                                                        <action selector="sliderAdjusted:" destination="VJm-de-y54" eventType="valueChanged" id="NUE-cg-wCe"/>
+                                                    </connections>
+                                                </slider>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="X5F-j9-Wzn" secondAttribute="bottom" constant="5" id="178-1y-YhM"/>
+                                                <constraint firstItem="CCB-kz-qfv" firstAttribute="top" secondItem="OPG-Dl-eyD" secondAttribute="top" constant="5" id="BYn-1S-CaD"/>
+                                                <constraint firstItem="X5F-j9-Wzn" firstAttribute="top" secondItem="OPG-Dl-eyD" secondAttribute="top" constant="5" id="J2m-4c-6M5"/>
+                                                <constraint firstItem="X5F-j9-Wzn" firstAttribute="leading" secondItem="OPG-Dl-eyD" secondAttribute="leading" constant="10" id="QwL-Dr-nhR"/>
+                                                <constraint firstAttribute="trailing" secondItem="CCB-kz-qfv" secondAttribute="trailing" constant="10" id="V0m-DW-Avk"/>
+                                                <constraint firstItem="CCB-kz-qfv" firstAttribute="leading" secondItem="bnQ-dR-0YO" secondAttribute="trailing" constant="10" id="b6p-lR-SZk"/>
+                                                <constraint firstItem="bnQ-dR-0YO" firstAttribute="centerY" secondItem="OPG-Dl-eyD" secondAttribute="centerY" id="dnX-3w-IvQ"/>
+                                                <constraint firstItem="bnQ-dR-0YO" firstAttribute="leading" secondItem="X5F-j9-Wzn" secondAttribute="trailing" constant="10" id="o1S-cf-YoP"/>
+                                                <constraint firstAttribute="bottom" secondItem="CCB-kz-qfv" secondAttribute="bottom" constant="5" id="qs1-2a-MK9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="maximumIconImageView" destination="CCB-kz-qfv" id="0QW-7r-YIT"/>
+                                            <outlet property="minimumIconImageView" destination="X5F-j9-Wzn" id="4eY-fB-mni"/>
+                                            <outlet property="slider" destination="bnQ-dR-0YO" id="xbI-31-6wb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

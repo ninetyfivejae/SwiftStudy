@@ -17,14 +17,10 @@ class AdjustSettingsViewController: UIViewController, UITableViewDelegate, UITab
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        //테이블뷰의 높이를 내용에 맞게 제각각으로 설정
-//        self.tableView.rowHeight = UITableView.automaticDimension
-//        self.tableView.estimatedRowHeight = 20
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String? {
-        return "밝기"
+        return "소리"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,10 +32,22 @@ class AdjustSettingsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DisplayAdjustTableViewCell", for: indexPath) as? DisplayAdjustTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SoundAdjustTableViewCell", for: indexPath) as? SoundAdjustTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
+        }
         
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        if let cell = tableView.cellForRow(at: indexPath) as? SoundAdjustTableViewCell {
+//            cell.isHidden = true
+//        }
         
-        
-        return cell
     }
 }
