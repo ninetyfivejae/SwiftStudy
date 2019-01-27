@@ -12,6 +12,8 @@ class AdjustSettingsViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var tableView: UITableView!
     
+    var isDisplayMode: Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,7 +22,15 @@ class AdjustSettingsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String? {
-        return "소리"
+        if isDisplayMode != nil {
+            if let _ = isDisplayMode {
+                return "밝기"
+            } else {
+                return "소리"
+            }
+        } else {
+            return "ㅁㄴㅇㄹ"
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -32,7 +42,7 @@ class AdjustSettingsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if let _ = isDisplayMode {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DisplayAdjustTableViewCell", for: indexPath) as? DisplayAdjustTableViewCell else {
                 return UITableViewCell()
             }
@@ -43,11 +53,5 @@ class AdjustSettingsViewController: UIViewController, UITableViewDelegate, UITab
             }
             return cell
         }
-        
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        if let cell = tableView.cellForRow(at: indexPath) as? SoundAdjustTableViewCell {
-//            cell.isHidden = true
-//        }
-        
     }
 }

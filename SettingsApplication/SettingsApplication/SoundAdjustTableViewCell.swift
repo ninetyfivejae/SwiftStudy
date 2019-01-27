@@ -22,19 +22,30 @@ class SoundAdjustTableViewCell: UITableViewCell, AVAudioPlayerDelegate {
 
         self.minimumIconImageView.image = #imageLiteral(resourceName: "soundIcon")
         self.maximumIconImageView.image = #imageLiteral(resourceName: "soundIcon")
+        setLastState()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    func setLastState() {
+        slider.setValue(Float(UserDefaults.standard.double(forKey: "currentVolume")), animated: false)
+        audioPlayer?.volume = Float(UserDefaults.standard.double(forKey: "currentVolume"))
+    }
+    
+    func saveCurrentState() {
+        UserDefaults.standard.set(audioPlayer?.volume, forKey: "currentVolume")
+    }
 
     @IBAction func sliderAdjusted(_ sender: UISlider) {
-            print("\(sender.value)")
-        
-            //사운드 크기 조절
-            initAudio()
-            audioPlayer?.volume = sender.value
-            audioPlayer?.play()
+        print("\(sender.value)")
+    
+        //사운드 크기 조절
+        initAudio()
+        audioPlayer?.volume = sender.value
+        saveCurrentState()
+        audioPlayer?.play()
     }
 
     func initAudio() {

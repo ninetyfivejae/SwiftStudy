@@ -19,12 +19,16 @@ class DisplayAdjustTableViewCell: UITableViewCell {
         
         self.minimumIconImageView.image = #imageLiteral(resourceName: "displayIcon")
         self.maximumIconImageView.image = #imageLiteral(resourceName: "displayIcon")
+        setLastState()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    func setLastState() {
+        slider.setValue(Float(UserDefaults.standard.double(forKey: "currentBrightness")), animated: false)
+        UIScreen.main.brightness = CGFloat(UserDefaults.standard.double(forKey: "currentBrightness"))
     }
     
     @IBAction func sliderAdjusted(_ sender: UISlider) {
@@ -32,6 +36,7 @@ class DisplayAdjustTableViewCell: UITableViewCell {
         
         //디스플레이 밝기 조절
         UIScreen.main.brightness = CGFloat(sender.value)
+        //값 저장
+        UserDefaults.standard.set(CGFloat(sender.value), forKey: "currentBrightness")
     }
-    
 }

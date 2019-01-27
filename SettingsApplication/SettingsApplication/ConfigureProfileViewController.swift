@@ -16,6 +16,9 @@ class ConfigureProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     
+    var profileImage: UIImage?
+    var profileName: String?
+    
     let picker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -86,8 +89,16 @@ class ConfigureProfileViewController: UIViewController {
     }
     
     func setLastState() {
-        profileImageView.image = UserDefaults.standard.imageForKey(key: "currentProfileImage")
-        nameTextField.text = UserDefaults.standard.string(forKey: "currentProfileName")
+        if let image = UserDefaults.standard.imageForKey(key: "currentProfileImage"), let name = UserDefaults.standard.string(forKey: "currentProfileName") {
+            profileImage = image
+            profileName = name
+        } else {
+            profileImage = #imageLiteral(resourceName: "defaultProfileImage")
+            profileName = "이름 지정하지 않음"
+        }
+        
+        profileImageView.image = profileImage
+        nameTextField.text = profileName
     }
     
     func saveCurrentState() {
