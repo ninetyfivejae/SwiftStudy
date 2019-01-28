@@ -8,19 +8,11 @@
 - Protocol 과 Extension
 - 타입 캐스팅
 - 제네릭 개요
-+ Swift 기본 패턴
-- Delegate
-- KVO: Key-Value Observing
-
-실습
-- UITableView, UICollectionView
-- UINavigation 및 화면 transition
 ```
 
 ```
 Type Casting
 - 기존 언어의 타입 변환 vs 스위프트의 타입 변환
-- 스위프트 타입캐스팅
 - 데이터 타입 확인 연산자 is
 - Metatype Type. 메타타입 타입
 - 다운캐스팅
@@ -34,10 +26,7 @@ Type Casting
 - 제네릭 서브스크립트
 
 Protocol
-- 프로퍼티 요구
-- 메소드 요구
-- 가변 메소드 요구
-- 이니셜라이저 요구
+- 프로퍼티 / 메소드 / 가변 메소드 / 이니셜라이저 요구
 - 프로토콜의 상속과 클래스 전용 프로토콜
 - 프로토콜 조합과 프로토콜 준수 확인
 - 프로토콜의 선택적 요구
@@ -45,11 +34,7 @@ Protocol
 - 위임을 위한 프로토콜
 
 Extension
-- 연산 프로퍼티 추가
-- 메소드 추가
-- 이니셜라이저 추가
-- 서브스크립트 추가
-- 중첩 데이터 삽입
+- 연산 프로퍼티 / 메소드 / 이니셜라이저 / 서브스크립트 / 중첩 데이터 추가
 
 UITableView / UICollectionView
 - dequeueReusableCell 사용 이유
