@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		136C88B2220076CC004F7429 /* ReceiverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136C88B1220076CC004F7429 /* ReceiverViewController.swift */; };
+		136C88B4220076D6004F7429 /* SenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136C88B3220076D6004F7429 /* SenderViewController.swift */; };
+		136C88B722007AAA004F7429 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136C88B622007AAA004F7429 /* TableViewController.swift */; };
+		136C88B922007C79004F7429 /* SenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136C88B822007C79004F7429 /* SenderTableViewController.swift */; };
 		13EB6C9C21FF039900D6B198 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB6C9B21FF039900D6B198 /* AppDelegate.swift */; };
 		13EB6C9E21FF039900D6B198 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB6C9D21FF039900D6B198 /* ViewController.swift */; };
 		13EB6CA121FF039900D6B198 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13EB6C9F21FF039900D6B198 /* Main.storyboard */; };
@@ -14,9 +18,15 @@
 		13EB6CA621FF039C00D6B198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13EB6CA421FF039C00D6B198 /* LaunchScreen.storyboard */; };
 		13EB6CD221FF368500D6B198 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB6CD121FF368500D6B198 /* FirstViewController.swift */; };
 		13EB6CD421FF368E00D6B198 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB6CD321FF368E00D6B198 /* SecondViewController.swift */; };
+		13EB6CE1220013DA00D6B198 /* FirstReceiverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB6CE0220013DA00D6B198 /* FirstReceiverViewController.swift */; };
+		13EB6CE52200140600D6B198 /* SecondSenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB6CE42200140600D6B198 /* SecondSenderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		136C88B1220076CC004F7429 /* ReceiverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverViewController.swift; sourceTree = "<group>"; };
+		136C88B3220076D6004F7429 /* SenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderViewController.swift; sourceTree = "<group>"; };
+		136C88B622007AAA004F7429 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		136C88B822007C79004F7429 /* SenderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderTableViewController.swift; sourceTree = "<group>"; };
 		13EB6C9821FF039900D6B198 /* TabBarSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabBarSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13EB6C9B21FF039900D6B198 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13EB6C9D21FF039900D6B198 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +36,8 @@
 		13EB6CA721FF039C00D6B198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13EB6CD121FF368500D6B198 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		13EB6CD321FF368E00D6B198 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		13EB6CE0220013DA00D6B198 /* FirstReceiverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstReceiverViewController.swift; sourceTree = "<group>"; };
+		13EB6CE42200140600D6B198 /* SecondSenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSenderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +51,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		136C88AA220075BD004F7429 /* TabBarControllerUsingStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				13EB6CE0220013DA00D6B198 /* FirstReceiverViewController.swift */,
+				13EB6CE42200140600D6B198 /* SecondSenderViewController.swift */,
+			);
+			path = TabBarControllerUsingStoryboard;
+			sourceTree = "<group>";
+		};
+		136C88B522007914004F7429 /* ViewControllerExample */ = {
+			isa = PBXGroup;
+			children = (
+				136C88B1220076CC004F7429 /* ReceiverViewController.swift */,
+				136C88B3220076D6004F7429 /* SenderViewController.swift */,
+			);
+			path = ViewControllerExample;
+			sourceTree = "<group>";
+		};
+		136C88BA22007FD4004F7429 /* TableViewExample */ = {
+			isa = PBXGroup;
+			children = (
+				136C88B822007C79004F7429 /* SenderTableViewController.swift */,
+				136C88B622007AAA004F7429 /* TableViewController.swift */,
+			);
+			path = TableViewExample;
+			sourceTree = "<group>";
+		};
 		13EB6C8F21FF039900D6B198 = {
 			isa = PBXGroup;
 			children = (
@@ -59,23 +98,26 @@
 			isa = PBXGroup;
 			children = (
 				13EB6C9B21FF039900D6B198 /* AppDelegate.swift */,
-				13EB6C9D21FF039900D6B198 /* ViewController.swift */,
-				13EB6CD521FF379200D6B198 /* New Group */,
+				13EB6CD521FF379200D6B198 /* TabBarControllerProgrammatically */,
 				13EB6C9F21FF039900D6B198 /* Main.storyboard */,
+				136C88AA220075BD004F7429 /* TabBarControllerUsingStoryboard */,
 				13EB6CA221FF039C00D6B198 /* Assets.xcassets */,
 				13EB6CA421FF039C00D6B198 /* LaunchScreen.storyboard */,
+				136C88BA22007FD4004F7429 /* TableViewExample */,
+				136C88B522007914004F7429 /* ViewControllerExample */,
 				13EB6CA721FF039C00D6B198 /* Info.plist */,
 			);
 			path = TabBarSample;
 			sourceTree = "<group>";
 		};
-		13EB6CD521FF379200D6B198 /* New Group */ = {
+		13EB6CD521FF379200D6B198 /* TabBarControllerProgrammatically */ = {
 			isa = PBXGroup;
 			children = (
+				13EB6C9D21FF039900D6B198 /* ViewController.swift */,
 				13EB6CD121FF368500D6B198 /* FirstViewController.swift */,
 				13EB6CD321FF368E00D6B198 /* SecondViewController.swift */,
 			);
-			path = "New Group";
+			path = TabBarControllerProgrammatically;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,9 +191,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13EB6CE1220013DA00D6B198 /* FirstReceiverViewController.swift in Sources */,
+				13EB6CE52200140600D6B198 /* SecondSenderViewController.swift in Sources */,
+				136C88B922007C79004F7429 /* SenderTableViewController.swift in Sources */,
 				13EB6CD421FF368E00D6B198 /* SecondViewController.swift in Sources */,
+				136C88B2220076CC004F7429 /* ReceiverViewController.swift in Sources */,
 				13EB6CD221FF368500D6B198 /* FirstViewController.swift in Sources */,
+				136C88B4220076D6004F7429 /* SenderViewController.swift in Sources */,
 				13EB6C9E21FF039900D6B198 /* ViewController.swift in Sources */,
+				136C88B722007AAA004F7429 /* TableViewController.swift in Sources */,
 				13EB6C9C21FF039900D6B198 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
