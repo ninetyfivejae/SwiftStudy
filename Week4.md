@@ -50,6 +50,200 @@
 
 - @IBAction 클릭함수 대신에 처리할 함수를 구현한 것임
 
+### Delegate 사용 데이터 전달 - 기본 예제
+
+- 기본 ViewController 간의 Delegate 사용 데이터 전달
+
+  - protocol
+
+    ```swift
+    protocol SendDataDelegate {
+        func changeLabelText(to: String)
+    }
+    ```
+
+  - Receiver
+
+    ```swift
+    import UIKit
+    
+    class ReceiverViewController: UIViewController {
+    
+        @IBOutlet weak var receiverLabel: UILabel!
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+        }
+        
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "PassDataVC"{
+                let senderViewController = segue.destination as! SenderViewController
+                senderViewController.delegate = self
+            }
+        }
+    }
+    
+    extension ReceiverViewController: SendDataDelegate {
+        func changeLabelText(to: String) {
+            receiverLabel.text = to
+        }
+    }
+    ```
+
+  - Sender
+
+    ```swift
+    import UIKit
+    
+    class SenderViewController: UIViewController {
+    
+        @IBOutlet weak var senderTextField: UITextField!
+        
+        var delegate: SendDataDelegate?
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+        }
+        
+        @IBAction func senderButton(_ sender: Any) {
+            if let data = senderTextField.text {
+                delegate?.changeLabelText(to: data)
+                dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    ```
+
+- TableViewController에서 Delegate 사용 데이터 전달
+
+  - protocol
+
+    ```swift
+    protocol SaveDataDelegate: class {
+        func saveData(data saveData:[String:String])
+    }
+    ```
+
+  - Receiver
+
+    ```swift
+    class TableViewController: UIViewController, UITableViewDataSource, SaveDataDelegate {
+        @IBOutlet weak var friendListTableView: UITableView!
+        
+        private var friendList = [[String:String]]()
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+    
+            friendListTableView.dataSource = self
+            
+            self.friendListTableView.rowHeight = UITableView.automaticDimension
+            self.friendListTableView.estimatedRowHeight = 40
+        }
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return friendList.count
+        }
+    
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+            -> UITableViewCell {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath)
+                cell.textLabel?.text = friendList[indexPath.row]["name"]
+                cell.detailTextLabel?.text = friendList[indexPath.row]["phone"]
+                return cell
+        }
+        
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            let destination = segue.destination as! SenderTableViewController
+            destination.delegate = self
+        }
+        
+        func saveData(data saveData: [String : String]) {
+            friendList.append(saveData)
+            friendListTableView.reloadData()
+        }   
+    }
+    ```
+
+  - Sender
+
+    ```swift
+    class SenderTableViewController: UIViewController {
+        @IBOutlet weak var nameTextField: UITextField!
+        @IBOutlet weak var phoneTextField: UITextField!
+        
+        weak var delegate: SaveDataDelegate?
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+        }
+        
+        @IBAction func addButtonTapped(_ sender: Any) {
+            var data = [String:String]()
+            data["name"] = nameTextField.text!
+            data["phone"] = phoneTextField.text!
+            delegate?.saveData(data: data)
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    ```
+
+### Delegate 사용 데이터 전달 - <질문>
+
+- TabBarController에 포함된 ViewController마다 Delegate를 사용하여 데이터 전달하려고 하는데 동작하지 않았습니다
+
+  - Protocol
+
+    ```swift
+    protocol ButtonPressed {
+        func changeLabelText(to: String)
+    }
+    ```
+
+  - Receiver
+
+    ```swift
+    class FirstReceiverViewController: UIViewController {
+        
+        @IBOutlet weak var firstReceiverLabel: UILabel!
+        
+        var secondSenderViewController: SecondSenderViewController?
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+    
+            secondSenderViewController?.delegate = self
+        }
+    }
+    
+    extension FirstReceiverViewController: ButtonPressed {
+        func changeLabelText(to: String) {
+            firstReceiverLabel.text = to
+        }
+    }
+    ```
+
+  - Sender
+
+    ```swift
+    class SecondSenderViewController: UIViewController {
+        
+        @IBOutlet weak var secondSenderTextField: UITextField!
+        
+        var delegate: ButtonPressed?
+        
+        override func viewDidLoad() {
+            super.viewDidLoad() 
+        }
+        
+        @IBAction func secondSenderButtonTapped(_ sender: Any) {
+            if let text = secondSenderTextField.text {
+                delegate?.changeLabelText(to: text)
+            }
+        }
+    }
+    ```
+
 ## Tab bar 이용
 
 ### 스토리보드 이용
