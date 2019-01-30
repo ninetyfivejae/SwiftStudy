@@ -260,4 +260,58 @@
 
   - [참고: UIColor와 같은 지원되지 않는 타입을 저장하기 위해 UserDefaults extension으로 추가하는 방법](https://www.bobthedeveloper.io/blog/store-uicolor-with-userdefaults-in-swift)
 
-- 
+- UIImage의 URL 가져오기, URL을 통해서 UIImage 다시 생성하기 ==>
+
+  - UIImage를 UserDefaults에 굳이 저장을 할 수 있게 extension으로 구현할 수 있지만, 그러면 이미지 사이즈가 크면 앱이 느려지거나 터지는 경우가 생겨서, UIImage의 URL을 저장하는 방법으로 구현함
+
+  - [URL 타입이 UserDefaults에 저장가능했음](https://developer.apple.com/documentation/foundation/userdefaults/1408648-url)
+
+    ```swift
+    extension UIImage {
+        public convenience init(url: URL) {
+            do {
+                let data = try Data(contentsOf: url)
+                self.init(data: data)!
+                return
+            } catch let err {
+                print("Error : \(err.localizedDescription)")
+            }
+            self.init()
+        }
+    }
+    ```
+
+    ```swift
+    extension ConfigureProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                profileImageView.image = selectedImage
+            }
+            
+            if let imgUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+                profileImageURL = imgUrl
+            }
+    
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    ```
+
+  - [참고1](https://medium.com/swiftly-swift/the-secret-of-storing-and-loading-uiimage-s-48e94d080c8d)
+
+  - [참고2](https://rasukarusan.hatenablog.com/entry/2019/01/07/233207)
+
+### 미해결 이슈
+
+- 프로필 셀 터치 후 present modally 한 번에 안 넘어갈 때 있음. 여러번 그런다
+
+- 잘되는데, 앱 깔린 상태에서 다시 빌드하면 이전 저장된 이미지를 못 가져온다. 아래처럼 에러를 출력함
+
+  ```
+  Error : The file “F34D4E68-BBA6-48FC-A098-8A44143A2C3E.jpeg” couldn’t be opened because there is no such file.
+  ```
+
+- 키보드 사라지는 순서
+
+- settings 구현
