@@ -138,7 +138,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCell" rowHeight="80" id="zPg-9y-sdc" customClass="ProfileTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProfileCell" rowHeight="80" id="zPg-9y-sdc" customClass="ProfileTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="122" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zPg-9y-sdc" id="L2q-tA-JZn">
@@ -171,13 +171,14 @@
                                         <constraint firstItem="lan-HJ-g9J" firstAttribute="centerY" secondItem="L2q-tA-JZn" secondAttribute="centerY" id="th3-9U-FXX"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="tintColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="nameLabel" destination="lan-HJ-g9J" id="2R8-Kt-n4f"/>
                                     <outlet property="profileImageView" destination="zyO-QQ-hun" id="HNn-7S-yiS"/>
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="c4s-jR-7aa"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="vKW-1u-thk" customClass="SettingsTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsCell" id="vKW-1u-thk" customClass="SettingsTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="202" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vKW-1u-thk" id="FM2-9g-Ysv">
@@ -238,7 +239,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SoundAdjustTableViewCell" id="f0t-s7-LIV" customClass="SoundAdjustTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SoundAdjustTableViewCell" id="f0t-s7-LIV" customClass="SoundAdjustTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f0t-s7-LIV" id="6Hm-8m-yMC">
@@ -284,7 +285,7 @@
                                             <outlet property="slider" destination="6XH-dj-pOS" id="Yzt-Gw-KZF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DisplayAdjustTableViewCell" id="VJm-de-y54" customClass="DisplayAdjustTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DisplayAdjustTableViewCell" id="VJm-de-y54" customClass="DisplayAdjustTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VJm-de-y54" id="OPG-Dl-eyD">

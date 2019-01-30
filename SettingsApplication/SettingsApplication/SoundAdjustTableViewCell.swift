@@ -20,8 +20,8 @@ class SoundAdjustTableViewCell: UITableViewCell, AVAudioPlayerDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.minimumIconImageView.image = #imageLiteral(resourceName: "soundIcon")
-        self.maximumIconImageView.image = #imageLiteral(resourceName: "soundIcon")
+        self.minimumIconImageView.image = UIImage(named: "soundIcon")
+        self.maximumIconImageView.image = UIImage(named: "soundIcon")
         setLastState()
     }
 

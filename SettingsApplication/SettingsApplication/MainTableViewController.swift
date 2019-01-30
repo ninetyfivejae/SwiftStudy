@@ -59,7 +59,7 @@ class MainTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as? ProfileTableViewCell else {
                 return UITableViewCell()
             }
-                        
+            
             return cell
             
         } else {
@@ -77,7 +77,7 @@ class MainTableViewController: UITableViewController {
             profileImage = image
             profileName = name
         } else {
-            profileImage = #imageLiteral(resourceName: "defaultProfileImage")
+            profileImage = UIImage(named: "defaultProfileImage")
             profileName = "이름 지정하지 않음"
         }
         
@@ -92,6 +92,7 @@ class MainTableViewController: UITableViewController {
         if indexPath.section == 1, indexPath.row == 0 {
             print("1, 0")
             isDisplayMode = true
+            
         } else if indexPath.section == 1, indexPath.row == 1 {
             print("1, 1")
             isDisplayMode = false
@@ -103,7 +104,7 @@ class MainTableViewController: UITableViewController {
             if let adjustVC = segue.destination as? AdjustSettingsViewController {
                 //넘어가기 전 설정
                 adjustVC.isDisplayMode = self.isDisplayMode
-                print("test")
+                
             }
         }
     }

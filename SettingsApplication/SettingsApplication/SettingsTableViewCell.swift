@@ -23,5 +23,12 @@ class SettingsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if highlighted {            
+            self.backgroundColor = UIColor.hexStringToUIColor(hex: "#7DB9CA")
+        } else {
+            self.backgroundColor = .white
+        }
+    }
 }

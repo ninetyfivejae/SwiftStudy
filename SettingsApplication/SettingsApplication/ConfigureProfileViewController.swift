@@ -93,7 +93,7 @@ class ConfigureProfileViewController: UIViewController {
             profileImage = image
             profileName = name
         } else {
-            profileImage = #imageLiteral(resourceName: "defaultProfileImage")
+            profileImage = UIImage(named: "defaultProfileImage")
             profileName = "이름 지정하지 않음"
         }
         
