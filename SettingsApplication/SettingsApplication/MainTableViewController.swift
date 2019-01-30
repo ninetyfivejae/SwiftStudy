@@ -16,14 +16,14 @@ struct Profile {
 class MainTableViewController: UITableViewController {
     
     let sections = ["프로필", "설정", "친구"]
-    let items = [["신재혁"], ["디스플레이 및 밝기", "사운드"], ["test1"]]
+    let items = [["신재혁"], ["디스플레이 및 밝기", "사운드"], []]
     
     var profileImage: UIImage?
     var profileName: String?
     
-    var isDisplayMode: Bool?
-    
     //친구 리스트 따로 관리하기
+    
+    var settingsDelegate: SettingsDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,14 @@ class MainTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as? SettingsTableViewCell else {
                 return UITableViewCell()
             }
+            
             cell.optionLabel.text = self.items[indexPath.section][indexPath.row]
+            
+            if indexPath.row == 0 {
+                cell.optionIconImageView.image = UIImage(named: "displayIcon")
+            } else if indexPath.row == 1 {
+                cell.optionIconImageView.image = UIImage(named: "soundIcon")
+            }
             
             return cell
             
@@ -70,12 +77,9 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1, indexPath.row == 0 {
-            print("1, 0")
-            isDisplayMode = true
-            
+            settingsDelegate?.setDisplayTitle()
         } else if indexPath.section == 1, indexPath.row == 1 {
-            print("1, 1")
-            isDisplayMode = false
+            settingsDelegate?.setSoundTitle()
         }
     }
     
@@ -83,13 +87,12 @@ class MainTableViewController: UITableViewController {
         if segue.identifier == "AdjustSegue" {
             if let adjustVC = segue.destination as? AdjustSettingsViewController {
                 //넘어가기 전 설정
-                adjustVC.isDisplayMode = self.isDisplayMode
-                
+                settingsDelegate = adjustVC
             }
         } else if segue.identifier == "ProfileSegue" {
             if let profileVC = segue.destination as? ConfigureProfileViewController {
                 //넘어가기 전 설정
-                profileVC.delegate = self
+                profileVC.updateDelegate = self
             }
         }
     }
@@ -113,18 +116,4 @@ extension MainTableViewController: UpdateDelegate {
             }
         }
     }
-
-//    func updateProfile(of cell: ProfileTableViewCell) {
-//        if let imageURL = UserDefaults.standard.url(forKey: "currentProfileImage") {
-//            cell.profileImageView.image = UIImage(url: imageURL)
-//        } else {
-//            cell.profileImageView.image = UIImage(named: "defaultProfileImage")
-//        }
-//
-//        if let name = UserDefaults.standard.string(forKey: "currentProfileName") {
-//            cell.nameLabel.text = name
-//        } else {
-//            cell.nameLabel.text = "이름 지정하지 않음"
-//        }
-//    }
 }
