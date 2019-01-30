@@ -36,6 +36,8 @@ class SoundAdjustTableViewCell: UITableViewCell, AVAudioPlayerDelegate {
     
     func saveCurrentState() {
         UserDefaults.standard.set(audioPlayer?.volume, forKey: "currentVolume")
+        //synchronize가 호출되지 못하는 비정상적인 상황 대비해서 바로 메모리의 내용을 파일로 동기화
+        UserDefaults.standard.synchronize()
     }
 
     @IBAction func sliderAdjusted(_ sender: UISlider) {

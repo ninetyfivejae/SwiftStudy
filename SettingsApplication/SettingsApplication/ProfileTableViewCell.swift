@@ -15,10 +15,10 @@ class ProfileTableViewCell: UITableViewCell {
     
     var profileImage: UIImage?
     var profileName: String?
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
-    
+        
         setLastState()
         
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
@@ -32,53 +32,47 @@ class ProfileTableViewCell: UITableViewCell {
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
-            self.backgroundColor = UIColor.hexStringToUIColor(hex: "#7DB9CA")
+            //self.backgroundColor = UIColor(hexFromString: "7DB9CA")
+            self.backgroundColor = UIColor(hexFromString: "7DB9CA", alpha: 0.5)
         } else {
             self.backgroundColor = .white
         }
     }
     
     func setLastState() {
-        if let image = UserDefaults.standard.imageForKey(key: "currentProfileImage"), let name = UserDefaults.standard.string(forKey: "currentProfileName") {
-            profileImage = image
-            profileName = name
+        if let imageURL = UserDefaults.standard.url(forKey: "currentProfileImage") {
+            profileImageView.image = UIImage(url: imageURL)
         } else {
-            profileImage = UIImage(named: "defaultProfileImage")
-            profileName = "이름 지정하지 않음"
+            profileImageView.image = UIImage(named: "defaultProfileImage")
         }
         
-        profileImageView.image = profileImage
-        nameLabel.text = profileName
+        if let name = UserDefaults.standard.string(forKey: "currentProfileName") {
+            nameLabel.text = name
+        } else {
+            nameLabel.text = "이름 지정하지 않음"
+        }
     }
     
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//
-//        profileImageView.image = #imageLiteral(resourceName: "defaultProfileImage")
-//        nameLabel.text = "이름 지정하지 않음"
-//    }
 }
 
 extension UIColor {
-    class func hexStringToUIColor (hex: String) -> UIColor {
-        var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    convenience init(hexFromString:String, alpha:CGFloat = 1.0) {
+        var cString:String = hexFromString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        var rgbValue:UInt32 = 10066329 //color #999999 if string has wrong format
         
-        if cString.hasPrefix("#") {
+        if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
         }
         
-        if cString.count != 6 {
-            return UIColor.gray
+        if ((cString.count) == 6) {
+            Scanner(string: cString).scanHexInt32(&rgbValue)
         }
         
-        var rgbValue: UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbValue)
-        
-        return UIColor(
+        self.init(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
             green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
+            alpha: alpha
         )
     }
 }

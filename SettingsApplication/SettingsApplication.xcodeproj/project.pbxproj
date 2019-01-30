@@ -18,6 +18,7 @@
 		134A732621FA1FA000B8FA44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 134A732421FA1FA000B8FA44 /* LaunchScreen.storyboard */; };
 		134A732E21FAC12000B8FA44 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A732D21FAC12000B8FA44 /* MainTableViewController.swift */; };
 		134A733021FACF4400B8FA44 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A732F21FACF4400B8FA44 /* ProfileTableViewCell.swift */; };
+		136C88BC22020B4D004F7429 /* UpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136C88BB22020B4D004F7429 /* UpdateDelegate.swift */; };
 		13EB6C8E21FC387500D6B198 /* DisplayAdjustTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB6C8D21FC387500D6B198 /* DisplayAdjustTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		134A732721FA1FA000B8FA44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		134A732D21FAC12000B8FA44 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		134A732F21FACF4400B8FA44 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		136C88BB22020B4D004F7429 /* UpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDelegate.swift; sourceTree = "<group>"; };
 		13EB6C8D21FC387500D6B198 /* DisplayAdjustTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayAdjustTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 			children = (
 				134A731B21FA1F9E00B8FA44 /* AppDelegate.swift */,
 				134A731D21FA1F9E00B8FA44 /* ConfigureProfileViewController.swift */,
+				136C88BB22020B4D004F7429 /* UpdateDelegate.swift */,
 				1346486421FB08B000ECE5A1 /* AdjustSettingsViewController.swift */,
 				131B900B21FB6874001FFB11 /* Sounds */,
 				134A731F21FA1F9E00B8FA44 /* Main.storyboard */,
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				136C88BC22020B4D004F7429 /* UpdateDelegate.swift in Sources */,
 				1346486521FB08B000ECE5A1 /* AdjustSettingsViewController.swift in Sources */,
 				131B900A21FB33A9001FFB11 /* SoundAdjustTableViewCell.swift in Sources */,
 				134A731E21FA1F9E00B8FA44 /* ConfigureProfileViewController.swift in Sources */,

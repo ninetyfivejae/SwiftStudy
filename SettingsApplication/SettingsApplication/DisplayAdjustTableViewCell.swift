@@ -38,5 +38,7 @@ class DisplayAdjustTableViewCell: UITableViewCell {
         UIScreen.main.brightness = CGFloat(sender.value)
         //값 저장
         UserDefaults.standard.set(CGFloat(sender.value), forKey: "currentBrightness")
+        //synchronize가 호출되지 못하는 비정상적인 상황 대비해서 바로 메모리의 내용을 파일로 동기화
+        UserDefaults.standard.synchronize()
     }
 }

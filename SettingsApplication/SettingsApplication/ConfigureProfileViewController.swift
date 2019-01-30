@@ -18,7 +18,10 @@ class ConfigureProfileViewController: UIViewController {
     
     var profileImage: UIImage?
     var profileName: String?
+    var profileImageURL: URL?
     
+    var delegate: UpdateDelegate?
+
     let picker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -85,53 +88,65 @@ class ConfigureProfileViewController: UIViewController {
     @IBAction func confirmAction(_ sender: Any) {
         //변경사항 저장 후
         saveCurrentState()
+        //메인 테이블뷰의 프로필셀 변경
+        delegate?.updateProfile()
         self.dismiss(animated: true, completion: nil)
     }
     
     func setLastState() {
-        if let image = UserDefaults.standard.imageForKey(key: "currentProfileImage"), let name = UserDefaults.standard.string(forKey: "currentProfileName") {
-            profileImage = image
-            profileName = name
+        if let imageURL = UserDefaults.standard.url(forKey: "currentProfileImage") {
+            profileImage = UIImage(url: imageURL)
         } else {
             profileImage = UIImage(named: "defaultProfileImage")
-            profileName = "이름 지정하지 않음"
         }
         
+        if let name = UserDefaults.standard.string(forKey: "currentProfileName") {
+            profileName = name
+        } else {
+            profileName = "이름 지정하지 않음"
+        }
+
         profileImageView.image = profileImage
         nameTextField.text = profileName
     }
     
     func saveCurrentState() {
-        UserDefaults.standard.setImage(image: profileImageView.image, forKey: "currentProfileImage")
+        if profileImageURL == nil {
+            profileImageURL = UserDefaults.standard.url(forKey: "currentProfileImage")
+        }
+
+        UserDefaults.standard.set(profileImageURL, forKey: "currentProfileImage")
         UserDefaults.standard.set(nameTextField.text, forKey: "currentProfileName")
+        //synchronize가 호출되지 못하는 비정상적인 상황 대비해서 바로 메모리의 내용을 파일로 동기화
+        UserDefaults.standard.synchronize()
     }
 }
 
 //위에서 한꺼번에 ViewController에서 채택할 수도 있지만, Swift 컨벤션에 따르면 Delegate 채택작업은 extension으로 빼는게 좋다고 함.
 extension ConfigureProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = selectedImage
-            print(info)
         }
+        
+        if let imgUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+            profileImageURL = imgUrl
+        }
+
         dismiss(animated: true, completion: nil)
     }
 }
 
-extension UserDefaults {
-    func imageForKey(key: String) -> UIImage? {
-        var image: UIImage?
-        if let imageData = data(forKey: key) {
-            image = NSKeyedUnarchiver.unarchiveObject(with: imageData) as? UIImage
+extension UIImage {
+    public convenience init(url: URL) {
+        do {
+            let data = try Data(contentsOf: url)
+            self.init(data: data)!
+            return
+        } catch let err {
+            print("Error : \(err.localizedDescription)")
         }
-        return image
-    }
-    func setImage(image: UIImage?, forKey key: String) {
-        var imageData: NSData?
-        if let image = image {
-            imageData = NSKeyedArchiver.archivedData(withRootObject: image) as NSData?
-        }
-        set(imageData, forKey: key)
+        self.init()
     }
 }

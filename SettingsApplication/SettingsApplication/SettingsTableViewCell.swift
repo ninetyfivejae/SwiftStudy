@@ -15,18 +15,16 @@ class SettingsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {            
-            self.backgroundColor = UIColor.hexStringToUIColor(hex: "#7DB9CA")
+            //self.backgroundColor = UIColor(hexFromString: "7DB9CA")
+            self.backgroundColor = UIColor(hexFromString: "7DB9CA", alpha: 0.5)
         } else {
             self.backgroundColor = .white
         }

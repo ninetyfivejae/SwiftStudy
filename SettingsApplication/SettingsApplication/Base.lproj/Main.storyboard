@@ -155,8 +155,8 @@
                                                 <constraint firstAttribute="height" constant="69.5" id="h8e-kO-qZn"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lan-HJ-g9J">
-                                            <rect key="frame" x="99.5" y="28" width="35" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lan-HJ-g9J">
+                                            <rect key="frame" x="99.5" y="28" width="10" height="24"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -175,7 +175,7 @@
                                 <connections>
                                     <outlet property="nameLabel" destination="lan-HJ-g9J" id="2R8-Kt-n4f"/>
                                     <outlet property="profileImageView" destination="zyO-QQ-hun" id="HNn-7S-yiS"/>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" id="c4s-jR-7aa"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="ProfileSegue" id="c4s-jR-7aa"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsCell" id="vKW-1u-thk" customClass="SettingsTableViewCell" customModule="SettingsApplication" customModuleProvider="target">
@@ -225,7 +225,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tiX-FW-dpM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="150"/>
+            <point key="canvasLocation" x="808.79999999999995" y="149.77511244377811"/>
         </scene>
         <!--Adjust Settings View Controller-->
         <scene sceneID="cYa-PM-Uep">
