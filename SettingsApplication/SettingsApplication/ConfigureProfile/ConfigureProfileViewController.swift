@@ -45,6 +45,16 @@ class ConfigureProfileViewController: UIViewController {
         configureProfileView.isUserInteractionEnabled = true
     }
     
+    //키보드 사라지게 하기위해서 touchesBegan func override를 해서 구현
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        // 모든 UITextView에 적용하고 싶은 경우
+        self.view.endEditing(true)
+        //특정 UITextView에만 적용하고 싶은 경우
+        //self.nameTextField.resignFirstResponder()
+    }
+    
     //@objc 속성을 붙여주는 이유와 괜찮은지
     @objc func configureProfileViewTapped(_ sender: UIGestureRecognizer) {
         if (sender.state == .ended) {
@@ -82,10 +92,14 @@ class ConfigureProfileViewController: UIViewController {
     }
 
     @IBAction func cancelAction(_ sender: Any) {
+        //키보드 먼저 내리기 위해서 dismiss 이전에 호출
+        self.view.endEditing(true)
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func confirmAction(_ sender: Any) {
+        //키보드 먼저 내리기 위해서 dismiss 이전에 호출
+        self.view.endEditing(true)
         //변경사항 저장 후
         saveCurrentState()
         //메인 테이블뷰의 프로필셀 변경
