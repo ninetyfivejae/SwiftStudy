@@ -1465,11 +1465,11 @@ Segue
 
 ###  iOS에서 화면전환 방식
 
-1. 뷰 컨트롤러에서 다른 뷰 컨트롤러를 호출하기
-2. 내비게이션 컨트롤러 사용하기
+1. **Present / Dismiss**: 뷰 컨트롤러에서 다른 뷰 컨트롤러를 호출하기. 
+2. **Push / Pop**: 내비게이션 컨트롤러 사용하기.
 3. 화면 전환용 객체 세그웨이(Segueway) 사용하기
 
-- 기본적으로 iOS의 화면 전환은 stack과 같은 느낌이다. 화면이 바뀔 때마다 원래 있던 화면 위에 새 화면이 올라가는 형식이다
+- 기본적으로 iOS의 화면 전환은 **stack**과 같은 느낌이다. 화면이 바뀔 때마다 원래 있던 화면 위에 새 화면이 올라가는 형식이다
 - 여기서 주의 해야할 부분은 이전 화면으로 돌아갈 때엔 새 화면을 올릴 때처럼 이전화면을 새로 위에 올리는게 아니라 stack에서 pop을 하는 것처럼 올렸던 화면을 빼야한다는 것이다
 - 이전 화면으로 돌아갈 때 현재화면의 pop이 아니라 이전화면의 push로 구현시엔 인스턴스가 중복되어 에러가 발생할 수도 있고, 에러가 나지 않더라도 메모리 낭비로 이어지기때문에 주의해야한다.
 
@@ -1489,7 +1489,7 @@ Segue
 - 메인 ViewController에서 이동할 ViewController swift 파일 생성. 여기에서는 SecondViewController.swift 파일 사용
 
   - 스토리보드에서 Custom class 파일 지정
-  - ViewController의 storyboard id 지정. instantiateViewController메소드 사용 시 필요. instanSecondVC로 지정했음
+  - **ViewController의 storyboard id 지정. instantiateViewController메소드 사용 시 필요. SecondVC로 지정했음**
 
 - 새로운 ViewController를 present할 액션 생성
 
@@ -1539,22 +1539,42 @@ Segue
   }
   ```
 
+- 다른 예시
+
+  ```swift
+  @IBAction func nextButtonTapped(_ sender: Any) {
+      let senderViewController = storyboard?.instantiateViewController(withIdentifier: "SenderViewController") as! SenderViewController
+  
+      senderViewController.delegate = self
+  
+      present(senderViewController, animated: true, completion: nil)
+  }
+  ```
+
 - 데이터 전달 시 주의사항
 
   - present 하는 메소드에서 생성되지 않은 informationLabel의 text를 변경하려고 하면 오류가 난다.
   - 그래서 present메소드 이후에 속성을 변경하거나,
   - infoObject라는 변수에 값을 담아두고 ViewController의 viewDidLoad 메소드 호출 시 할당을 해주면 된다
 
-- Segue를 이용한 ViewController 전환과 다른 점
-
-  - asdf
-
 ### 2. 네비게이션 컨트롤러 사용하기
 
 - `pushViewController(_:animated:)`
+
 - `popViewControllerAnimated(_:)`
 
-- 이 방법은 전체적인 화면 관리를 navigationController가 맡아서 한다는 것이 특징이다.
+  ```swift
+  let secondViewController:UIViewController =  self.storyboard?.instantiateViewController(withIdentifier: "StoryboardIdOfsecondViewController") as? SecondViewController
+  
+  self.navigationController?.pushViewController(secondViewController, animated: true)
+  ```
+
+  ```swift
+  let navigationController: UINavigationController = UINavigationController()
+  navigationController.popViewController(animated: true)
+  ```
+
+- **이 방법은 전체적인 화면 관리를 navigationController가 맡아서 한다는 것이 특징이다.**
 - 1번 방법은 뷰 컨트롤러가 직접 메소드를 호출했지만, 2번 방법은 2가지 메소드 모두 아래와 같이 navigationController가 호출한다.
   `self.navigationController?.pushViewController(_:animated:)`
   `self.navigationController?.popViewControllerAnimated(_:)`
@@ -1563,12 +1583,9 @@ Segue
 ### 3. 화면 전환용 객체 세그웨이(Segueway) 사용하기
 
 - Action Segue
+  - 버튼등 이벤트가 발생하는 객체와 뷰 컨트롤러를 직접 연결할 때 사용
 - Manual Segue
-
-- 세그웨이는 스위프트 코드가 아닌 스토리보드 상에서 그래피컬하게 전환을 설정한다. 세부적으로 코딩도 들어가긴 하지만 기본적인 전환 관계를 스토리보드상에서 연결하며 직관적으로 알아보기 쉽게 화살표로 표시를 해준다.
-- 세그웨이엔 2가지 ‘Action Segue’와 ‘Manual Segue’가 존재한다.
-  - 액션 세그는 버튼등 이벤트가 발생하는 객체와 뷰 컨트롤러를 직접 연결할 때 사용하며
-  - 매뉴얼 세그는 뷰 컨트롤러와 뷰 컨트롤러를 직접 연결하며 `performSegueWithIdentifier(_:sender:)`를 특정 시점에 호출하여 전환을 한다. 
+  - **매뉴얼 세그는 뷰 컨트롤러와 뷰 컨트롤러를 직접 연결하며  `performSegueWithIdentifier(_:sender:)`를 특정 시점에 호출하여 전환을 한다.**
   - 세그웨이를 이용한 전환에서 Unwind의 경우 스토리보드에서 뷰 컨트롤러를 선택시 윗 부분에 나타나는 3개의 아이콘 중에서 오른쪽 끝에 있는 Exit 아이콘에 연결하여 복귀할 뷰 컨트롤러 클래스에서 정의된 Unwind 메소드를 지정함으로써 구현한다.
 
 - 세그웨이는 UIStoryboardSegue 클래스를 상속받아 커스텀 세그를 구현할 수 있다. 이미 정의되어있는 `perform(_:)` 메소드를 override하여 구현한다.
@@ -1641,7 +1658,7 @@ Segue
 
   - infoObject라는 변수에 값을 담아두고 ViewController의 viewDidLoad 메소드 호출 시 할당을 해주면 된다
 
-  - The order of the last steps might vary slightly. However, what never changes is that prepareForSegue: is always called after the destination view controller has been initialized, and just before its viewDidLoad method is invoked.
+  - The order of the last steps might vary slightly. However, what never changes is that **prepareForSegue: is always called after the destination view controller has been initialized, and just before its viewDidLoad method is invoked.**
 
     Why is this important? Because if you are defining a property of the destination view controller, you will only be able to use it from viewDidLoad, not before. Thus, generally speaking, you can use a property passed through a segue in viewDidLoad, viewWillAppear and viewDidAppear safely.
 
