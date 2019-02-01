@@ -16,7 +16,7 @@ struct Profile {
 class MainTableViewController: UITableViewController {
     
     let sections = ["프로필", "설정", "친구"]
-    let items = [["신재혁"], ["디스플레이 및 밝기", "사운드"], []]
+    var items = [["신재혁"], ["디스플레이 및 밝기", "사운드"], []]
     
     var profileImage: UIImage?
     var profileName: String?
@@ -43,7 +43,14 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as? ProfileTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            return cell
+            
+        } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as? SettingsTableViewCell else {
                 return UITableViewCell()
             }
@@ -54,13 +61,6 @@ class MainTableViewController: UITableViewController {
                 cell.optionIconImageView.image = UIImage(named: "displayIcon")
             } else if indexPath.row == 1 {
                 cell.optionIconImageView.image = UIImage(named: "soundIcon")
-            }
-            
-            return cell
-            
-        } else if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as? ProfileTableViewCell else {
-                return UITableViewCell()
             }
             
             return cell
@@ -81,6 +81,26 @@ class MainTableViewController: UITableViewController {
         } else if indexPath.section == 1, indexPath.row == 1 {
             settingsDelegate?.setSoundTitle()
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIButton? {
+        if section == 2 {
+            let button = UIButton(type: .system)
+            button.setTitle("친구 추가", for: .normal)
+            button.tintColor = .black
+            button.backgroundColor = UIColor(hexFromString: "7DB9CA")
+            button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+
+            return button
+        } else {
+            return nil
+        }
+    }
+
+    @objc func buttonClicked(sender : UIButton){
+        items[2].append("test")
+        
+        self.tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
