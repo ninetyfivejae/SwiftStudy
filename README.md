@@ -335,6 +335,42 @@
     }
     ```
 
+- [Dealing with magic number / magic string](https://www.bignerdranch.com/blog/using-swift-enumerations-makes-segues-safer/)
+
+  - Using Swift Enumerations Makes Segues Safer
+
+  - 프로젝트 세그웨이에 적용한 결과
+
+    ```swift
+    enum SegueIdentifier: String {
+        case configureProfileSegue = "ProfileSegue"
+        case adjustSettingsSegue = "AdjustSegue"
+    }
+    ```
+
+    ```swift
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+        guard let identifier = segue.identifier,
+        let identifierCase = SegueIdentifier(rawValue: identifier) else {
+            return
+        }
+    
+        switch identifierCase {
+            case .configureProfileSegue:
+            if let profileVC = segue.destination as? ConfigureProfileViewController {
+                //넘어가기 전 설정
+                profileVC.updateDelegate = self
+            }
+            case .adjustSettingsSegue:
+            if let adjustVC = segue.destination as? AdjustSettingsViewController {
+                //넘어가기 전 설정
+                settingsDelegate = adjustVC
+            }
+        }
+    }
+    ```
+
 - 
 
 ### 미해결 이슈
