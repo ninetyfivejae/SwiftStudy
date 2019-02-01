@@ -18,11 +18,21 @@ class ReceiverViewController: UIViewController {
         
     }
     
+    //스토리보드에서 segue 생성 후 identifier마다 작업 구현하는 방법
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PassDataVC"{
             let senderViewController = segue.destination as! SenderViewController
             senderViewController.delegate = self
         }
+    }
+    
+    //스토리보드 id를 가지고 다음에 띄울 view controller를 present하는 방법
+    @IBAction func nextButtonTapped(_ sender: Any) {
+        let senderViewController = storyboard?.instantiateViewController(withIdentifier: "SenderViewController") as! SenderViewController
+        
+        senderViewController.delegate = self
+        
+        present(senderViewController, animated: true, completion: nil)
     }
 }
 

@@ -330,7 +330,7 @@
                                 <rect key="frame" x="161.5" y="364" width="52" height="30"/>
                                 <state key="normal" title="NextVC"/>
                                 <connections>
-                                    <segue destination="dqs-sB-wgY" kind="show" identifier="PassDataVC" id="jif-h9-moj"/>
+                                    <action selector="nextButtonTapped:" destination="d0i-Wo-aWo" eventType="touchUpInside" id="8v9-d5-Mzh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -354,7 +354,7 @@
         <!--Sender View Controller-->
         <scene sceneID="WTw-Mw-kId">
             <objects>
-                <viewController id="dqs-sB-wgY" customClass="SenderViewController" customModule="TabBarSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SenderViewController" id="dqs-sB-wgY" customClass="SenderViewController" customModule="TabBarSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JVI-UE-4gx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
