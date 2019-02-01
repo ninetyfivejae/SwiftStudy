@@ -34,28 +34,35 @@ class AdjustSettingsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if sectionTitle == "밝기" {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DisplayAdjustTableViewCell", for: indexPath) as? DisplayAdjustTableViewCell else {
-                return UITableViewCell()
-            }
-            return cell
-        } else if sectionTitle == "소리" {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SoundAdjustTableViewCell", for: indexPath) as? SoundAdjustTableViewCell else {
-                return UITableViewCell()
-            }
-            return cell
-        } else {
+        
+        guard let title = sectionTitle else {
             return UITableViewCell()
+        }
+        guard let settingsSectionTitle = SettingsSectionTitle(rawValue: title) else {
+            return UITableViewCell()
+        }
+        
+        switch settingsSectionTitle {
+        case .displaySectionTitle:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.displayAdjustTableViewCell.rawValue, for: indexPath) as? DisplayAdjustTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
+        case .soundSectionTitle:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.soundAdjustTableViewCell.rawValue, for: indexPath) as? SoundAdjustTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
         }
     }
 }
 
 extension AdjustSettingsViewController: SettingsDelegate {
     func setDisplayTitle() {
-        sectionTitle = "밝기"
+        sectionTitle = SettingsSectionTitle.displaySectionTitle.rawValue
     }
     
     func setSoundTitle() {
-        sectionTitle = "소리"
+        sectionTitle = SettingsSectionTitle.soundSectionTitle.rawValue
     }
 }

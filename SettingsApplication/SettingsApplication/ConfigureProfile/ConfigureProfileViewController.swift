@@ -111,7 +111,7 @@ class ConfigureProfileViewController: UIViewController {
         if let imageURL = UserDefaults.standard.url(forKey: "currentProfileImage") {
             profileImage = UIImage(url: imageURL)
         } else {
-            profileImage = UIImage(named: "defaultProfileImage")
+            profileImage = UIImage(named: ImageName.defaultProfileImage.rawValue)
         }
         
         if let name = UserDefaults.standard.string(forKey: "currentProfileName") {

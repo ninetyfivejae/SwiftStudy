@@ -106,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1672.8" y="-148.87556221889056"/>
+            <point key="canvasLocation" x="60" y="958"/>
         </scene>
         <!--Main Table View Controller-->
         <scene sceneID="orp-dr-fc8">
@@ -222,10 +222,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="5Pp-P4-gki"/>
+                    <connections>
+                        <segue destination="RtV-0r-Jo3" kind="show" identifier="FriendSegue" id="pFC-27-VKC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tiX-FW-dpM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="808.79999999999995" y="149.77511244377811"/>
+            <point key="canvasLocation" x="854" y="150"/>
         </scene>
         <!--Adjust Settings View Controller-->
         <scene sceneID="cYa-PM-Uep">
@@ -349,7 +352,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jpO-Fv-Tky" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1672.8" y="500.59970014992507"/>
+            <point key="canvasLocation" x="854" y="958"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="myW-LL-HnE">
+            <objects>
+                <viewController id="RtV-0r-Jo3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="67c-0k-HFl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="7kQ-bJ-G8j"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mbg-jH-Nm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1644" y="958"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JHy-n1-YWB">

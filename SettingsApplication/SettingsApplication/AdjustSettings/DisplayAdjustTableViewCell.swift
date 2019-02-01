@@ -17,8 +17,8 @@ class DisplayAdjustTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.minimumIconImageView.image = UIImage(named: "displayIcon")
-        self.maximumIconImageView.image = UIImage(named: "displayIcon")
+        self.minimumIconImageView.image = UIImage(named: ImageName.displayIconImage.rawValue)
+        self.maximumIconImageView.image = UIImage(named: ImageName.displayIconImage.rawValue)
         setLastState()
     }
 

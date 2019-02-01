@@ -15,13 +15,12 @@ struct Profile {
 
 class MainTableViewController: UITableViewController {
     
-    let sections = ["프로필", "설정", "친구"]
-    var items = [["신재혁"], ["디스플레이 및 밝기", "사운드"], []]
+    let sections: [String] = ["프로필", "설정", "친구"]
+    var rowArray = [["사용자"], ["디스플레이 및 밝기", "사운드"]]
+    var friendArray: [String] = []
     
-    var profileImage: UIImage?
-    var profileName: String?
-    
-    //친구 리스트 따로 관리하기
+//    var profileImage: UIImage?
+//    var profileName: String?
     
     var settingsDelegate: SettingsDelegate?
 
@@ -39,52 +38,69 @@ class MainTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items[section].count
+        //section 0,1은 rowArray에서, section 2는 frientArray에서 값 가져와 사용
+        guard let sectionCase = Section(rawValue: section) else {
+            return 0
+        }
+        switch sectionCase {
+        case .profileSection, .settingsSection:
+            return self.rowArray[section].count
+        case .friendSection:
+            return self.friendArray.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as? ProfileTableViewCell else {
+        guard let sectionCase = Section(rawValue: indexPath.section), let rowCase = Row(rawValue: indexPath.row) else {
+            return UITableViewCell()
+        }
+        
+        switch sectionCase {
+        case .profileSection:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.profileTableViewCell.rawValue, for: indexPath) as? ProfileTableViewCell else {
                 return UITableViewCell()
+            }
+            return cell
+        case .settingsSection:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.settingsTableViewCell.rawValue, for: indexPath) as? SettingsTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.optionLabel.text = self.rowArray[indexPath.section][indexPath.row]
+            
+            switch rowCase {
+            case .firstRow:
+                cell.optionIconImageView.image = UIImage(named: ImageName.displayIconImage.rawValue)
+            case .secondRow:
+                cell.optionIconImageView.image = UIImage(named: ImageName.soundIconImage.rawValue)
             }
             
             return cell
-            
-        } else if indexPath.section == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as? SettingsTableViewCell else {
+        case .friendSection:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.profileTableViewCell.rawValue, for: indexPath) as? ProfileTableViewCell else {
                 return UITableViewCell()
             }
-            
-            cell.optionLabel.text = self.items[indexPath.section][indexPath.row]
-            
-            if indexPath.row == 0 {
-                cell.optionIconImageView.image = UIImage(named: "displayIcon")
-            } else if indexPath.row == 1 {
-                cell.optionIconImageView.image = UIImage(named: "soundIcon")
-            }
-            
-            return cell
-            
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as? ProfileTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.nameLabel.text = self.items[indexPath.section][indexPath.row]
-            
+            cell.nameLabel.text = self.friendArray[indexPath.row]
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1, indexPath.row == 0 {
-            settingsDelegate?.setDisplayTitle()
-        } else if indexPath.section == 1, indexPath.row == 1 {
-            settingsDelegate?.setSoundTitle()
+        guard let rowCase = Row(rawValue: indexPath.row) else {
+            return
+        }
+        
+        if indexPath.section == Section.settingsSection.rawValue {
+            switch rowCase {
+            case .firstRow:
+                settingsDelegate?.setDisplayTitle()
+            case .secondRow:
+                settingsDelegate?.setSoundTitle()
+            }
         }
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIButton? {
-        if section == 2 {
+        if section == Section.friendSection.rawValue {
             let button = UIButton(type: .system)
             button.setTitle("친구 추가", for: .normal)
             button.tintColor = .black
@@ -98,35 +114,43 @@ class MainTableViewController: UITableViewController {
     }
 
     @objc func buttonClicked(sender : UIButton){
-        items[2].append("test")
-        
+        friendArray.append("test")
         self.tableView.reloadData()
+        
+        performSegue(withIdentifier: SegueIdentifier.friendProfileSegue.rawValue, sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AdjustSegue" {
-            if let adjustVC = segue.destination as? AdjustSettingsViewController {
-                //넘어가기 전 설정
-                settingsDelegate = adjustVC
-            }
-        } else if segue.identifier == "ProfileSegue" {
+        guard let identifier = segue.identifier,
+            let identifierCase = SegueIdentifier(rawValue: identifier) else {
+                return
+        }
+        
+        switch identifierCase {
+        case .configureProfileSegue:
             if let profileVC = segue.destination as? ConfigureProfileViewController {
-                //넘어가기 전 설정
+                //화면전환 전 설정
                 profileVC.updateDelegate = self
             }
+        case .adjustSettingsSegue:
+            if let adjustVC = segue.destination as? AdjustSettingsViewController {
+                //화면전환 전 설정
+                settingsDelegate = adjustVC
+            }
+        default:
+            return
         }
     }
 }
 
 extension MainTableViewController: UpdateDelegate {
-    
     func updateProfile() {
         let indexPath = IndexPath(row: 0, section: 0)
         if let cell = tableView.cellForRow(at: indexPath) as? ProfileTableViewCell {
             if let imageURL = UserDefaults.standard.url(forKey: "currentProfileImage") {
                 cell.profileImageView.image = UIImage(url: imageURL)
             } else {
-                cell.profileImageView.image = UIImage(named: "defaultProfileImage")
+                cell.profileImageView.image = UIImage(named: ImageName.defaultProfileImage.rawValue)
             }
             
             if let name = UserDefaults.standard.string(forKey: "currentProfileName") {

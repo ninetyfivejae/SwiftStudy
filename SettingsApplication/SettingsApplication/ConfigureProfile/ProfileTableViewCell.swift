@@ -43,7 +43,7 @@ class ProfileTableViewCell: UITableViewCell {
         if let imageURL = UserDefaults.standard.url(forKey: "currentProfileImage") {
             profileImageView.image = UIImage(url: imageURL)
         } else {
-            profileImageView.image = UIImage(named: "defaultProfileImage")
+            profileImageView.image = UIImage(named: ImageName.defaultProfileImage.rawValue)
         }
         
         if let name = UserDefaults.standard.string(forKey: "currentProfileName") {
