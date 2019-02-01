@@ -302,6 +302,41 @@
 
   - [참고2](https://rasukarusan.hatenablog.com/entry/2019/01/07/233207)
 
+- **키보드 사라지는 타이밍 이슈**
+
+  - 프로필 수정 후 MainTableViewController로 이동할 때 먼저 수정 화면이 사라지고 키보드가 나중에 사라지는 이슈
+  - 화면 dismiss 이전에 self.view.endEditing(true) 코드 추가해서 해결
+
+- **UITableView Section Header에 button 추가 / 새로운 Cell 추가 후 reloadData**
+
+  - http://swiftquickstart.blogspot.com/2016/10/custom-tableview-section-headers.html
+
+  - https://www.codevscolor.com/ios-create-button-programmatically/
+
+    ```swift
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIButton? {
+        if section == 2 {
+            let button = UIButton(type: .system)
+            button.setTitle("친구 추가", for: .normal)
+            button.tintColor = .black
+            button.backgroundColor = UIColor(hexFromString: "7DB9CA")
+            button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+    
+            return button
+        } else {
+            return nil
+        }
+    }
+    
+    @objc func buttonClicked(sender : UIButton){
+        items[2].append("test")
+    
+        self.tableView.reloadData()
+    }
+    ```
+
+- 
+
 ### 미해결 이슈
 
 - 프로필 셀 터치 후 present modally 한 번에 안 넘어갈 때 있음. 여러번 그런다
@@ -312,6 +347,5 @@
   Error : The file “F34D4E68-BBA6-48FC-A098-8A44143A2C3E.jpeg” couldn’t be opened because there is no such file.
   ```
 
-- 키보드 사라지는 순서
+- [프로필 이미지, 프로필 이름] ==> 구조체 리스트로 관리하기
 
-- settings 구현
