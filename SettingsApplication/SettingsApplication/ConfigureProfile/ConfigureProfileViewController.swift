@@ -58,15 +58,15 @@ class ConfigureProfileViewController: UIViewController {
     //@objc 속성을 붙여주는 이유와 괜찮은지
     @objc func configureProfileViewTapped(_ sender: UIGestureRecognizer) {
         if (sender.state == .ended) {
-            let optionMenu = UIAlertController(title: nil, message: "프로필 사진 선택", preferredStyle: .actionSheet)
+            let optionMenu = UIAlertController(title: nil, message: ActionSheetTitle.optionMenuTitle.rawValue, preferredStyle: .actionSheet)
             
-            let takePhoto = UIAlertAction(title: "사진 찍기", style: .default) { (action) in
+            let takePhoto = UIAlertAction(title: ActionSheetTitle.takePhotoTitle.rawValue, style: .default) { (action) in
                 self.openCamera()
             }
-            let selectPhoto = UIAlertAction(title: "사진 선택", style: .default) { (action) in
+            let selectPhoto = UIAlertAction(title: ActionSheetTitle.selectPhotoTitle.rawValue, style: .default) { (action) in
                 self.openLibrary()
             }
-            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            let cancel = UIAlertAction(title: ActionSheetTitle.cancelTitle.rawValue, style: .cancel)
             
             optionMenu.addAction(takePhoto)
             optionMenu.addAction(selectPhoto)
@@ -108,16 +108,16 @@ class ConfigureProfileViewController: UIViewController {
     }
     
     func setLastState() {
-        if let imageURL = UserDefaults.standard.url(forKey: "currentProfileImage") {
+        if let imageURL = UserDefaults.standard.url(forKey: UserDefaultsKey.currentProfileImageURL.rawValue) {
             profileImage = UIImage(url: imageURL)
         } else {
             profileImage = UIImage(named: ImageName.defaultProfileImage.rawValue)
         }
         
-        if let name = UserDefaults.standard.string(forKey: "currentProfileName") {
+        if let name = UserDefaults.standard.string(forKey: UserDefaultsKey.currentProfileName.rawValue) {
             profileName = name
         } else {
-            profileName = "이름 지정하지 않음"
+            profileName = GlobalConstants.defaultProfileName
         }
 
         profileImageView.image = profileImage
@@ -126,11 +126,11 @@ class ConfigureProfileViewController: UIViewController {
     
     func saveCurrentState() {
         if profileImageURL == nil {
-            profileImageURL = UserDefaults.standard.url(forKey: "currentProfileImage")
+            profileImageURL = UserDefaults.standard.url(forKey: UserDefaultsKey.currentProfileImageURL.rawValue)
         }
 
-        UserDefaults.standard.set(profileImageURL, forKey: "currentProfileImage")
-        UserDefaults.standard.set(nameTextField.text, forKey: "currentProfileName")
+        UserDefaults.standard.set(profileImageURL, forKey: UserDefaultsKey.currentProfileImageURL.rawValue)
+        UserDefaults.standard.set(nameTextField.text, forKey: UserDefaultsKey.currentProfileName.rawValue)
         //synchronize가 호출되지 못하는 비정상적인 상황 대비해서 바로 메모리의 내용을 파일로 동기화
         UserDefaults.standard.synchronize()
     }

@@ -30,12 +30,12 @@ class SoundAdjustTableViewCell: UITableViewCell, AVAudioPlayerDelegate {
     }
     
     func setLastState() {
-        slider.setValue(Float(UserDefaults.standard.double(forKey: "currentVolume")), animated: false)
-        audioPlayer?.volume = Float(UserDefaults.standard.double(forKey: "currentVolume"))
+        slider.setValue(Float(UserDefaults.standard.double(forKey: UserDefaultsKey.currentVolume.rawValue)), animated: false)
+        audioPlayer?.volume = Float(UserDefaults.standard.double(forKey: UserDefaultsKey.currentVolume.rawValue))
     }
     
     func saveCurrentState() {
-        UserDefaults.standard.set(audioPlayer?.volume, forKey: "currentVolume")
+        UserDefaults.standard.set(audioPlayer?.volume, forKey: UserDefaultsKey.currentVolume.rawValue)
         //synchronize가 호출되지 못하는 비정상적인 상황 대비해서 바로 메모리의 내용을 파일로 동기화
         UserDefaults.standard.synchronize()
     }

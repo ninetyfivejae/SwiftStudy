@@ -24,7 +24,7 @@ class SettingsTableViewCell: UITableViewCell {
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {            
             //self.backgroundColor = UIColor(hexFromString: "7DB9CA")
-            self.backgroundColor = UIColor(hexFromString: "7DB9CA", alpha: 0.5)
+            self.backgroundColor = UIColor(hexFromString: GlobalConstants.hexPointColor, alpha: 0.5)
         } else {
             self.backgroundColor = .white
         }

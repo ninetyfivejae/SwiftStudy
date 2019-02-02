@@ -38,7 +38,7 @@ class AdjustSettingsViewController: UIViewController, UITableViewDelegate, UITab
         guard let title = sectionTitle else {
             return UITableViewCell()
         }
-        guard let settingsSectionTitle = SettingsSectionTitle(rawValue: title) else {
+        guard let settingsSectionTitle = SectionTitle(rawValue: title) else {
             return UITableViewCell()
         }
         
@@ -53,16 +53,18 @@ class AdjustSettingsViewController: UIViewController, UITableViewDelegate, UITab
                 return UITableViewCell()
             }
             return cell
+        default:
+            return UITableViewCell()
         }
     }
 }
 
 extension AdjustSettingsViewController: SettingsDelegate {
     func setDisplayTitle() {
-        sectionTitle = SettingsSectionTitle.displaySectionTitle.rawValue
+        sectionTitle = SectionTitle.displaySectionTitle.rawValue
     }
     
     func setSoundTitle() {
-        sectionTitle = SettingsSectionTitle.soundSectionTitle.rawValue
+        sectionTitle = SectionTitle.soundSectionTitle.rawValue
     }
 }

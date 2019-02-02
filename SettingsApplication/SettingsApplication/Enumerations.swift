@@ -25,7 +25,10 @@ enum Row: Int {
     case secondRow = 1
 }
 
-enum SettingsSectionTitle: String {
+enum SectionTitle: String {
+    case profileSectionTitle = "프로필"
+    case settingsSectionTitle = "설정"
+    case friendSectionTitle = "친구 추가"
     case displaySectionTitle = "밝기"
     case soundSectionTitle = "소리"
 }
@@ -41,4 +44,23 @@ enum CellIdentifier: String {
     case settingsTableViewCell = "SettingsCell"
     case displayAdjustTableViewCell = "DisplayAdjustTableViewCell"
     case soundAdjustTableViewCell = "SoundAdjustTableViewCell"
+}
+
+enum UserDefaultsKey: String {
+    case currentProfileImageURL = "currentProfileImageURL"
+    case currentProfileName = "currentProfileName"
+    case currentBrightness = "currentBrightness"
+    case currentVolume = "currentVolume"
+}
+
+enum ActionSheetTitle: String {
+    case optionMenuTitle = "프로필 사진 선택"
+    case takePhotoTitle = "사진 찍기"
+    case selectPhotoTitle = "사진 선택"
+    case cancelTitle = "취소"
+}
+
+struct GlobalConstants {
+    static let defaultProfileName: String = "사용자"
+    static let hexPointColor: String = "7DB9CA"
 }

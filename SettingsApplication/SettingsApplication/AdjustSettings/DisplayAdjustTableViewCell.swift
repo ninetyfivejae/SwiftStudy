@@ -27,9 +27,9 @@ class DisplayAdjustTableViewCell: UITableViewCell {
     }
     
     func setLastState() {
-        if UserDefaults.standard.double(forKey: "currentBrightness") != nil {
-            slider.setValue(Float(UserDefaults.standard.double(forKey: "currentBrightness")), animated: false)
-            UIScreen.main.brightness = CGFloat(UserDefaults.standard.double(forKey: "currentBrightness"))
+        if UserDefaults.standard.double(forKey: UserDefaultsKey.currentBrightness.rawValue) != nil {
+            slider.setValue(Float(UserDefaults.standard.double(forKey: UserDefaultsKey.currentBrightness.rawValue)), animated: false)
+            UIScreen.main.brightness = CGFloat(UserDefaults.standard.double(forKey: UserDefaultsKey.currentBrightness.rawValue))
         } else {
             slider.setValue(Float(UIScreen.main.brightness), animated: false)
         }
@@ -41,7 +41,7 @@ class DisplayAdjustTableViewCell: UITableViewCell {
         //디스플레이 밝기 조절
         UIScreen.main.brightness = CGFloat(sender.value)
         //값 저장
-        UserDefaults.standard.set(CGFloat(sender.value), forKey: "currentBrightness")
+        UserDefaults.standard.set(CGFloat(sender.value), forKey: UserDefaultsKey.currentBrightness.rawValue)
         //synchronize가 호출되지 못하는 비정상적인 상황 대비해서 바로 메모리의 내용을 파일로 동기화
         UserDefaults.standard.synchronize()
     }

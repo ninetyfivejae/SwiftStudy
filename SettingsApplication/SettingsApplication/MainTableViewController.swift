@@ -15,12 +15,11 @@ struct Profile {
 
 class MainTableViewController: UITableViewController {
     
-    let sections: [String] = ["프로필", "설정", "친구"]
-    var rowArray = [["사용자"], ["디스플레이 및 밝기", "사운드"]]
+    let sections: [String] = [SectionTitle.profileSectionTitle.rawValue,
+                              SectionTitle.settingsSectionTitle.rawValue,
+                              SectionTitle.friendSectionTitle.rawValue]
+    var rowArray = [[GlobalConstants.defaultProfileName], ["디스플레이 및 밝기", "사운드"]]
     var friendArray: [String] = []
-    
-//    var profileImage: UIImage?
-//    var profileName: String?
     
     var settingsDelegate: SettingsDelegate?
 
@@ -102,9 +101,9 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIButton? {
         if section == Section.friendSection.rawValue {
             let button = UIButton(type: .system)
-            button.setTitle("친구 추가", for: .normal)
+            button.setTitle(SectionTitle.friendSectionTitle.rawValue, for: .normal)
             button.tintColor = .black
-            button.backgroundColor = UIColor(hexFromString: "7DB9CA")
+            button.backgroundColor = UIColor(hexFromString: GlobalConstants.hexPointColor, alpha: 0.5)
             button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
 
             return button
@@ -114,7 +113,9 @@ class MainTableViewController: UITableViewController {
     }
 
     @objc func buttonClicked(sender : UIButton){
-        friendArray.append("test")
+        var test: String = "test"
+        test += String(friendArray.count)
+        friendArray.append(test)
         self.tableView.reloadData()
         
         performSegue(withIdentifier: SegueIdentifier.friendProfileSegue.rawValue, sender: sender)
@@ -147,16 +148,16 @@ extension MainTableViewController: UpdateDelegate {
     func updateProfile() {
         let indexPath = IndexPath(row: 0, section: 0)
         if let cell = tableView.cellForRow(at: indexPath) as? ProfileTableViewCell {
-            if let imageURL = UserDefaults.standard.url(forKey: "currentProfileImage") {
+            if let imageURL = UserDefaults.standard.url(forKey: UserDefaultsKey.currentProfileImageURL.rawValue) {
                 cell.profileImageView.image = UIImage(url: imageURL)
             } else {
                 cell.profileImageView.image = UIImage(named: ImageName.defaultProfileImage.rawValue)
             }
             
-            if let name = UserDefaults.standard.string(forKey: "currentProfileName") {
+            if let name = UserDefaults.standard.string(forKey: UserDefaultsKey.currentProfileName.rawValue) {
                 cell.nameLabel.text = name
             } else {
-                cell.nameLabel.text = "이름 지정하지 않음"
+                cell.nameLabel.text = GlobalConstants.defaultProfileName
             }
         }
     }

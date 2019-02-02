@@ -33,23 +33,23 @@ class ProfileTableViewCell: UITableViewCell {
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
             //self.backgroundColor = UIColor(hexFromString: "7DB9CA")
-            self.backgroundColor = UIColor(hexFromString: "7DB9CA", alpha: 0.5)
+            self.backgroundColor = UIColor(hexFromString: GlobalConstants.hexPointColor, alpha: 0.5)
         } else {
             self.backgroundColor = .white
         }
     }
     
     func setLastState() {
-        if let imageURL = UserDefaults.standard.url(forKey: "currentProfileImage") {
+        if let imageURL = UserDefaults.standard.url(forKey: UserDefaultsKey.currentProfileImageURL.rawValue) {
             profileImageView.image = UIImage(url: imageURL)
         } else {
             profileImageView.image = UIImage(named: ImageName.defaultProfileImage.rawValue)
         }
         
-        if let name = UserDefaults.standard.string(forKey: "currentProfileName") {
+        if let name = UserDefaults.standard.string(forKey: UserDefaultsKey.currentProfileName.rawValue) {
             nameLabel.text = name
         } else {
-            nameLabel.text = "이름 지정하지 않음"
+            nameLabel.text = GlobalConstants.defaultProfileName
         }
     }
     
