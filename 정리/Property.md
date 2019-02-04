@@ -1,12 +1,21 @@
 # Property(Stored, Computed, Class)
 
+```
+Stored Property
+Lazy Stored Property
+Computed Property
+Type Property
+Property Observer
+전역변수와 지역변수
+```
+
 - lowerCamelCase
 - 간단히
   - Stored Property(저장 프로퍼티)는 상수와 변수 값을 인스턴스의 일부로 저장함. 클래스와 구조체에서만 사용
   - 반면에 Computed Property(연산 프로퍼티)는 값을 연산함(저장(store)하기 보다는) 그때그때 특정 연산은 수행하여 값을 반환함. 클래스, 구조체 그리고 **열거형**에서 사용
   - 이렇게 Stored Property(저장 프로퍼티)와  Computed Property(연산 프로퍼티)는 일반적으로 특정 타입의 인스턴스와 연결된다. 그러나 프로퍼티를 타입 자체와 연결할 수도 있음. 이러한 프로퍼티를 **Type Property**(타입 프로퍼티)라고 한다.
 
-### Stored Property
+## Stored Property
 
 - 클래스와 구조체의 인스턴스의 일부가 되는 상수, 변수
 
@@ -82,7 +91,7 @@
   rangeOfThreeItems.length = 10//error!
   ```
 
-### Lazy Stored Property
+## Lazy Stored Property
 
 - 값이 사용되기 전까지는 값이 계산되지 않는 프로퍼티.
 
@@ -128,7 +137,7 @@
   //여기에서 처음 contacts 인스턴스에 접근을 하기 때문에 이 시점에서 생성됨
   ```
 
-### Computed Property
+## Computed Property
 
 - stored property처럼 값을 직접 저장하지 않고, 값들을 연산하여 stored property에 전달해주는 역할
 
@@ -181,7 +190,7 @@
   }
   ```
 
-### Type Property
+## Type Property
 
 - 인스턴스 프로퍼티는 특정 인스턴스에 속한 프로퍼티를 말한다. 이 프로퍼티는 새로운 인스턴스가 생성될 때마다 새로운 프로퍼티도 같이 생성된다.
 
@@ -280,7 +289,7 @@
     // Prints "27"
     ```
 
-### Property Observer
+## Property Observer
 
 - property observer는 속성 값의 갱신 전후에 특정 코드를 실행하는 수단을 제공. 다른 언어에서 observer pattern 또는 notification pattern, delegate pattern을 구현하여 유사한 기능을 제공함
 
@@ -342,7 +351,7 @@
   }
   ```
 
-### 전역변수와 지역변수
+## 전역변수와 지역변수
 
 - 프로퍼티를 계산하고 관찰하기 위해서 위에서 설명한 프로퍼티 옵저버 기능은 전역변수와 지역변수에서도 사용할 수 있음
   - 전역변수: 함수, 메소드, 클로저 또는 type context외부에 정의되는 변수

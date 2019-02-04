@@ -35,7 +35,7 @@
     print("\(yagom.name), \(yagom.age), \(yagom.height)")
     ```
 
-### Array
+## Array
 
 - element 요소를 순서대로 정렬하는 컬렉션
 
@@ -154,7 +154,7 @@
   immutableArray.removeAll() //error
   ```
 
-### Dictionary
+## Dictionary
 
 - key: value.
 
@@ -237,7 +237,7 @@
   print(equals)
   ```
 
-### Set
+## Set
 
 - 같은 타입의 데이터를 순서 없이 하나의 묶음으로 저장하는 형태의 컬렉션 타입
 
@@ -326,7 +326,7 @@
   }
   ```
 
-### Fast Enumeration
+## Fast Enumeration
 
 - ```swift
   let array = ["Apple", "Orange", "Melon"]
