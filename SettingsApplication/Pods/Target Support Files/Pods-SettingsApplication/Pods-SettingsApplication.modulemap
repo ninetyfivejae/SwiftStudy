@@ -1,0 +1,6 @@
+framework module Pods_SettingsApplication {
+  umbrella header "Pods-SettingsApplication-umbrella.h"
+
+  export *
+  module * { export * }
+}
