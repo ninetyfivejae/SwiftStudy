@@ -92,4 +92,73 @@
 - map
 - filter
 - reduce
+
+## cocoapods
+
+- 많이 사용하는 라이브러리 찾아보기
+
+  - Alamofire
+  - AFNetworking
+  - SdWebImage
+
+- [CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects. It has over 57 thousand libraries and is used in over 3 million apps. CocoaPods can help you scale your projects elegantly.](https://cocoapods.org/)
+
+- 설치하기
+
+  ```
+  $ sudo gem install cocoapods
+  ```
+
+- 필요한 파일 다운로드 및 준비
+
+  ```
+  $ pod setup
+  ```
+
+- 의존성 관리를 할 Xcode 프로젝트 폴더에서 아래 명령 실행. 실행하면 Podfile이 생성된다
+
+  ```
+  $ pod init
+  ```
+
+- Pod 파일 편집
+
+  ```
+  # Uncomment the next line to define a global platform for your project
+  # platform :ios, '9.0'
+  
+  target 'cocoapods_test2' do
+    # 스위프트를 사용하지 않고 동적 라이브러리를 이용하지 않는다면 아래 구문을 주석처리 합니다
+    use_frameworks!
+  
+    # 여기에 설치할 라이브러리를 나열합니다.
+    pod 'Alamofire'
+  
+  end
+  ```
+
+- Podfile에서 나열한 라이브러리 설치하기
+
+  ```
+  $ pod install
+  ```
+
+- ‘프로젝트명.xcworkspace’ 파일을 더블 클릭하여 실행하면 라이브러리를 사용할 준비가 완료된다
+
+  ```swift
+  import UIKit
+  import SDWebImage
+  
+  class ConfigureFriendViewController: UIViewController {
+  
+      @IBOutlet weak var testFriendImageView: UIImageView!
+      override func viewDidLoad() {
+          super.viewDidLoad()
+  
+          testFriendImageView.sd_setImage(with: URL(string: "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/-82622102/touch-of-lime.jpg?zoom"), placeholderImage: UIImage(named: "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"))
+      }
+      
+  }
+  ```
+
 - 
