@@ -30,7 +30,7 @@
 - [Protocol](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Protocol.md#protocol)
 - [Extension](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Extension.md#extension)
 
-###4. Swift 기본 패턴
+### 4. Swift 기본 패턴
 
 - [Delegate](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Delegate.md#delegate)
 - KVO: Key-Value Observing
@@ -62,7 +62,7 @@
 
 ## SettingsApplication
 
-- SettingsApplication 과제 하면서 깨달은 것들 정리
+- [SettingsApplication 과제 하면서 깨달은 것들 정리](https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#settingsapplication)
 
 ## 추가 정리
 
