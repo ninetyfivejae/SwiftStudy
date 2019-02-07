@@ -13,6 +13,7 @@
 - [Property(Stored, Computed, Class)](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Property.md#propertystored-computed-class)
 - [Collection(Array, Dictionary, Set)](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Collection.md#collection-array-dictionary-set)
 - [Class / Struct / Enum](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Class%20:%20Struct%20:%20Enum.md#class--struct--enum)
+- [인스턴스 생성 및 소멸](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Initializer.md#%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%86%8C%EB%A9%B8)
 - [Optional / Optional Binding](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Optional.md#optional--optional-binding)
 
 ### 2. UIKit 사용해보기
@@ -159,6 +160,67 @@
       }
       
   }
+  ```
+
+## Closure
+
+- 예제
+
+  ```swift
+  //public func sorted(by areInIncreasingOrder: (Element, Element) -> Bool) -> [Element]
+  
+  let names: [String] = ["wizplan", "eric", "yagom", "jenny"]
+  
+  
+  
+  func backwards(first: String, second: String) -> Bool {
+      print("\(first) \(second) 비교 중")
+      return first > second
+  }
+  let firstReversed: [String] = names.sorted(by: backwards)
+  print(firstReversed)
+  
+  
+  
+  let secondReversed: [String] = names.sorted(by: { (first: String, second: String) -> Bool in
+      return first > second
+  })
+  print(secondReversed)
+  
+  
+  
+  let thirdReversed: [String] = names.sorted() { (first: String, second: String) -> Bool in
+      return first > second
+  }
+  print(thirdReversed)
+  
+  
+  
+  let fourthReversed: [String] = names.sorted { (first: String, second: String) -> Bool in
+      return first > second
+  }
+  print(fourthReversed)
+  
+  
+  
+  let fifthReversed: [String] = names.sorted() {
+      return $0 > $1
+  }
+  print(fifthReversed)
+  
+  
+  
+  let sixthReversed: [String] = names.sorted { $0 > $1 }
+  print(sixthReversed)
+  ```
+
+  ```
+  ["yagom", "wizplan", "jenny", "eric"]
+  ["yagom", "wizplan", "jenny", "eric"]
+  ["yagom", "wizplan", "jenny", "eric"]
+  ["yagom", "wizplan", "jenny", "eric"]
+  ["yagom", "wizplan", "jenny", "eric"]
+  ["yagom", "wizplan", "jenny", "eric"]
   ```
 
 - 
