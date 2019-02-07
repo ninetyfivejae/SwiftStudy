@@ -218,6 +218,96 @@
 
 - 마찬가지로 Cell 재사용 시 cell 속성 재설정해주는 부분 주의할 것
 
+- 참고: https://www.youtube.com/watch?v=NSryf0YJHHk
+
+### UICollectionView 사용 이미지 검색 프로그램 만들기
+
+- https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
+- https://www.raywenderlich.com/9477-uicollectionview-tutorial-reusable-views-selection-and-reordering
+
+### UICollectionView 사용 핸드폰 사진 가져와서 보여주는 앱 만들기
+
+- [출처](https://www.youtube.com/watch?v=BFZ4ZCw_9z4)
+
+- [참고](https://www.youtube.com/watch?v=QS2mWk3fAWc)
+
+- info.plist에 권한 추가하기
+
+  - Privacy - Photo Library Usage Description(사진앨범 권한)
+  - Privacy - Camera Usage Description(카메라 권한)
+
+- 스토리보드에서 CollectionViewController 추가 후 Cell 내부에 ImageView 넣어주고, ViewController 클래스 파일과 스토리보드 연결 후
+
+- 아래 코드 실행
+
+  ```swift
+  import UIKit
+  import Photos
+  
+  class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+  
+      var imageArray = [UIImage]()
+      
+      override func viewDidLoad() {
+          grabPhotos()
+      }
+  
+      func grabPhotos() {
+          let imgManager = PHImageManager.default()
+          
+          let requestOptions = PHImageRequestOptions()
+          requestOptions.isSynchronous = true
+          requestOptions.deliveryMode = .highQualityFormat
+          
+          let fetchOptions = PHFetchOptions()
+          fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+          
+          if let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions) {
+              if fetchResult.count > 0 {
+                  for i in 0..<fetchResult.count {
+                      imgManager.requestImage(for: fetchResult.object(at: i), targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: requestOptions, resultHandler: {
+                          image, error in
+                          
+                          self.imageArray.append(image!)
+                      })
+                  }
+              } else {
+                  print("You got no photos!")
+                  self.collectionView?.reloadData()
+              }
+          }
+      }
+      
+      override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+          return imageArray.count
+      }
+      
+      override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+          
+          let imageView = cell.viewWithTag(1) as! UIImageView
+          
+          imageView.image = imageArray[indexPath.row]
+          
+          return cell
+      }
+      
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+          let width = collectionView.frame.width / 3 - 1
+          
+          return CGSize(width: width, height: width)
+      }
+      
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+          return 1.0
+      }
+      
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+          return 1.0
+      }
+  }
+  ```
+
 ## TabBar
 
 ### 스토리보드 이용
@@ -306,10 +396,4 @@
 
 - [출처](http://swiftdeveloperblog.com/code-examples/create-uitabbarcontroller-programmatically/)
 
-- UICollectionView 사용 이미지 검색 프로그램 만들기
-
-  - https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
-  - https://www.raywenderlich.com/9477-uicollectionview-tutorial-reusable-views-selection-and-reordering
-
-- 참고: https://www.youtube.com/watch?v=NSryf0YJHHk
-
+- 
