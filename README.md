@@ -28,7 +28,6 @@
 ### 3. POP(Protocol Oriented Programming) 개요
 
 - [상속](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Inheritance.md#inheritance)
-
 - [TypeCasting](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/TypeCasting.md#type-casting)
 - [Generic](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Generic.md#%EC%A0%9C%EB%84%A4%EB%A6%AD)
 - [Protocol](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Protocol.md#protocol)
