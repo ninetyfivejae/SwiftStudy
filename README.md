@@ -164,6 +164,15 @@
   }
   ```
 
+- [xcode 파일 cocoapods - 프로젝트에서 CocoaPod를 제거하는 방법](https://medium.com/@xwildeyes/remove-uninstall-deintegrate-cocoapods-from-your-xcode-ios-project-c4621cee5e42)
+
+  ```
+  $ sudo gem install cocoapods-deintegrate cocoapods-clean
+  $ pod deintegrate
+  $ pod clean
+  $ rm Podfile
+  ```
+
 ## Closure
 
 - 예제
