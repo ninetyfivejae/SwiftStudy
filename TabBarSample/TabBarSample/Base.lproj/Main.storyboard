@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I8M-oI-wfp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jAE-Mc-deE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--First Receiver View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FirstReceiverViewController" customModule="TabBarSample" customModuleProvider="target" sceneMemberID="viewController">
@@ -54,7 +54,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="WSD-fq-Hi5"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="WSD-fq-Hi5"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="firstReceiverLabel" destination="Gqe-96-baa" id="VQZ-Sb-99I"/>
@@ -196,7 +196,7 @@
                     <navigationItem key="navigationItem" title="Title" id="FRb-90-8zD">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ALc-lV-0Nq">
                             <connections>
-                                <segue destination="HzY-5R-kHx" kind="show" id="fRY-Jh-71e"/>
+                                <action selector="addButtonTapped:" destination="chb-df-q5t" id="vg8-tE-GPN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -211,13 +211,13 @@
         <!--Sender Table View Controller-->
         <scene sceneID="0LT-8K-kXd">
             <objects>
-                <viewController id="HzY-5R-kHx" customClass="SenderTableViewController" customModule="TabBarSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SenderTableViewController" id="HzY-5R-kHx" customClass="SenderTableViewController" customModule="TabBarSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DCq-C3-Zlx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7CI-P4-YKB">
-                                <rect key="frame" x="87.5" y="214" width="200" height="30"/>
+                                <rect key="frame" x="87.5" y="170" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.83529411760000005" green="0.78823529410000004" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ehp-bv-97n"/>
@@ -228,7 +228,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cMk-ps-Az6">
-                                <rect key="frame" x="87.5" y="294" width="200" height="30"/>
+                                <rect key="frame" x="87.5" y="250" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.83529411760000005" green="0.78823529410000004" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="F8r-kc-YUY"/>
@@ -239,7 +239,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mag-9Q-AL5">
-                                <rect key="frame" x="87.5" y="374" width="200" height="30"/>
+                                <rect key="frame" x="87.5" y="330" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.83529411760000005" green="0.78823529410000004" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9L4-91-3Yo"/>

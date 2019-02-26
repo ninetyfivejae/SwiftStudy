@@ -45,4 +45,8 @@ class TableViewController: UIViewController, UITableViewDataSource, SaveDataDele
         friendListTableView.reloadData()
     }
     
+    @IBAction func addButtonTapped(_ sender: Any) {
+        let test = ViewController()
+        self.navigationController?.pushViewController(test, animated: true)
+    }
 }
