@@ -173,6 +173,53 @@
   $ rm Podfile
   ```
 
+## [Carthage](https://github.com/Carthage/Carthage)
+
+- [iOS Carthage 사용법](https://letsean.app/2016/02/22/Carthage.html#fnref:1)
+
+- [Carthage Tutorial: Getting Started](https://www.raywenderlich.com/416-carthage-tutorial-getting-started)
+
+- [Carthage로 RxSwift 사용](https://medium.com/@jang.wangsu/ios-swift-%EC%B9%B4%EB%A5%B4%ED%83%80%EA%B3%A0-carthage-%EB%9E%80-%EC%82%AC%EC%9A%A9%EB%B2%95%EC%9D%80-%EC%98%88%EC%A0%9C-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0%EA%B9%8C%EC%A7%80-127e71fdd253)
+
+  ```
+  $ brew update
+  $ brew install carthage
+  $ touch Cartfile
+  $ open -a Xcode Cartfile // or vi Cartfile
+  
+  ... 내용 추가 ...
+  github "Alamofire/Alamofire" == 2.0
+  github "SwiftyJSON/SwiftyJSON" ~> 2.3.0
+  
+  ... 참고 내용...
+  == 2.0 - 2.0 버전을 내려받아라
+  >= 2.0 - 2.0 버전보다 큰 버전을 내려 받아라
+  ~> 2.0 - 2.0 버전과 호환되는 어떤 버전을 내려받아라
+  
+  $ cartfile update //전체 빌드
+  $ carthage update --platform iOS //iOS만 빌드
+  ```
+
+- 라이브러리 프레임워크 추가
+
+  - Carthage 는 CocoaPods와 달리 직접 프레임워크를 프로젝트에 직접 추가를 해야한다
+
+  - Carthage 폴더에 있는 프레임워크(.framework) 파일들을 Project Setting에서 Linked Frameworks and Libraries에 추가
+
+  - 프로젝트 타겟의 Build Phases 탭에서 + 버튼을 눌러서 Run Script를 추가 하고 사용할 프레임워크들의 주소를 입력
+
+    ```
+    $(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
+    $(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework
+    ```
+
+## RxSwift
+
+- https://medium.com/@jang.wangsu/rxswift-rxswift%EB%9E%80-reactivex-%EB%9E%80-b21f75e34c10
+- https://www.youtube.com/watch?v=2m92mRI8l7U&t=593s
+- 
+- 좀 더 공부하고 정리해야함 ... 
+
 ## Closure
 
 - 예제
