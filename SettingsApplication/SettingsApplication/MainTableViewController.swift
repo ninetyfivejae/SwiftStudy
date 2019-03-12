@@ -121,6 +121,21 @@ class MainTableViewController: UITableViewController {
         performSegue(withIdentifier: SegueIdentifier.friendProfileSegue.rawValue, sender: sender)
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        print("commit editingStyle")
+        
+        if editingStyle == .delete {
+            print(".delete")
+            self.friendArray.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            print(self.friendArray)
+        } else {
+            print(".other")
+        }
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier,
             let identifierCase = SegueIdentifier(rawValue: identifier) else {

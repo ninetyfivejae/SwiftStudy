@@ -23,11 +23,12 @@ class ViewController: UIViewController {
 //            let firstInThisGenre = movies.filter({ $0.genreId == genre.id }).first
 //        }
         
-        let newCharacter = Character(identifier: 1003, name: "Jay", realName: "Jay Hyuk", tagArray: ["여행", "음식"])
-        addCharacter(newCharacter: newCharacter)
+        let newCharacter = Character(identifier: 1003, name: "Jae", realName: "Jay Hyuk", tagArray: ["여행", "음식"])
+//        addCharacter(newCharacter: newCharacter)
         
-        var allCharacters = realm.objects(CharacterObject.self)
+        let allCharacters = realm.objects(CharacterObject.self).filter("name = '\(newCharacter.name)'")
         print(allCharacters)
+        print(type(of: allCharacters))
     }
 }
 
@@ -57,22 +58,34 @@ extension ViewController {
     }
 }
 
-struct Character {
-    public let identifier: Int
-    public let name: String
-    public let realName: String
-    public let tagArray: [String]
-    
-    func arrayToList(objectArray: [String]) -> List<String> {
-        var objectList: List<String> = List<String>()
-        
-        for object in objectArray {
-            objectList.append(object)
-        }
-        
-        return objectList
+public final class WriteTransaction {
+    private let realm: Realm
+    internal init(realm: Realm) {
+        self.realm = realm
+    }
+    public func add<T>(_ value: T, update: Bool) {
+        realm.add(value.managedObject(), update: update)
     }
 }
+
+public final class Container {
+    private let realm: Realm
+    public convenience init() throws {
+        try self.init(realm: Realm())
+    }
+    internal init(realm: Realm) {
+        self.realm = realm
+    }
+    public func write(_ block: (WriteTransaction) throws -> Void)
+        throws {
+            let transaction = WriteTransaction(realm: realm)
+            try realm.write {
+                try block(transaction)
+            }
+    }
+}
+
+
 
 final class CharacterObject: Object {
     @objc dynamic var identifier = 0
@@ -95,53 +108,42 @@ final class CharacterObject: Object {
     }
 }
 
-public protocol Persistable {
-    associatedtype ManagedObject: RealmSwift.Object
-    init(managedObject: ManagedObject)
-    func managedObject() -> ManagedObject
-}
-
-extension Character: Persistable {
-    public init(managedObject: CharacterObject) {
-        identifier = managedObject.identifier
-        name = managedObject.name
-        realName = managedObject.realName
-        tagArray = managedObject.listToArray(objectList: managedObject.tagList)
-    }
-    public func managedObject() -> CharacterObject {
-        let character = CharacterObject()
-        character.identifier = identifier
-        character.name = name
-        character.realName = realName
-        character.tagList = arrayToList(objectArray: tagArray)
-        return character
-    }
-}
-
-public final class WriteTransaction {
-    private let realm: Realm
-    internal init(realm: Realm) {
-        self.realm = realm
-    }
-    public func add<T: Persistable>(_ value: T, update: Bool) {
-        realm.add(value.managedObject(), update: update)
-    }
-}
-
-public final class Container {
-    private let realm: Realm
-    public convenience init() throws {
-        try self.init(realm: Realm())
-    }
-    internal init(realm: Realm) {
-        self.realm = realm
-    }
-    public func write(_ block: (WriteTransaction) throws -> Void)
-        throws {
-            let transaction = WriteTransaction(realm: realm)
-            try realm.write {
-                try block(transaction)
-            }
-    }
-}
-
+//struct Character {
+//    public let identifier: Int
+//    public let name: String
+//    public let realName: String
+//    public let tagArray: [String]
+//
+//    func arrayToList(objectArray: [String]) -> List<String> {
+//        var objectList: List<String> = List<String>()
+//
+//        for object in objectArray {
+//            objectList.append(object)
+//        }
+//
+//        return objectList
+//    }
+//}
+//
+//public protocol Persistable {
+//    associatedtype ManagedObject: RealmSwift.Object
+//    init(managedObject: ManagedObject)
+//    func managedObject() -> ManagedObject
+//}
+//
+//extension Character: Persistable {
+//    public init(managedObject: CharacterObject) {
+//        identifier = managedObject.identifier
+//        name = managedObject.name
+//        realName = managedObject.realName
+//        tagArray = managedObject.listToArray(objectList: managedObject.tagList)
+//    }
+//    public func managedObject() -> CharacterObject {
+//        let character = CharacterObject()
+//        character.identifier = identifier
+//        character.name = name
+//        character.realName = realName
+//        character.tagList = arrayToList(objectArray: tagArray)
+//        return character
+//    }
+//}
