@@ -11,15 +11,38 @@
 		1354D8262236A90800B35308 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1354D8242236A90800B35308 /* Main.storyboard */; };
 		1354D8282236A90B00B35308 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1354D8272236A90B00B35308 /* Assets.xcassets */; };
 		1354D82B2236A90B00B35308 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1354D8292236A90B00B35308 /* LaunchScreen.storyboard */; };
-		1354D8392236B06100B35308 /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8342236B06100B35308 /* RxAtomic.framework */; };
-		1354D83A2236B06100B35308 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8352236B06100B35308 /* RxCocoa.framework */; };
-		1354D83B2236B06100B35308 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8362236B06100B35308 /* RxSwift.framework */; };
 		1354D83C2236B06100B35308 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8372236B06100B35308 /* RxBlocking.framework */; };
+		13C70C4C223FF5D300647636 /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8342236B06100B35308 /* RxAtomic.framework */; };
+		13C70C4D223FF5D300647636 /* RxAtomic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8342236B06100B35308 /* RxAtomic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13C70C4F223FF5D300647636 /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8372236B06100B35308 /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13C70C50223FF5D300647636 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8352236B06100B35308 /* RxCocoa.framework */; };
+		13C70C51223FF5D300647636 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8352236B06100B35308 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13C70C52223FF5D300647636 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8362236B06100B35308 /* RxSwift.framework */; };
+		13C70C53223FF5D300647636 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1354D8362236B06100B35308 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13D8E3352237EEE5001EE716 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8E3342237EEE5001EE716 /* MainViewController.swift */; };
 		13D8E3372237EFA6001EE716 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8E3362237EFA6001EE716 /* DetailViewController.swift */; };
+		4098DB839DE74C89ED0C72F1 /* Pods_CarthagePrac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04299298341920A393A7A12B /* Pods_CarthagePrac.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		13C70C54223FF5D300647636 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				13C70C53223FF5D300647636 /* RxSwift.framework in Embed Frameworks */,
+				13C70C51223FF5D300647636 /* RxCocoa.framework in Embed Frameworks */,
+				13C70C4D223FF5D300647636 /* RxAtomic.framework in Embed Frameworks */,
+				13C70C4F223FF5D300647636 /* RxBlocking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		04299298341920A393A7A12B /* Pods_CarthagePrac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarthagePrac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1354D81D2236A90800B35308 /* CarthagePrac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarthagePrac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1354D8202236A90800B35308 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1354D8252236A90800B35308 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,6 +56,8 @@
 		1354D8372236B06100B35308 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		13D8E3342237EEE5001EE716 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		13D8E3362237EFA6001EE716 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6C4B2269BB20A759B9B7AAEF /* Pods-CarthagePrac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarthagePrac.release.xcconfig"; path = "Pods/Target Support Files/Pods-CarthagePrac/Pods-CarthagePrac.release.xcconfig"; sourceTree = "<group>"; };
+		B299538151E1B18A6883C6D8 /* Pods-CarthagePrac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarthagePrac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CarthagePrac/Pods-CarthagePrac.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,10 +65,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1354D8392236B06100B35308 /* RxAtomic.framework in Frameworks */,
-				1354D83A2236B06100B35308 /* RxCocoa.framework in Frameworks */,
-				1354D83B2236B06100B35308 /* RxSwift.framework in Frameworks */,
+				13C70C4C223FF5D300647636 /* RxAtomic.framework in Frameworks */,
+				13C70C50223FF5D300647636 /* RxCocoa.framework in Frameworks */,
+				13C70C52223FF5D300647636 /* RxSwift.framework in Frameworks */,
 				1354D83C2236B06100B35308 /* RxBlocking.framework in Frameworks */,
+				4098DB839DE74C89ED0C72F1 /* Pods_CarthagePrac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +82,7 @@
 				1354D81F2236A90800B35308 /* CarthagePrac */,
 				1354D81E2236A90800B35308 /* Products */,
 				1354D8322236B06100B35308 /* Frameworks */,
+				E8B3CCF34650A277570DB5DF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,8 +116,18 @@
 				1354D8352236B06100B35308 /* RxCocoa.framework */,
 				1354D8362236B06100B35308 /* RxSwift.framework */,
 				1354D8332236B06100B35308 /* RxTest.framework */,
+				04299298341920A393A7A12B /* Pods_CarthagePrac.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8B3CCF34650A277570DB5DF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B299538151E1B18A6883C6D8 /* Pods-CarthagePrac.debug.xcconfig */,
+				6C4B2269BB20A759B9B7AAEF /* Pods-CarthagePrac.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,10 +137,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1354D82F2236A90B00B35308 /* Build configuration list for PBXNativeTarget "CarthagePrac" */;
 			buildPhases = (
+				328F2260CEB6E2189C2DEF9A /* [CP] Check Pods Manifest.lock */,
 				1354D8192236A90800B35308 /* Sources */,
 				1354D81A2236A90800B35308 /* Frameworks */,
 				1354D81B2236A90800B35308 /* Resources */,
 				1354D83D2236B0A500B35308 /* Run Script */,
+				13C70C54223FF5D300647636 /* Embed Frameworks */,
+				6CE0976125E57332D9D8DD53 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -182,6 +222,58 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+		328F2260CEB6E2189C2DEF9A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CarthagePrac-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CE0976125E57332D9D8DD53 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CarthagePrac/Pods-CarthagePrac-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CarthagePrac/Pods-CarthagePrac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -336,6 +428,7 @@
 		};
 		1354D8302236A90B00B35308 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B299538151E1B18A6883C6D8 /* Pods-CarthagePrac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -358,6 +451,7 @@
 		};
 		1354D8312236A90B00B35308 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C4B2269BB20A759B9B7AAEF /* Pods-CarthagePrac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
