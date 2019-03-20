@@ -276,9 +276,9 @@
 
 - 
 
-## [Realm]()
+## [Realm](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Realm.md#realm)
 
-## [Observer Pattern in Swift]()
+## [Observer Pattern in Swift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/ObserverPattern.md#observer-pattern-in-swift)
 
-## [RxSwift]()
+## [RxSwift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/RxSwift.md#rxswift)
 
