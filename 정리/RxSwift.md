@@ -3,8 +3,6 @@
 - https://medium.com/@jang.wangsu/rxswift-rxswift%EB%9E%80-reactivex-%EB%9E%80-b21f75e34c10
 - https://github.com/ReactiveX/RxSwift/blob/master/Documentation/GettingStarted.md
 
-
-
 - [가장 간단한 예제](https://www.youtube.com/watch?v=2m92mRI8l7U&t=593s)
 
   - MasterViewController

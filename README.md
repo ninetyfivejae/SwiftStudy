@@ -213,6 +213,50 @@
     $(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework
     ```
 
+- 에러났을 경우, 아래처럼 해결해보기
+
+  - Cartfile.resolved (파일)
+
+  - /Carthage/ (폴더)
+
+  - 지우고 다시 update하면 update할 수 있다
+
+    ```
+    sinjaehyeog-ui-MacBook-Pro:Switcher-m-iOS jaehyukshin$ carthage update
+    *** Cloning Toast-Swift
+    *** Fetching RxSwift
+    *** Fetching realm-cocoa
+    *** Fetching RxDataSources
+    *** Fetching IOS-Pods-DFU-Library
+    *** Checking out IOS-Pods-DFU-Library at "3.1.0"
+    *** Checking out RxDataSources at "1.0.4"
+    *** Checking out realm-cocoa at "v3.13.1"
+    *** Checking out RxSwift at "3.6.1"
+    *** Checking out Toast-Swift at "4.0.1"
+    *** xcodebuild output can be found in /var/folders/s0/zqhtx9_d5nbgrh3d_2_g7vwm0000gn/T/carthage-xcodebuild.h4pdh2.log
+    *** Downloading realm-cocoa.framework binary at "v3.13.1"
+    *** Downloading RxSwift.framework binary at "Oxygen.1"
+    ***  Skipped installing RxSwift.framework binary due to the error:
+    	"Incompatible Swift version - framework was built with 3.1 (swiftlang-802.0.53 clang-802.0.42) and the local version is 4.2.1 (swiftlang-1000.11.42 clang-1000.11.45.1)."
+    
+        Falling back to building from the source
+    *** Building scheme "iOSDFULibrary" in iOSDFULibrary.xcworkspace
+    *** Building scheme "Zip" in iOSDFULibrary.xcworkspace
+    *** Building scheme "RxBlocking-tvOS" in Rx.xcworkspace
+    *** Building scheme "RxBlocking-macOS" in Rx.xcworkspace
+    *** Building scheme "RxBlocking-watchOS" in Rx.xcworkspace
+    *** Building scheme "RxBlocking-iOS" in Rx.xcworkspace
+    *** Building scheme "RxCocoa-macOS" in Rx.xcworkspace
+    *** Building scheme "RxCocoa-iOS" in Rx.xcworkspace
+    *** Building scheme "RxCocoa-tvOS" in Rx.xcworkspace
+    *** Building scheme "RxCocoa-watchOS" in Rx.xcworkspace
+    Build Failed
+    	Task failed with exit code 65:
+    	/usr/bin/xcrun xcodebuild -workspace /Users/jaehyukshin/Documents/Switcher-m-iOS/Carthage/Checkouts/RxSwift/Rx.xcworkspace -scheme RxCocoa-watchOS -configuration Release -derivedDataPath /Users/jaehyukshin/Library/Caches/org.carthage.CarthageKit/DerivedData/10.1_10B61/RxSwift/3.6.1 -sdk watchos ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= CARTHAGE=YES archive -archivePath /var/folders/s0/zqhtx9_d5nbgrh3d_2_g7vwm0000gn/T/RxSwift SKIP_INSTALL=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO CLANG_ENABLE_CODE_COVERAGE=NO STRIP_INSTALLED_PRODUCT=NO (launched in /Users/jaehyukshin/Documents/Switcher-m-iOS/Carthage/Checkouts/RxSwift)
+    
+    This usually indicates that project itself failed to compile. Please check the xcodebuild log for more details: /var/folders/s0/zqhtx9_d5nbgrh3d_2_g7vwm0000gn/T/carthage-xcodebuild.h4pdh2.log
+    ```
+
 ## Closure
 
 - 예제
