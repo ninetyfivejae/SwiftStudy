@@ -1,8 +1,12 @@
 # [RxSwift](https://github.com/ReactiveX/RxSwift)
 
-- https://medium.com/@jang.wangsu/rxswift-rxswift%EB%9E%80-reactivex-%EB%9E%80-b21f75e34c10
+- [무엇인지에 대한 블로그](https://medium.com/@jang.wangsu/rxswift-rxswift%EB%9E%80-reactivex-%EB%9E%80-b21f75e34c10)
 
 - https://github.com/ReactiveX/RxSwift/blob/master/Documentation/GettingStarted.md
+
+- [잘 정리해놓으신 분 레포지토리](<https://github.com/fimuxd/RxSwift>)
+
+- [RxSwift가 무엇인지에 대한 세미나?? realm 영상](<https://academy.realm.io/kr/posts/how-to-use-rxswift-with-simple-examples-ios-techtalk/>)
 
 - [가장 간단한 예제](https://www.youtube.com/watch?v=2m92mRI8l7U&t=593s)
 
@@ -102,7 +106,71 @@
     }
     ```
 
-- 좀 더 공부하고 정리해야함 ...
+### RxSwift in playground
+
+- Clone the **RxSwift repository** on your computer
+- Open **Rx.xcworkspace**
+- Build the **RxSwift-macOS** scheme
+- Open **Rx.playground** in the Rx.xcworkspace tree view and select TryYourself page or add new page
+
+### Observable
+
+- Observable (something which emits notifications of change)
+
+- An Observable is a sequence of ongoing events ordered in time.ie Only one element is received at a particular time. eg in tableView delegates (did Select Row At Indexpath) only one element is received.
+
+- Observable emits events. Event is an enum containing three types of events.Next for getting actual value , Error is sent when something goes wrong and completed is sent when an Observable wants to tell his observers that no more events will be sent.
+
+  ```swift
+  public enum Event<Element> {
+  	case next(Element)
+  	case error(Swift.Error)
+  	case completed
+  }
+  ```
+
+### Subscribe
+
+- Subscribe(something listening to Observable)
+
+- subscribe is a very important method while working with Observables.The listening to observable is called subscribing.. If you forget to call subscribe no events(next, error, completed) will ever come to you.
+
+  ```swift
+  let helloSequence = Observable.from(["H","e","l","l","o"])
+  let subscription = helloSequence.subscribe { event in
+  	switch event {
+  	case .next(let value):
+  		print(value)
+  	case .error(let error):
+  		print(error)
+  	case .completed:
+  		print("completed")
+  	}
+  }
+  ```
+
+### DisposableBag
+
+- Just like in notifications we remove observer to clear ARC count like that we have to remove observer in order to decrease reference count.To overcome this RxSwift gives us a tool to deallocate memory automatically .i.e DisposableBag
+
+- It is given in RxSwift to deal with ARC and memory management.This is a virtual “bag” of Observer objects which are disposed of when their parent object is deallocated.If object contains DisposableBag as a property, then it will automatically deallocate it.
+
+- Without a DisposableBag, you’d get one of two results: either the Observer would create a retain cycle, hanging on to what it’s observing indefinitely, or it could get deallocated out from under your object, causing a crash.
+
+- So it is better to use DisposableBag to cancel subscriptions.
+
+  ```swift
+  // Creating a DisposeBag so subscribtion will be cancelled correctly
+  let bag = DisposeBag()
+  
+  // Creating an Observable Sequence that emits a String value
+  let observable = Observable.just("Hello Rx!")
+  
+  // Creating a subscription just for next events
+  let subscription2 = observable.subscribe (onNext:{
+  	print($0)
+  }).addDisposableTo(bag)
+  ```
 
 ### [Subjects](<http://reactivex.io/documentation/subject.html>)
 
@@ -263,5 +331,14 @@
     	}
     }
     ```
+
+
+### [Just](<http://reactivex.io/documentation/ko/operators/just.html>)
+
+- The Just operator converts an item into an Observable that emits that item.
+
+  Just is similar to From, but note that From will dive into an array or an iterable or something of that sort to pull out items to emit, while Just will simply emit the array or iterable or what-have-you as it is, unchanged, as a single item.
+
+  Note that if you pass `null` to Just, it will return an Observable that *emits* `null` as an item. Do not make the mistake of assuming that this will return an empty Observable (one that emits no items at all). For that, you will need the [Empty](http://reactivex.io/documentation/ko/operators/empty-never-throw.html) operator.
 
 - 
