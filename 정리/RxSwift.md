@@ -333,6 +333,199 @@
     ```
 
 
+### [Error 처리](<https://brunch.co.kr/@tilltue/8>)
+
+- 에러발생을 감지하는 catchError 메소드와 다시 정상적인 이벤트를 받기 위한 retry에 대해
+
+  - catchError
+  - catchErrorJustReturn
+
+- 에러가 발생했을 때, onError로 종료되지 않도록 하고, 이벤트를 발생하고 onComplete될 수 있도록 한다
+
+- 토끼 이벤트를 3번 발생하고 에러를 전달하는 observable을 생성했다
+
+- catchError에서 에러를 받았지만, 단일 이벤트 observable 연산자인 just를 통해 Zoo Closed 이벤트를 전달하도록 했다
+
+  ```swift
+  let zoo = Observable<String>.create { observer in
+  	for count in 1...3 {
+  		observer.onNext("Rabbit\(count)")
+  	}
+  	let error = NSError(domain: "dummyError", code: 0, userInfo: nil)
+  	observer.onError(error)
+  	return Disposables.create {
+  		print("dispose")
+  	}
+  }
+  zoo.catchError { error -> Observable<String> in
+  	return Observable.just("Zoo Closed")
+  }.subscribe(onNext: { test in
+  	print(test)
+  }).disposed(by: disposeBag)
+  ```
+
+  ```
+  Rabbit1
+  Rabbit2
+  Rabbit3
+  Zoo Closed
+  dispose
+  ```
+
+-  catchError 여러 이벤트 전달
+
+  - catchError에서는 여러개의 이벤트를 보내줄 수도 있다
+  - return Observable.of("Fox1", "Fox2", "Closed Zoo")
+
+- catchErrorJustReturn
+
+  - catchErrorJustReturn은 위와 같이 error가 발생했을 때 설정해둔 단일 이벤트를 전달하도록 하는 연산자이다
+
+  - subscribe에서 에러를 감지하는 것이 아닌, Observable에서 에러에 대한 기본 이벤트를 설정하는 부분에 주목하자
+
+  ```swift
+  let zoo2 = Observable<String>.create { observer in
+  	for count in 1...3 {
+  		observer.onNext("Rabbit\(count)")
+  	}
+  	let error = NSError(domain: "dummyError", code: 0, userInfo: nil)
+  	observer.onError(error)
+  	return Disposables.create {
+  		print("dispose")
+  	}
+  }.catchErrorJustReturn("Rabbit End")
+  zoo2.subscribe(onNext: { test in
+  	print(test)
+  }).disposed(by: disposeBag)
+  ```
+
+  ```
+  Rabbit1
+  Rabbit2
+  Rabbit3
+  Rabbit End
+  dispose
+  ```
+
+- Retry
+
+  - retry()
+  - retry(maxAttemptCount: Int)
+  - 에러가 발생했을 때 성공을 기대하며 Observable을 다시 시도하는 연산자이다
+  - (maxAttemptCount를 통해 재시도 횟수를 지정할 수 있다. 2로 지정하면 에러를 처리하고 다시 한 번 수행한다는 것이다. retry(2)가 재시도를 한 번 한다는 뜻)
+
+  ```swift
+  let zoo3 = Observable<String>.create { observer in
+  	observer.onNext("TEST1")
+  	observer.onNext("TEST2")
+  	let error = NSError(domain: "dummyError", code: 0, userInfo: nil)
+  	observer.onError(error)
+  	return Disposables.create()
+  }
+  zoo3.debug().retry(2).subscribe { (event) in
+  	print(event)
+  }.disposed(by: disposeBag)
+  ```
+
+  ```
+  2019-04-03 00:55:37.656: RxSwiftPractice.playground:13 (__lldb_expr_14) -> subscribed
+  2019-04-03 00:55:37.669: RxSwiftPractice.playground:13 (__lldb_expr_14) -> Event next(TEST1)
+  next(TEST1)
+  2019-04-03 00:55:37.679: RxSwiftPractice.playground:13 (__lldb_expr_14) -> Event next(TEST2)
+  next(TEST2)
+  2019-04-03 00:55:37.680: RxSwiftPractice.playground:13 (__lldb_expr_14) -> Event error(Error Domain=dummyError Code=0 "(null)")
+  2019-04-03 00:55:37.680: RxSwiftPractice.playground:13 (__lldb_expr_14) -> isDisposed
+  ---
+  2019-04-03 00:55:37.681: RxSwiftPractice.playground:13 (__lldb_expr_14) -> subscribed
+  2019-04-03 00:55:37.681: RxSwiftPractice.playground:13 (__lldb_expr_14) -> Event next(TEST1)
+  next(TEST1)
+  2019-04-03 00:55:37.682: RxSwiftPractice.playground:13 (__lldb_expr_14) -> Event next(TEST2)
+  next(TEST2)
+  2019-04-03 00:55:37.683: RxSwiftPractice.playground:13 (__lldb_expr_14) -> Event error(Error Domain=dummyError Code=0 "(null)")
+  2019-04-03 00:55:37.683: RxSwiftPractice.playground:13 (__lldb_expr_14) -> isDisposed
+  error(Error Domain=dummyError Code=0 "(null)")
+  ```
+
+- retryWhen
+
+  - retry하는 시점을 지정할 수 있다. 재시도는 한 번만 수행한다
+  - 에러가 발생했을 때 retryWhen에서 지연시간을 가질 Observable을 지정하면, observable의 이벤트가 발생했을 때 다시 Observable의 시퀀스가 수행한다
+  - retry와 이벤트 전달할 때 하나의 차이점이 error를 이벤트로 전달하지 않고, complete으로 종료된다
+
+  ```swift
+  let zoo4 = Observable<String>.create { observer in
+  	observer.onNext("TEST1")
+  	observer.onNext("TEST2")
+  	let error = NSError(domain: "dummyError", code: 0, userInfo: nil)
+  	observer.onError(error)
+  	return Disposables.create()
+  }
+  zoo4.debug().retryWhen { (_) -> Observable<Int> in
+  	return Observable<Int>.timer(3, scheduler: MainScheduler.asyncInstance)
+  }.subscribe { (event) in
+  	print(event)
+  }.disposed(by: disposeBag)
+  ```
+
+  ```
+  2019-04-03 00:57:35.310: RxSwiftPractice.playground:14 (__lldb_expr_16) -> subscribed
+  2019-04-03 00:57:35.312: RxSwiftPractice.playground:14 (__lldb_expr_16) -> Event next(TEST1)
+  next(TEST1)
+  2019-04-03 00:57:35.314: RxSwiftPractice.playground:14 (__lldb_expr_16) -> Event next(TEST2)
+  next(TEST2)
+  2019-04-03 00:57:35.315: RxSwiftPractice.playground:14 (__lldb_expr_16) -> Event error(Error Domain=dummyError Code=0 "(null)")
+  2019-04-03 00:57:35.315: RxSwiftPractice.playground:14 (__lldb_expr_16) -> isDisposed
+  ---
+  2019-04-03 00:57:38.311: RxSwiftPractice.playground:14 (__lldb_expr_16) -> subscribed
+  2019-04-03 00:57:38.311: RxSwiftPractice.playground:14 (__lldb_expr_16) -> Event next(TEST1)
+  next(TEST1)
+  2019-04-03 00:57:38.312: RxSwiftPractice.playground:14 (__lldb_expr_16) -> Event next(TEST2)
+  next(TEST2)
+  2019-04-03 00:57:38.312: RxSwiftPractice.playground:14 (__lldb_expr_16) -> Event error(Error Domain=dummyError Code=0 "(null)")
+  2019-04-03 00:57:38.312: RxSwiftPractice.playground:14 (__lldb_expr_16) -> isDisposed
+  completed
+  
+  ```
+
+- Timeout
+
+  - 이벤트가 일정시간동안 발생하지 않으면 오류를 발생시킨다
+
+  ```swift
+  let timer = Observable<Int>.create { observer in
+  	let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global())
+  	timer.schedule(deadline: DispatchTime.now() + 1, repeating: 1)
+  	let cancel = Disposables.create {
+  		timer.cancel()
+  	}
+  	var next = 0
+  	timer.setEventHandler {
+  		if cancel.isDisposed {
+  			return
+  		}
+  		if next < 3 {
+  			observer.onNext(next)
+  			next += 1
+  		}
+  	}
+  	timer.resume()
+  	return cancel
+  }
+  
+  timer.debug().timeout(2, scheduler: MainScheduler.instance).subscribe().disposed(by: disposeBag)
+  ```
+
+  ```
+  2019-04-03 00:59:28.188: RxSwiftPractice.playground:43 (__lldb_expr_18) -> subscribed
+  2019-04-03 00:59:29.190: RxSwiftPractice.playground:43 (__lldb_expr_18) -> Event next(0)
+  2019-04-03 00:59:30.190: RxSwiftPractice.playground:43 (__lldb_expr_18) -> Event next(1)
+  2019-04-03 00:59:31.189: RxSwiftPractice.playground:43 (__lldb_expr_18) -> Event next(2)
+  Unhandled error happened: Sequence timeout.
+   subscription called from:
+  
+  2019-04-03 00:59:33.190: RxSwiftPractice.playground:43 (__lldb_expr_18) -> isDisposed
+  ```
+
 ### [Just](<http://reactivex.io/documentation/ko/operators/just.html>)
 
 - The Just operator converts an item into an Observable that emits that item.
