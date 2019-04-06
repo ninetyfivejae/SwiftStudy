@@ -40,28 +40,10 @@
 
 ### 5. 클로저와 ARC
 
-- Closure
+- [Closure]()
 - 고차함수(Map, Filter, Reduce)
 - ARC
-
-```
-4주차 - 클로저와 ARC
-- Closure
-- 고차함수(Map, Filter, Reduce)
-- Generic
-
-+ ARC
-
-실습
-- Array 확장해보기(제네릭 사용)
-- ARC
-- 순환참조 해결하기
-```
-
-```
-5주차 ~ 8주차 - 미니 프로젝트 선정 및 진행해보기
-- 사진 앨범 or 미니 Todo 앱
-```
+- 순환참조 해결
 
 ## SettingsApplication
 
@@ -89,6 +71,10 @@
 - 다른 클래스의 속성을 지켜보고 싶으면, 클래스의 인스턴스를 가지고 있어야한다
 - 여러 앱을 왔다갔다 하면서 사용하면 observing 추가한게 다른 앱에도 적용될 수 있어서, remove옵저버를 해줘야 좋다
 - notification 종류. nsnotification center 각 상황에 맞춰서 keyPath로 접근해서 값을 빼오는 것은 위험할 수 있음. 버전 올라가면서 바뀔 수 있으니까
+
+## 순환참조
+
+- 
 
 ## 고차함수
 
@@ -256,69 +242,6 @@
     
     This usually indicates that project itself failed to compile. Please check the xcodebuild log for more details: /var/folders/s0/zqhtx9_d5nbgrh3d_2_g7vwm0000gn/T/carthage-xcodebuild.h4pdh2.log
     ```
-
-## Closure
-
-- 예제
-
-  ```swift
-  //public func sorted(by areInIncreasingOrder: (Element, Element) -> Bool) -> [Element]
-  
-  let names: [String] = ["wizplan", "eric", "yagom", "jenny"]
-  
-  
-  
-  func backwards(first: String, second: String) -> Bool {
-      print("\(first) \(second) 비교 중")
-      return first > second
-  }
-  let firstReversed: [String] = names.sorted(by: backwards)
-  print(firstReversed)
-  
-  
-  
-  let secondReversed: [String] = names.sorted(by: { (first: String, second: String) -> Bool in
-      return first > second
-  })
-  print(secondReversed)
-  
-  
-  
-  let thirdReversed: [String] = names.sorted() { (first: String, second: String) -> Bool in
-      return first > second
-  }
-  print(thirdReversed)
-  
-  
-  
-  let fourthReversed: [String] = names.sorted { (first: String, second: String) -> Bool in
-      return first > second
-  }
-  print(fourthReversed)
-  
-  
-  
-  let fifthReversed: [String] = names.sorted() {
-      return $0 > $1
-  }
-  print(fifthReversed)
-  
-  
-  
-  let sixthReversed: [String] = names.sorted { $0 > $1 }
-  print(sixthReversed)
-  ```
-
-  ```
-  ["yagom", "wizplan", "jenny", "eric"]
-  ["yagom", "wizplan", "jenny", "eric"]
-  ["yagom", "wizplan", "jenny", "eric"]
-  ["yagom", "wizplan", "jenny", "eric"]
-  ["yagom", "wizplan", "jenny", "eric"]
-  ["yagom", "wizplan", "jenny", "eric"]
-  ```
-
-- 
 
 ## [Realm](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Realm.md#realm)
 
