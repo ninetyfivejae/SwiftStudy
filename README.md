@@ -59,6 +59,22 @@
 - Typealias는 static 으로 설정이 된다
 - 도큐먼트 맨 마지막 conform to(준수하다) 많이 참고하게 될 것
 - protocol document에 required 표시 돼있으면 필수 구현해야하는 것들이 있음
+- [Managing the Keyboard](<https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html>)
+- [흐름제어](<https://hcn1519.github.io/articles/2017-05/swift_controlFlow>)
+
+## Todo
+
+- 앞으로 읽어볼 것들
+  - <https://www.raywenderlich.com/2752-25-ios-app-performance-tips-tricks#launchtime>
+  - Architecture
+    - <https://academy.realm.io/kr/posts/krzysztof-zablocki-mDevCamp-ios-architecture-mvvm-mvc-viper/>
+    - <https://dev.to/eleazar0425/mvvm-pattern-sample-in-swiftios--58aj>
+    - <https://www.objc.io/issues/13-architecture/mvvm/>
+    - <https://kka7.tistory.com/83>
+    - <https://www.raywenderlich.com/34-design-patterns-by-tutorials-mvvm>
+    - <https://medium.com/flawless-app-stories/how-to-use-a-model-view-viewmodel-architecture-for-ios-46963c67be1b>
+    - <https://github.com/iosbrain/MVVM-Design-Pattern-Demo/tree/master/MVVM2>
+    - 
 
 ## 프로젝트 패키지화, 폴더 사용
 

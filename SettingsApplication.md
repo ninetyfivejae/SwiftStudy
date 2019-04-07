@@ -8,6 +8,8 @@
 - https://codewithchris.com/avaudioplayer-tutorial/
 - https://www.youtube.com/watch?v=dqad3XuMwHI
 
+### [ImageView모양 원형으로 만들기](<https://www.appcoda.com/ios-programming-circular-image-calayer/>)
+
 ### 이미지 설정할 때, 이미지 리터럴로 지정하는 것은 나중에 코드 가독성을 안 좋게 하거나 수정시 혼란을 가져올 수 있으니 안 좋을 수도 있다
 
 ```swift
