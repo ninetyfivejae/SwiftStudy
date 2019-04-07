@@ -24,6 +24,11 @@
 - [App Life Cycle & ViewController Life Cycle](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/AppLifeCycle%26ViewControllerLifeCycle.md#app-lifecycle-viewcontroller-lifecycle)
 - [UITableView / UICollectionView / UITabBarController](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/UIViewControllers.md#uiviewcontrollers)
 - [Segue](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Segue.md#segue)
+- [Autolayout 정독하기(엄청 많음)](<https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853-CH7-SW1>)
+  - [Intrinsic 컨텐트 사이즈 / Compression Resistance / Hugging](<https://dev17.tistory.com/1>)
+  - Intrinsic 컨텐트 사이즈는 현제 컨텐트에 따른 사이즈임을 명시하고 있다. 포함한 컨텐트에 따라 사이즈가 변할 수 있다는 것이다
+  - 주어진 상황이 빈 공간을 채워야 하는 상황이면 Hugging 우선도를 조절해서 배치하고, 겹쳐져있다면 Compression Resistance 우선도를 저절해서 배치하면 된다
+  - <https://medium.com/@vialyx/import-uikit-what-is-intrinsic-content-size-20ae302f21f3>
 
 ### 3. POP(Protocol Oriented Programming) 개요
 
