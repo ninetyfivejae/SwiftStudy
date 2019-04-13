@@ -109,7 +109,7 @@
 
 ### dequeueReusableCell 사용 이유
 
-- dequeueReusableCell(withIdentifier:for:): Returns a reusable table-view cell object for the specified reuse identifier(TableViewCell의 identifier) and adds it to the table.
+- **dequeueReusableCell(withIdentifier:for:)**: Returns a reusable table-view cell object for the specified reuse identifier(TableViewCell의 identifier) and adds it to the table.
 - 천 개, 만 개 이상의 항목(엔트리)을 가지는 테이블이 있을 때, 천 개의 엔트리를 셀마다 만들고 모든 테이블 뷰 셀에 대해 메모리 할당이 이루어지게된다. 이렇게 되면 메모리 낭비가 되기 때문에 효과적으로 메모리를 사용하기 위해서 dequeueReusableCell 사용한다.
 - 이 dequeueReusableCell을 사용하게 되면 화면에서 보이는 테이블 뷰 셀만 메모리에 할당하면 된다. 그리고 스크롤하면 화면에는 여전히 동일한 셀이 사용되지만, 데이터소스(DataSource)를 기반으로 셀 내용이 바뀌게 된다. 셀이 스크롤 화면 밖으로 밀려나면, 이 셀은 reuse pool에 들어가게 되고, 우리가 dequeueReusableCell을 호출할 때 테이블 셀에 의해 반환이 된다.
 - [Cell 재사용하는 경우와 그렇지 않은 경우 메모리 비교](https://medium.com/ios-seminar/why-we-use-dequeuereusablecellwithidentifier-ce7fd97cde8e)
@@ -396,4 +396,4 @@
 
 - [출처](http://swiftdeveloperblog.com/code-examples/create-uitabbarcontroller-programmatically/)
 
-- 
+

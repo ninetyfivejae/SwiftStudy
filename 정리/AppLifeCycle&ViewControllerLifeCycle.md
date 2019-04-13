@@ -12,7 +12,7 @@
   - **Foreground[Active]**: 앱이 실행중이며 이벤트가 발생한 상태. 일반적으로 앱이 돌아가는 상태
   - (Inactive와 Active 상태를 합쳐서 Foreground 라고 함)
   - **Background**: 앱이 백그라운드에 있는 상태 그러나 실행되는 코드가 있는 상태. 앱이 Suspended(유예 상태) 상태로 진입하기 전 거치는 상태
-  - **Suspened**: 앱이 백그라운드에 있고 실행되는 코드가 없는 상태. 앱이 Background 상태에 있지만, 아무 코드도 실행하지 않는 상태, 시스템이 *임의로* Background 상태의 앱을 Suspended 상태로 만든다
+  - **Suspened**: 앱이 백그라운드에 있고 실행되는 코드가 없는 상태. 앱이 Background 상태에 있지만, 아무 코드도 실행하지 않는 상태, 시스템이 임의로 Background 상태의 앱을 Suspended 상태로 만든다
 - Not Running은 앱이 실행되고 있지 않으며 어떤한 디바이스 리소스도 점유하고 있지 않는 상태. 사용자가 홈 화면에서 앱을 실행하면 Inactive 상태로 전환된다
 - Inactive 상태는 앱이 Foreground에서 실행되고 있지만 이벤트를 받고 있지 않은 상태이다
 - 앱이 Foreground에서 이벤트를 받으면 Active 상태로 전환된다. 일반적으로 앱이 실행되고 있는 상태이다.

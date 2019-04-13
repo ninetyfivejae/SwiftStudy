@@ -5,7 +5,7 @@
 - 종류
   - **show**: 화면에 보여지고 있는 마스터 또는 디테일 영역에 뷰를 로드한다. 마스터와 디테일 영역 모두 화면에 보여지고 있을 경우 로드되는 새로운 컨텐츠 뷰는 디테일 영역의 네비게이션 스택에 푸시된다. 마스터와 디테일 영역중 하나만 보여지고 있을 경우 현재 뷰컨트롤러 스택의 최상단에 푸시된다. 새 화면으로 이동하는데 Stack구조로서 새 화면이 원래 화면 위를 덮는 구조이다
   - **show detail**: show와 매우 비슷하지만 푸시가 아닌 교체(replace)된다는 점이 크게 다르다. 마스터와 디테일 영역 모두 화면에 보여지고 있을 경우 로드되는 뷰는 디테일 영역을 교체하게 되며 둘중 하나만 보여지고 있을 경우 현재 뷰컨트롤러 스택의 최상단 뷰를 교체하게 된다. SplitView 구조에서 원래 화면을 Master, 새 화면을 Detail로 표시한다. 아이폰에서는 똑같아 보이지만 아이패드로 보면 화면이 둘로 분할되서 보이게 된다.
-  - **present modally**: 새로 로드하는 컨텐츠 뷰를 모달 형태로 띄운다. 원래 화면은 새 화면 뒤에 그대로 존재함. UIModalPresentationStyle 옵션을 이용하여 보여지는 스타일을 결정하거나 UIModalTransitionStyle 옵션을 사용하여 트랜지션 스타일을 설정할 수 있다.
+  - **present modally**: 새로 로드하는 컨텐츠 뷰를 모달 형태로 띄운다. 원래 화면은 새 화면 뒤에 그대로 존재함. **UIModalPresentationStyle 옵션**을 이용하여 보여지는 스타일을 결정하거나 **UIModalTransitionStyle 옵션**을 사용하여 트랜지션 스타일을 설정할 수 있다.
   - **popover presentation**: iPad만 해당. 현재 보여지고 있는 뷰 위에 앵커를 가진 팝업 형태로 컨텐츠 뷰를 로드한다. UIPopoverArrowDirection 옵션을 사용하여 창에 붙어있는 엣지의 방향을 설정 할 수 있다.
   - **custom**: 사용자 정의 세그웨이를 만든다
 - [한 번에 쉽게 정리해놓은 블로그](http://blog.lattecom.xyz/2016/06/06/swift-ios-scene-transition/)
@@ -34,7 +34,7 @@
   - B.presentingViewController => A
 - 여기서 B에서 A로 돌아갈 땐 A에서 B로 갈 때처럼 `self.dismissViewControllerAnimated(_:completion:)`이 아니라 다음과 같이 A를 참조하여 호출한다. `self.presentingViewController?.dismissViewControllerAnimated(_:completion:)`
 
-### [instantiateViewController](https://youtu.be/-Rsr3hoSRes)
+### [instantiateViewController](https://youtu.be/-Rsr3hoSRes) instantiate: 구체적인 예를 들다
 
 - 메인 ViewController에서 이동할 ViewController swift 파일 생성. 여기에서는 SecondViewController.swift 파일 사용
 
@@ -278,3 +278,4 @@
   }
   ```
 
+- TagIt에 커스텀segue 예제로 만든 것 있음. 참고할 것
