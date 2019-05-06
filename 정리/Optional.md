@@ -15,7 +15,9 @@
 
   - 옵셔널은 제네릭이 적용된 열거형
   - 옵셔널이 값을 갖는 케이스와 그렇지 못한 케이스 두 가지로 정의
-  - nil일때는 none 케이스, 값이 있는 경우 some 케이스 with 연관 값 Wrapped. 옵셔널에 값이 있으면 연관값인 Wrapped에 값이 할당된다. 그래서 옵셔널 값 print하면 Optional("jae") 이렇게 출력된다.
+  - nil일때는 none 케이스, 값이 있는 경우 some 케이스 with 연관 값 Wrapped.
+    옵셔널에 값이 있으면 연관값인 Wrapped에 값이 할당된다.
+    그래서 옵셔널 값 print하면 Optional("jae") 이렇게 출력된다.
 
   ```swift
   public enum Optional<Wrapped> : ExpressibleByNilLiteral {

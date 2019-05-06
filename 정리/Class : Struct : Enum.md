@@ -2,7 +2,9 @@
 
 ## Class
 
-- 클래스에 초기값을 설정을 안 해주면 에러가 발생함 초기값 설정시 변수는 선언만 하고 생성자에서 값을 넣어줘도 된다 생성자는 기본 생성자 이외에 여러개의 생성자 생성 가능
+- 클래스에 초기값을 설정을 안 해주면 에러가 발생함 초기값 설정시 변수는 선언만 하고 생성자에서 값을 넣어줘도 된다.
+
+- 생성자는 기본 생성자 이외에 여러개의 생성자 생성 가능
 
   ```swift
   class Circle {
@@ -83,23 +85,25 @@
 
 ## Struct
 
-- [클래스와 구조체 공통점]
+- **클래스와 구조체 공통점**
 
   - 속성(property)정의
   - 메소드(method) 정의
   - 생성자를 통한 초기 설정
   - extension, protocol 사용 가능
 
-- [클래스만의 추가적인 특징]
+- **클래스만의 추가적인 특징**
 
   - inheritance. swift에서 다중상속은 안 된다. 하지만 프로토콜은 엄청 많이 따를 수 있다. 구조체는 상속이 안 됨.
   - type casting
   - 소멸자를 통한 리소스 관리
   - 참조 타입(reference type) : class는 변수나 상수에 할당이 되거나 함수 인자로 넘길 때 참조 횟수만 증가하는 reference 타입, 구조체는 변수나 상수에 할당이 되거나 함수 인자로 넘길 때 복사가 되는 value 타입
 
-- [struct만의 특징]
+- **struct만의 특징**
 
-  - 값(Value)이다. 정확히, 값의 타입을 정의하기 위해 사용한다. 객체(Object) 레퍼런스 타입을 정의하는 class 와는 다르다. Object가 아니기 때문에 AnyObject로의 캐스팅이 되지 않는다.
+  - 값(Value)이다. 정확히, 값의 타입을 정의하기 위해 사용한다.
+    객체(Object) 레퍼런스 타입을 정의하는 class 와는 다르다.
+    Object가 아니기 때문에 AnyObject로의 캐스팅이 되지 않는다.
   - 대입 명령 시 내용이 복사된다. (단 데이터 변동이 없으면 레퍼런스 대입 형태로 동작한다)
   - 참조 카운트가 없어서 메모리 관리에 안전하다.
   - 레퍼런스 형태가 아니기 때문에 공유가 불가능하다.
@@ -107,7 +111,7 @@
   - 상속이 불가능하다. 하지만 프로토콜은 사용 할 수 있다.
   - 멀티스레딩에 안전하다.
 
-- [struct를 사용하면 좋은 경우]
+- **struct를 사용하면 좋은 경우**
 
   - 불변성(Immutable)이 필요한 데이터 타입
   - 적은 데이터, 즉 멤버 프로퍼티의 갯수나 차지하는 메모리 용량이 적은 타입
@@ -141,20 +145,19 @@
 
 ### [Choosing Between Structures and Classes](https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes)
 
-- document에서 명시한 5가지
-  - Choose structures by default
-    - 구조체는 값 타입이기 때문에, using stuctures makes it easier to reason about a portion of your code without needing to consider the whole state of your app
-    - 변경 되는 부분을 명확하게 알 수 있다
-  - Use classes when you need Objective-C interoperability(상호 운용)
-  - Use classes when you need to control identity
-    - 앱 전역에서 접근가능한 instance identity를 사용하려면 use classes
-    - 참조 타입이니까
-  - Use structures when you don't control identity
-    - 안전하게 데이터 복사 전달 가능. 불변성이 필요한 데이터 타입에 struct 사용
-    - 값 타입이니까
-  - Use stuctures and protocols to model inheritance and share behavior. 상속이나 공유를 하게 되는 모델을 구성할 때 structure and protocol을
-    - 구조체는 protocol 상속만 가능, 클래스 상속은 클래스만 가능. 근데 클래스 상속은 protocol 상속 구조로도 구현가능
-    - 그래서 우선적으로는 protocol 상속 구조로 구현을 해라
+- **Choose structures by default**
+  - 구조체는 값 타입이기 때문에, using stuctures makes it easier to reason about a portion of your code without needing to consider the whole state of your app
+  - 변경 되는 부분을 명확하게 알 수 있다
+- **Use classes when you need Objective-C interoperability(상호 운용)**
+- **Use classes when you need to control identity**
+  - 앱 전역에서 접근가능한 instance identity를 사용하려면 use classes
+  - 참조 타입이니까
+- **Use structures when you don't control identity**
+  - 안전하게 데이터 복사 전달 가능. 불변성이 필요한 데이터 타입에 struct 사용
+  - 값 타입이니까
+- **Use stuctures and protocols to model inheritance and share behavior**
+  - 구조체는 protocol 상속만 가능, 클래스 상속은 클래스만 가능. 근데 클래스 상속은 protocol 상속 구조로도 구현가능
+  - 그래서 우선적으로는 protocol 상속 구조로 구현을 해라
 
 ## Enum
 

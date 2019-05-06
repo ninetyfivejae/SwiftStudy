@@ -1,19 +1,19 @@
 # Property(Stored, Computed, Class)
 
-```
-Stored Property
-Lazy Stored Property
-Computed Property
-Type Property
-Property Observer
-전역변수와 지역변수
-```
-
-- lowerCamelCase
-- 간단히
-  - Stored Property(저장 프로퍼티)는 상수와 변수 값을 인스턴스의 일부로 저장함. 클래스와 구조체에서만 사용
-  - 반면에 Computed Property(연산 프로퍼티)는 값을 연산함(저장(store)하기 보다는) 그때그때 특정 연산은 수행하여 값을 반환함. 클래스, 구조체 그리고 **열거형**에서 사용
-  - 이렇게 Stored Property(저장 프로퍼티)와  Computed Property(연산 프로퍼티)는 일반적으로 특정 타입의 인스턴스와 연결된다. 그러나 프로퍼티를 타입 자체와 연결할 수도 있음. 이러한 프로퍼티를 **Type Property**(타입 프로퍼티)라고 한다.
+> - Stored Property
+> - Lazy Stored Property
+> - Computed Property
+> - Type Property
+> - Property Observer
+> - 전역변수와 지역변수
+>
+> ---
+>
+> - **Stored Property**(저장 프로퍼티): 상수와 변수 값을 인스턴스의 일부로 저장함.
+>   클래스와 구조체에서만 사용
+> - **Computed Property**(연산 프로퍼티): 값을 연산함(저장(store)하기 보다는) 그때그때 특정 연산은 수행하여 값을 반환함.
+>   클래스, 구조체 그리고 **열거형**에서 사용
+> - **Type Property**(타입 프로퍼티): Stored Property(저장 프로퍼티)와  Computed Property(연산 프로퍼티)는 일반적으로 특정 타입의 인스턴스와 연결된다. 그러나 프로퍼티를 타입 자체와 연결할 수도 있음.
 
 ## Stored Property
 
@@ -93,15 +93,18 @@ Property Observer
 
 ## Lazy Stored Property
 
-- 값이 사용되기 전까지는 값이 계산되지 않는 프로퍼티.
+- 값이 사용되기 전까지는 값이 계산되지 않는 프로퍼티
 
 - lazy 키워드 사용하여 선언함
 
-- 모든 저장 속성은 인스턴스의 초기화가 완료된 시점에 적절한 값으로 초기화되어야 한다. 만약 파일에 저장되어 있는 값으로 초기화해야하는 속성이 있다면 다른 속성에 비해 많은 메모리 공간이 필요하고 초기화에 소요되는 시간이 길어질 수 있음. 그리고 프로그램 실행되는 동안 이 속성을 한 번도 사용하지 않으면 불필요한 메모리 낭비가 된다
+- 모든 저장 속성은 인스턴스의 초기화가 완료된 시점에 적절한 값으로 초기화되어야 한다.
+  만약 파일에 저장되어 있는 값으로 초기화해야하는 속성이 있다면 다른 속성에 비해 많은 메모리 공간이 필요하고 초기화에 소요되는 시간이 길어질 수 있음.
+  그리고 프로그램 실행되는 동안 이 속성을 한 번도 사용하지 않으면 불필요한 메모리 낭비가 된다
 
-- 그래서 Lazy stored property를 사용하면, 초기화 과정에서 초기화되지 않고 속성에 처음 접근하는 시점에 초기화된다. 큰 값을 저장하거나 속성의 값이 초기화 이후에 결정되는 값에 의존적인 경우 활용할 수 있음
+- 그래서 Lazy stored property를 사용하면, 초기화 과정에서 초기화되지 않고 속성에 처음 접근하는 시점에 초기화된다.
+  큰 값을 저장하거나 속성의 값이 초기화 이후에 결정되는 값에 의존적인 경우 활용할 수 있음
 
-- 주의: 여러 스레드에서 동시에 접근하는 경우 속성이 두 번 이상 초기화될 가능성이 있으므로 조심해야함 
+- 주의: 여러 스레드에서 동시에 접근하는 경우 속성이 두 번 이상 초기화될 가능성이 있으므로 조심해야함
 
   ```swift
   struct Contact{
@@ -140,8 +143,6 @@ Property Observer
 ## Computed Property
 
 - stored property처럼 값을 직접 저장하지 않고, 값들을 연산하여 stored property에 전달해주는 역할
-
-- getter, setter
 
 - 클래스, 구조체, 열거형에 사용된다
 
@@ -199,7 +200,7 @@ Property Observer
   - 타입 프로퍼티는 모든 타입이 사용할 수 있는 상수 프로퍼티(constants property) (ex : C의 static 상수)
   - 또는 글로번 변수 프로퍼티와 같이 특정 타입의 모든 인스턴스에 공통적인 값을 정의하는 데 유용함. ( ex: C의 static 변수)
 
-- 타입프로퍼티에는,  **Stored Type Property(저장 타입 프로퍼티)**와 **Computed Type Property(연산 타입 프로퍼티)**가 있음
+- 타입프로퍼티에는, Stored Type Property(저장 타입 프로퍼티)와 Computed Type Property(연산 타입 프로퍼티)가 있음
 
   - Stored Type Property는 상수/변수 일 수 있음
 
@@ -291,9 +292,11 @@ Property Observer
 
 ## Property Observer
 
-- property observer는 속성 값의 갱신 전후에 특정 코드를 실행하는 수단을 제공. 다른 언어에서 observer pattern 또는 notification pattern, delegate pattern을 구현하여 유사한 기능을 제공함
+- property observer는 속성 값의 갱신 전후에 특정 코드를 실행하는 수단을 제공.
+  다른 언어에서 observer pattern 또는 notification pattern, delegate pattern을 구현하여 유사한 기능을 제공함
 
-- Property Observers를 정의해서 프로퍼티 값의 변경을 모니터링 할 수 있음. 프로퍼티 옵저버는 자신이 정의한 "저장 프로퍼티"에 추가 할 수 있으며, 부모클래스를 상속한 프로퍼티에도 추가 할 수 있다.
+- Property Observers를 정의해서 프로퍼티 값의 변경을 모니터링 할 수 있음.
+  프로퍼티 옵저버는 자신이 정의한 "저장 프로퍼티"에 추가 할 수 있으며, 부모클래스를 상속한 프로퍼티에도 추가 할 수 있다.
 
 - 프로퍼티 옵저버는 새로운 값이 프로퍼티의 현재값과 동일하더라도 속성의 값이 설정될 때 마다 호출
 

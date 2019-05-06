@@ -1,39 +1,36 @@
 # Collection (Array, Dictionary, Set)
 
-- 구조체로 구현된 값 형식
+>- 구조체로 구현된 값 형식
+>  - Array: 순서가 있는 리스트 컬렉션
+>  - Dictionary: key와 value의 쌍으로 이뤄진 컬렉션
+>  - Set: 순서가 없고 멤버가 유일한 컬렉션
+>- Swift 컬렉션은 별도의 자료형으로 구분하지 않고 let, var 키워드를 통해 컬렉션의 가변셩을 결정함
+>  - 불변 컬렉션에 가변 문자열이 저장되어 있으면, 컬렉션에 새로운 가변 문자열을 추가하는 것은 불가능하지만 물자열 자체의 내용을 변경하는 것은 가능
+>  - 가변 컬렉션에 불변 문자열이 저장되어 있으면, 컬렉션에 새로운 문자열을 추가할 수 있지만 문자열의 내용은 변경할 수 없음
+>  - 이렇게 가변형과 불변형으로 나누는 이유는 스레드의 안정성을 얻기 위함. 불변 컬렉션은 동시에 여러 스레드에서 접근해도 안전. 가변 컬렉션은 여러 스레드가 동시에 값을 변경하는 경우 오류가 발생하거나 의도하지 않는 결과를 가져올 수 있음
 
-  - Array: 순서가 있는 리스트 컬렉션
-  - Dictionary: key와 value의 쌍으로 이뤄진 컬렉션
-  - Set: 순서가 없고 멤버가 유일한 컬렉션
+## 참고: 튜플
 
-- Swift 컬렉션은 별도의 자료형으로 구분하지 않고 let, var 키워드를 통해 컬렉션의 가변셩을 결정함
+- 이름이 따로 지정되어 있지 않은 마음대로 만드는 타입. 지정된 데이터의 묶음
 
-  - 불변 컬렉션에 가변 문자열이 저장되어 있으면, 컬렉션에 새로운 가변 문자열을 추가하는 것은 불가능하지만 물자열 자체의 내용을 변경하는 것은 가능
-  - 가변 컬렉션에 불변 문자열이 저장되어 있으면, 컬렉션에 새로운 문자열을 추가할 수 있지만 문자열의 내용은 변경할 수 없음
-  - 이렇게 가변형과 불변형으로 나누는 이유는 스레드의 안정성을 얻기 위함. 불변 컬렉션은 동시에 여러 스레드에서 접근해도 안전. 가변 컬렉션은 여러 스레드가 동시에 값을 변경하는 경우 오류가 발생하거나 의도하지 않는 결과를 가져올 수 있음
+- 각 요소를 이름 대신 숫자로 표시하거나, 요소마다 이름을 붙여줄 수 있음
 
-- 참고: 튜플
+- 사용 예제
 
-  - 이름이 따로 지정되어 있지 않은 마음대로 만드는 타입. 지정된 데이터의 묶음
-
-  - 각 요소를 이름 대신 숫자로 표시하거나, 요소마다 이름을 붙여줄 수 있음
-
-  - 사용 예제
-
-    ```swift
-    var person: (String, Int, Double) = ("yagom", 100, 182.5)
-    print("\(person.0), \(person.1), \(person.2)")
-    
-    var person2: (name: String, age: Int, height: Double) = ("yagom", 100, 182.5)
-    print("\(person2.name), \(person2.age), \(person2.height)")
-    
-    //일일이 타입을 명시해가면서 튜플을 사용하기 번거로워서, typealias를 사용하여 튜플에 별칭 부여
-    typealias PersonTuple = (name: String, age: Int, height: Double)
-    let yagom: PersonTuple = ("yagom", 100, 178.5)
-    let eric: PersonTuple = ("eric", 100, 178.5)
-    
-    print("\(yagom.name), \(yagom.age), \(yagom.height)")
-    ```
+  ```swift
+  var person: (String, Int, Double) = ("yagom", 100, 182.5)
+  print("\(person.0), \(person.1), \(person.2)")
+  
+  var person2: (name: String, age: Int, height: Double) = ("yagom", 100, 182.5)
+  print("\(person2.name), \(person2.age), \(person2.height)")
+  
+  //일일이 타입을 명시해가면서 튜플을 사용하기 번거로워서, typealias를 사용하여 튜플에 별칭 부여
+  typealias PersonTuple = (name: String, age: Int, height: Double)
+  let yagom: PersonTuple = ("yagom", 100, 178.5)
+  let eric: PersonTuple = ("eric", 100, 178.5)
+  
+  print("\(yagom.name), \(yagom.age), \(yagom.height)")
+  ```
 
 ## Array
 
