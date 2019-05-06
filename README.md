@@ -59,11 +59,11 @@
   > 이미지 설정할 때, #imageLiteral로 지정하는 것
   > TableView Cell 클릭시 하이라이트 계속 남아있는 버그 수정
   > 16진수 컬러코드 사용해서 UIColor 생성
-  > **[UserDefaults](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#userdefaults>)**
+  > **[UserDefaults](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#6-userdefaults>)**
   > UIImage의 URL 가져오기, URL을 통해서 UIImage 다시 생성하기
   > 키보드 사라지는 타이밍 이슈
   > UITableView Section Header에 button 추가 / 새로운 Cell 추가 후 reloadData
-  > **[Dealing with magic number / magic string](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#dealing-with-magic-number--magic-string>)**
+  > **[Dealing with magic number / magic string](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#10-dealing-with-magic-number--magic-string>)**
 
 ## 추가 정리
 
@@ -77,15 +77,7 @@
 
 - 앞으로 읽어볼 것들
   - <https://www.raywenderlich.com/2752-25-ios-app-performance-tips-tricks#launchtime>
-  - Architecture
-    - <https://academy.realm.io/kr/posts/krzysztof-zablocki-mDevCamp-ios-architecture-mvvm-mvc-viper/>
-    - <https://dev.to/eleazar0425/mvvm-pattern-sample-in-swiftios--58aj>
-    - <https://www.objc.io/issues/13-architecture/mvvm/>
-    - <https://kka7.tistory.com/83>
-    - <https://www.raywenderlich.com/34-design-patterns-by-tutorials-mvvm>
-    - <https://medium.com/flawless-app-stories/how-to-use-a-model-view-viewmodel-architecture-for-ios-46963c67be1b>
-    - <https://github.com/iosbrain/MVVM-Design-Pattern-Demo/tree/master/MVVM2>
-    - 
+  - MVVM Architecture 계속 연구해보기
 
 ## 프로젝트 패키지화, 폴더 사용
 
@@ -108,7 +100,7 @@
 
 - 
 
-## 고차함수
+## 고차함수, 모나드
 
 - map
 - filter
@@ -287,3 +279,86 @@
 
 ## [RxSwift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/RxSwift.md#rxswift)
 
+## Dispatch
+
+> 시스템에 의해 관리되는 dispatch queues에 작업을 할당함으로써 멀티코어 환경에서 코드를 병렬로 실행한다.
+
+> Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.
+
+------
+
+#### Grand Central Dispatch 란?
+
+> 애플에서 개발한 멀티프로세서 환경을 지원하는 병렬처리 기술이다. Thread pool pattern을 사용한다. Thread pool 관리를 추상화해 운영체제에 가깝도록 한것.
+
+> NSThread, NSOperation 보다 쉬운 구현이 장점이다.
+
+------
+
+#### Managing Dispatch Queues
+
+> GCD 를 사용하면 병렬프로그래밍을 보다 쉽게 구현할 수 있습니다.
+
+> GCD는 FIFO 큐를 제공합니다. block object 형식의 작업을 큐에 넣을 수 있습니다. 이 큐에 있는 작업들은 전부 시스템에서 관리하는 쓰레드 풀에서 실행됩니다. 작업이 실행되는 쓰레드에 대해서는 보장되는게 없습니다. 어떤 쓰레드에서 실행되는지 언제 끝나는지 이런걸 알 수 없다는 것 같습니다.
+
+------
+
+#### Synchronous and Asynchronous Execution (동기와 비동기)
+
+큐에 들어간 작업들은 Synchronous 혹은 Asynchronous 실행될 수 있습니다.
+
+- Synchronous 란 무엇인가?
+- 어떤 작업이 Synchronous 실행 될때에는 프로그램은 메서드가 리턴해서 작업을 완료할 때까지 기다리는 겁니다.
+- Asynchronous 란 무엇인가?
+- 어떤 작업이 Asynchronous 실행 될때에는 메서드는 바로 리턴합니다. 하지만 작업은 어떤 다른 쓰레드에서 실행되고 있을겁니다. 작업이 완료되면 notification을 보낼 수 있습니다.
+
+------
+
+#### Serial and Concurrent Queues
+
+dispatch queue 는 Serial 하게 혹은 Concurrent 하게 실행될 수 있습니다.
+
+Serial 하다는건 한번에 하나의 작업을 실행한다는 것입니다.
+
+Concurrent 하다는것 순서대로 deque되겠지만 모두 한번에 실행되고 완료되는 시간도 제각각이 될 수 있다는 것입니다.
+
+serial 큐와 concurrent 큐 둘다 작업을 FIFO 방식으로 처리합니다.
+
+------
+
+#### System-Provided Queues (Main Queue)
+
+> 앱이 실행되면 특정한 큐가 생성되는데 이 큐를 Main Queue 라고 합니다. 작업들은 메인큐에 들어가고 serial 하게 실행됩니다.
+
+> **메인 큐에서 동기적으로 작업을 실행하면 데드락이 발생한다고 합니다.**
+
+- 데드락이란?
+- A는 B를 기다리고 B는 C를 기다리는데 C는 A를 기다리는 상황입니다.
+- 상호 배제 (Mutual exclusion)
+- 점유 상태로 대기 (Hold and wait)
+- 선점 불가 (No preemption)
+- 순환성 대기 (Circular wait)
+- 이런 조건들이 만족하면 데드락이 발생한답니다.
+
+> Main큐 외에도 시스템은 다수의 global 큐들을 생성합니다. 필요에 따라 global 큐들을 사용할 수 있습니다.
+
+------
+
+#### Managing Units of Work
+
+> Work items 은 개별적인 작업들에 대해 속성을 구성할 수 있습니다. 완료를 기다리게 할 수도 있고 완료후 노티 받도록 할 수도 있고 취소하도록 할 수 있습니다.
+
+------
+
+- Prioritizing Work and Specifying Quality of Service
+- Using Dispatch Groups
+- Using Dispatch Semaphores
+- Using Dispatch Data
+- Using Dispatch Time
+- Managing Dispatch Sources
+- Managing Dispatch I/O
+- Working with Dispatch Objects
+- Enumerations
+- Protocols
+
+## [localization 참고](<https://medium.com/ios-forever/ios%EC%97%90%EC%84%9C-localization%ED%95%98%EB%8A%94-gorgeous-%ED%95%9C-%EB%B0%A9%EB%B2%95-f82ac29d2cfe>)
