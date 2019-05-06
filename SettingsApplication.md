@@ -2,22 +2,24 @@
 
 ## SettingsApplication 과제 하면서 깨달은 것들 정리
 
-### 사운드 참고 링크
+### 1. 사운드 참고 링크
 
 - http://avilos.codes/mobile/ios-swift/ios-swift-avaudioplayer%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%94%94%EC%98%A4-%EC%9E%AC%EC%83%9D/
 - https://codewithchris.com/avaudioplayer-tutorial/
 - https://www.youtube.com/watch?v=dqad3XuMwHI
 
-### [ImageView모양 원형으로 만들기](<https://www.appcoda.com/ios-programming-circular-image-calayer/>)
+### 2. [ImageView모양 원형으로 만들기](<https://www.appcoda.com/ios-programming-circular-image-calayer/>)
 
-### 이미지 설정할 때, 이미지 리터럴로 지정하는 것은 나중에 코드 가독성을 안 좋게 하거나 수정시 혼란을 가져올 수 있으니 안 좋을 수도 있다
+### 3. 이미지 설정할 때, #imageLiteral로 지정하는 것
 
-```swift
-//profileImageView.image = #imageLiteral(resourceName: "defaultProfileImage")
-profileImageView.image = UIImage(named: "defaultProfileImage")
-```
+- 이미지 리터럴로 지정하는 것은 나중에 코드 가독성을 안 좋게 하거나 수정시 혼란을 가져올 수 있으니 안 좋을 수도 있다
 
-### TableView Cell 클릭시 하이라이트 계속 남아있는 에러 수정
+  ```swift
+  //profileImageView.image = #imageLiteral(resourceName: "defaultProfileImage")
+  profileImageView.image = UIImage(named: "defaultProfileImage")
+  ```
+
+### 4. TableView Cell 클릭시 하이라이트 계속 남아있는 버그 수정
 
 - 먼저, 스토리보드에서 selection 스타일 none으로 설정
 
@@ -33,7 +35,7 @@ profileImageView.image = UIImage(named: "defaultProfileImage")
       }
   ```
 
-### 16진수 컬러코드 사용해서 UIColor 생성
+### 5. 16진수 컬러코드 사용해서 UIColor 생성
 
 - UIColor를 RGB 수치를 이용해 생성 할 때는 아래와 같은 생성자를 이용 할 수 있지만, 이 생성자를 이용 할 경우 웹에서 쓰이는 16진수 컬러코드를 그대로 사용 할 수가 없다. 
 
@@ -109,7 +111,7 @@ profileImageView.image = UIImage(named: "defaultProfileImage")
 
 - [출처](https://code.i-harness.com/ko-kr/q/172395f)
 
-### UserDefaults
+### 6. UserDefaults
 
 - UserDefaults (Objective-C 에서는 NSUserDefaults) 는 대체로 앱의 설정 값을 저장하고 나중에 읽기 위한 용도로 사용된다. 별도의 파일이나 데이터베이스 엑세스 없이 쓸 수 있다.
 
@@ -195,7 +197,7 @@ profileImageView.image = UIImage(named: "defaultProfileImage")
 
 - [참고: UIColor와 같은 지원되지 않는 타입을 저장하기 위해 UserDefaults extension으로 추가하는 방법](https://www.bobthedeveloper.io/blog/store-uicolor-with-userdefaults-in-swift)
 
-### UIImage의 URL 가져오기, URL을 통해서 UIImage 다시 생성하기
+### 7. UIImage의 URL 가져오기, URL을 통해서 UIImage 다시 생성하기
 
 - UIImage를 UserDefaults에 굳이 저장을 할 수 있게 extension으로 구현할 수 있지만, 그러면 이미지 사이즈가 크면 앱이 느려지거나 터지는 경우가 생겨서, UIImage의 URL을 저장하는 방법으로 구현함
 
@@ -237,12 +239,12 @@ profileImageView.image = UIImage(named: "defaultProfileImage")
 
 - [참고2](https://rasukarusan.hatenablog.com/entry/2019/01/07/233207)
 
-### 키보드 사라지는 타이밍 이슈
+### 8. 키보드 사라지는 타이밍 이슈
 
 - 프로필 수정 후 MainTableViewController로 이동할 때 먼저 수정 화면이 사라지고 키보드가 나중에 사라지는 이슈
 - 화면 dismiss 이전에 self.view.endEditing(true) 코드 추가해서 해결
 
-### UITableView Section Header에 button 추가 / 새로운 Cell 추가 후 reloadData
+### 9. UITableView Section Header에 button 추가 / 새로운 Cell 추가 후 reloadData
 
 - http://swiftquickstart.blogspot.com/2016/10/custom-tableview-section-headers.html
 
@@ -270,7 +272,7 @@ profileImageView.image = UIImage(named: "defaultProfileImage")
   }
   ```
 
-### [Dealing with magic number / magic string](https://www.bignerdranch.com/blog/using-swift-enumerations-makes-segues-safer/)
+### 10. [Dealing with magic number / magic string](https://www.bignerdranch.com/blog/using-swift-enumerations-makes-segues-safer/)
 
 - Using Swift Enumerations Makes Segues Safer
 
@@ -306,7 +308,7 @@ profileImageView.image = UIImage(named: "defaultProfileImage")
   }
   ```
 
-### 미해결 이슈
+## 미해결 이슈
 
 - 프로필 셀 터치 후 present modally 한 번에 안 넘어갈 때 있음. 여러번 그런다
 
@@ -317,4 +319,3 @@ profileImageView.image = UIImage(named: "defaultProfileImage")
   ```
 
 - [프로필 이미지, 프로필 이름] ==> 구조체 리스트로 관리하기
-

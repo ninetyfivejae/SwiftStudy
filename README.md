@@ -54,6 +54,17 @@
 
 - [SettingsApplication 과제 하면서 깨달은 것들 정리](https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#settingsapplication)
 
+  > 사운드 참고 링크
+  > ImageView 모양 원형으로 만들기
+  > 이미지 설정할 때, #imageLiteral로 지정하는 것
+  > TableView Cell 클릭시 하이라이트 계속 남아있는 버그 수정
+  > 16진수 컬러코드 사용해서 UIColor 생성
+  > **[UserDefaults](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#userdefaults>)**
+  > UIImage의 URL 가져오기, URL을 통해서 UIImage 다시 생성하기
+  > 키보드 사라지는 타이밍 이슈
+  > UITableView Section Header에 button 추가 / 새로운 Cell 추가 후 reloadData
+  > **[Dealing with magic number / magic string](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#dealing-with-magic-number--magic-string>)**
+
 ## 추가 정리
 
 - Typealias는 static 으로 설정이 된다
