@@ -272,12 +272,13 @@
 - This iPhone 6 is running iOS 12.2 (16E227), which may not be supported by this version of Xcode.
 - 저번에 xcode 최신 버전으로 업데이트하고, 다시 downgrade한 이후에 발생한 에러였는데, iOS 12.2 xcode device support file이 없어서 발생한 에러였음
 - iOS12.2 버전인데 iOS12.1 버전까지만 support file이 있었음
+- [https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/MVVM.md]()
 
 ## [Realm](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Realm.md#realm)
 
 ## [Observer Pattern in Swift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/ObserverPattern.md#observer-pattern-in-swift)
 
-## [MVVM Architecture in Swift]()
+## [MVVM Architecture in Swift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/정리/MVVM.md)
 
 ## [RxSwift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/RxSwift.md#rxswift)
 
