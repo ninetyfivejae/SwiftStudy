@@ -143,3 +143,56 @@ let date2: Date? = dateFormatter.date(from: dateString2)
 
 dateFormatter.dateFormat = "HH:mm:ss"
 dateFormatter.string(from: date2!)
+
+
+
+
+
+import Foundation
+import SystemConfiguration.CaptiveNetwork
+
+func getWiFiSsid() -> String? {
+	var ssid: String?
+	if let interfaces = CNCopySupportedInterfaces() as NSArray? {
+		for interface in interfaces {
+			if let interfaceInfo = CNCopyCurrentNetworkInfo(interface as! CFString) as NSDictionary? {
+				ssid = interfaceInfo[kCNNetworkInfoKeySSID as String] as? String
+				break
+			}
+		}
+	}
+	return ssid
+}
+
+getWiFiSsid()
+
+struct NetworkInfo {
+	public let interface:String
+	public let ssid:String
+	public let bssid:String
+	init(_ interface:String, _ ssid:String,_ bssid:String) {
+		self.interface = interface
+		self.ssid = ssid
+		self.bssid = bssid
+	}
+}
+
+func getNetworkInfos() -> Array<NetworkInfo> {
+	// https://forums.developer.apple.com/thread/50302
+	guard let interfaceNames = CNCopySupportedInterfaces() as? [String] else {
+		return []
+	}
+	let networkInfos:[NetworkInfo] = interfaceNames.compactMap{ name in
+		guard let info = CNCopyCurrentNetworkInfo(name as CFString) as? [String:AnyObject] else {
+			return nil
+		}
+		guard let ssid = info[kCNNetworkInfoKeySSID as String] as? String else {
+			return nil
+		}
+		guard let bssid = info[kCNNetworkInfoKeyBSSID as String] as? String else {
+			return nil
+		}
+		return NetworkInfo(name, ssid,bssid)
+	}
+	return networkInfos
+}

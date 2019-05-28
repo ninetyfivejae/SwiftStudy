@@ -54,16 +54,16 @@
 
 - [SettingsApplication 과제 하면서 깨달은 것들 정리](https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#settingsapplication)
 
-  > 사운드 참고 링크
-  > ImageView 모양 원형으로 만들기
-  > 이미지 설정할 때, #imageLiteral로 지정하는 것
-  > TableView Cell 클릭시 하이라이트 계속 남아있는 버그 수정
-  > 16진수 컬러코드 사용해서 UIColor 생성
-  > **[UserDefaults](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#6-userdefaults>)**
-  > UIImage의 URL 가져오기, URL을 통해서 UIImage 다시 생성하기
-  > 키보드 사라지는 타이밍 이슈
-  > UITableView Section Header에 button 추가 / 새로운 Cell 추가 후 reloadData
-  > **[Dealing with magic number / magic string](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#10-dealing-with-magic-number--magic-string>)**
+  > - 사운드 참고 링크
+  > - ImageView 모양 원형으로 만들기
+  > - 이미지 설정할 때, #imageLiteral로 지정하는 것
+  > - TableView Cell 클릭시 하이라이트 계속 남아있는 버그 수정
+  > - 16진수 컬러코드 사용해서 UIColor 생성
+  > - **[UserDefaults](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#6-userdefaults>)**
+  > - UIImage의 URL 가져오기, URL을 통해서 UIImage 다시 생성하기
+  > - 키보드 사라지는 타이밍 이슈
+  > - UITableView Section Header에 button 추가 / 새로운 Cell 추가 후 reloadData
+  > - **[Dealing with magic number / magic string](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#10-dealing-with-magic-number--magic-string>)**
 
 ## 추가 정리
 
@@ -272,6 +272,7 @@
 - This iPhone 6 is running iOS 12.2 (16E227), which may not be supported by this version of Xcode.
 - 저번에 xcode 최신 버전으로 업데이트하고, 다시 downgrade한 이후에 발생한 에러였는데, iOS 12.2 xcode device support file이 없어서 발생한 에러였음
 - iOS12.2 버전인데 iOS12.1 버전까지만 support file이 있었음
+- iOS 버전 업데이트할 때마다 새로운 device support 받아야함
 
 ## [Realm](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Realm.md#realm)
 
