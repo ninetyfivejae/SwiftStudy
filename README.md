@@ -274,6 +274,8 @@
 - iOS12.2 버전인데 iOS12.1 버전까지만 support file이 있었음
 - iOS 버전 업데이트할 때마다 새로운 device support 받아야함
 
+## [Swift의 기초, 객체지향 및 함수형 언어, RxSwift란?]()
+
 ## [Realm](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Realm.md#realm)
 
 ## [Observer Pattern in Swift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/ObserverPattern.md#observer-pattern-in-swift)
