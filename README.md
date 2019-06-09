@@ -274,7 +274,7 @@
 - iOS12.2 버전인데 iOS12.1 버전까지만 support file이 있었음
 - iOS 버전 업데이트할 때마다 새로운 device support 받아야함
 
-## [Swift의 기초, 객체지향 및 함수형 언어, RxSwift란?](https://github.com/ninetyfivejae/SwiftStudy/blob/master/정리/스위프트 특징.md#스위프트의-언어적-특성)
+## [Swift의 기초, 객체지향 및 함수형 언어, RxSwift란?](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8%20%ED%8A%B9%EC%A7%95.md)
 
 ## [Realm](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Realm.md#realm)
 
