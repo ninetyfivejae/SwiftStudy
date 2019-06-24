@@ -50,7 +50,11 @@
   
 - 
 
+- 
+
 - 위에 이론 내용 사진 찍어놓은거 내용 덧붙이면서 다시 한 번 더 정리
+
+- 
 
 - 
 
@@ -67,12 +71,15 @@
 > - The view model then **provides data from the model in a form that the view can easily use.** The view model retrieves data from the model and then makes the data available to the view, and may reformat the data in some way that makes it simpler for the view to handle.
 > - The view model also **provides implementations of commands that a user of the application initiates in the view**. For example, when a user clicks a button in the UI, that action **can trigger a command in the view model.**
 > - The view model may also be responsible for defining logical state changes that affect some aspect of the display in the view, such as an indication that some operation is pending.
+>
+> ---
+>
+> - Which means
+>   - ViewModel은 Presentation Logic을 다루게 된다 하지만 UI는 다루지 않는다
+>   - 그런 다음 뷰 모델은 뷰에서 쉽게 사용할 수 있는 형태로 모델의 데이터를 제공한다.
+>   - 또한 뷰 모델은 애플리케이션 사용자가 뷰에서 시작하는 command pattern 구현을 제공한다. 예를 들어 사용자가 UI에서 버튼을 클릭하면 해당 동작이 뷰 모델에서 명령을 트리거할 수 있다.
+>   - ViewModel과 View를 바인딩할 때 주로 Rx를 이용한다
 
-- Which means
-  - ViewModel은 Presentation Logic을 다루게 된다 하지만 UI는 다루지 않는다
-  - 그런 다음 뷰 모델은 뷰에서 쉽게 사용할 수 있는 형태로 모델의 데이터를 제공한다.
-  - 또한 뷰 모델은 애플리케이션 사용자가 뷰에서 시작하는 command pattern 구현을 제공한다. 예를 들어 사용자가 UI에서 버튼을 클릭하면 해당 동작이 뷰 모델에서 명령을 트리거할 수 있다.
-  - ViewModel과 View를 바인딩할 때 주로 Rx를 이용한다
 - 참고
   - [여기 링크 안에 더 좋은 링크들 있음](https://github.com/ClintJang/sample-swift-mvvm)
   - [viewModel에 대해서](https://eunjin3786.tistory.com/31)
@@ -87,8 +94,8 @@
 
 - Command 패턴이란,
 
-  - 커맨드 패턴을 이용하면 요구 사항을 객체로 캡슐화할 수 있으며, 매개변수를 써서 여러 가지 다른 요구 사항을 집어 넣을수도 있다. 또한, 요청 내역을 큐에 저장하거나 로그로 기록할수도 있으며, 작업취소 기능도 지원함.
-  - 좀 더 쉽게 정의 해보면 여러 객체들에서 발생하는 일들을 Command 에서 일괄적으로 명령을 처리를 하게 된다. 그러므로 각각의 일들을 분리 시켜서 관리 할 수 있음.
+  - 커맨드 패턴을 이용하면 요구 사항을 객체로 캡슐화할 수 있으며, 매개변수를 써서 여러 가지 다른 요구 사항을 집어 넣을수도 있다. 또한, 요청 내역을 큐에 저장하거나 로그로 기록할수도 있으며, 작업취소 기능도 지원함
+  - 좀 더 쉽게 정의 해보면 여러 객체들에서 발생하는 일들을 Command 에서 일괄적으로 명령을 처리를 하게 된다. 그러므로 각각의 일들을 분리 시켜서 관리 할 수 있음
   - Command 패턴을 가지고 MVVM 아키텍쳐의 뷰와 뷰모델을 분리 할 수 있도록 만드는 것
 
 - The command pattern is used to express a request, including the call to be made and all of its required parameters, in a command object.
@@ -151,16 +158,18 @@
   doorModule.close()
   ```
 
-### Command 패턴을 통해 View와 ViewModel을 분리
-
+- 
+- 
 - 아래부터 스위처 앱으로 예제 정리하기
+- 
+- 
 
 ## 5. Data Binding
 
-- 데이터 바인딩의 개념은 쉽게 말해 **Model과 UI 요소 간의 싱크를 맞춰주는 것**이라 할 수 있다(정확히 말하면 UI 데이터 바인딩이지만 iOS를 다루기 때문에 이것을 다룬다)
-- 이 패턴을 통해 View와 로직이 분리되어 있어도 한 쪽이 바뀌면 다른 쪽도 업데이트가 이루어져 데이터의 일관성을 유지할 수 있다.
+- 데이터 바인딩의 개념은 쉽게 말해 **Model과 UI 요소 간의 싱크를 맞춰주는 것**
+- 이 패턴을 통해 View와 로직이 분리되어 있어도 한 쪽이 바뀌면 다른 쪽도 업데이트가 이루어져 데이터의 일관성을 유지할 수 있다
 
-### [Property Observer 사용한 Data Binding 예제](https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/)
+### [5-1. Property Observer 사용한 Data Binding 예제](https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/)
 
 - iOS에서 데이터 바인딩을 하는 방법은 다음과 같다.
   - KVO
@@ -202,9 +211,9 @@ extension ViewController: UITextFieldDelegate {
 }
 ```
 
-이 상태에서는 UI의 변화가 ViewModel에 영향을 끼치고 있다. 즉, 방향이 하나인 것이다. 이것을 **프로퍼티 옵저버**를 통해 데이터 바인딩을 하여 양방향으로 해보자.
+이 상태에서는 UI의 변화가 ViewModel에 영향을 끼치고 있다. 즉, 방향이 하나인 것이다. 이것을 **프로퍼티 옵저버**를 통해 데이터 바인딩을 하여 양방향으로 할 수 있다
 
-먼저, `didSet`을 통해 Person의 변화를 감지한다. 변화 이벤트가 일어날 시 적절한 처리를 할 객체가 필요한데 이것에는 다양한 방법을 사용할 수 있다. 그 중 클로저를 사용해보자. `bind(lisenter: Listener?)` 메서드를 통해 외부에서 PersonViewModel의 Listener 타입의 listener를 지정할 수 있게끔 한다.
+먼저, `didSet`을 통해 Person의 변화를 감지한다. 변화 이벤트가 일어날 시 적절한 처리를 할 객체가 필요한데 이것에는 다양한 방법을 사용할 수 있다. 그 중 클로저를 사용해보자. `bind(lisenter: Listener?)` 메서드를 통해 외부에서 PersonViewModel의 Listener 타입의 listener를 지정할 수 있게 한다
 
 ```swift
 struct PersonViewModel {
@@ -223,7 +232,7 @@ struct PersonViewModel {
 }
 ```
 
-그러면 ViewController에서는 다음과 같이 바인딩을 하면 된다.
+그러면 ViewController에서는 다음과 같이 바인딩을 하면 된다
 
 ```swift
 override func viewDidLoad() {
@@ -234,9 +243,9 @@ override func viewDidLoad() {
 }
 ```
 
-이를 통해 textFieldDidEndEditing에서 Person이 바뀌었을 시에, 즉 ViewModel이 바뀌었을 때 자동으로 yearLabel이 업데이트될 것이다.
+이를 통해 textFieldDidEndEditing에서 Person이 바뀌었을 시에, 즉 ViewModel이 바뀌었을 때 자동으로 yearLabel이 업데이트될 것이다
 
-텍스트 필드도 delegate를 사용하지 않고 데이터 바인딩을 통해 로직을 수행할 수 있다. UITextField를 상속하는 BindingTextField 클래스를 만들어 해보자.
+텍스트 필드도 delegate를 사용하지 않고 데이터 바인딩을 통해 로직을 수행할 수 있다
 
 ```swift
 class BindingTextField: UITextField {
@@ -276,8 +285,9 @@ ViewController에서는 다음과 바꿔주면 된다.
 }
 ```
 
-### Rx 사용한 Data Binding 예제
+### 5-2. Rx 사용한 Data Binding 예제
 
+-  
 -  ==> Rx 라이브러리로 데이터 바인딩 시킨 예제 추가하기
 - 
 
@@ -289,7 +299,7 @@ ViewController에서는 다음과 바꿔주면 된다.
 
 ## 참고
 
-- MVC, MVP, MVVM 패턴과 같은 프레임워크가 나오게 된 궁극적인 이유는, 각 계층을 분리시킴으로써 코드의 재활용성을 높이고 불필요한 중복을 막기 위한 이유.
+- MVC, MVP, MVVM 패턴과 같은 프레임워크가 나오게 된 궁극적인 이유는, 각 계층을 분리시킴으로써 코드의 재활용성을 높이고 불필요한 중복을 막기 위한 이유
 - 모델과 뷰의 의존성을 어떻게 제어하는가에 따라 각 패턴이 분류된다
 
 ### MVC
@@ -308,7 +318,7 @@ ViewController에서는 다음과 바꿔주면 된다.
 
 - MVC 패턴과 다르게 입력이 view에서 처리된다. Presenter는 view의 인스턴스를 갖고 있으며 view와 1대1 관계이고, 그에 해당하는 model의 인스턴스 또한 갖고 있기 때문에 view와 model 사이에서 다리와 같은 역할을 한다
 - view에서 이벤트가 발생하면 presenter에게 전달해주고 presenter는 해당 이벤트에 따른 model을 조작하고 그 결과를 바인딩을 통해 view에게 통보를 하여 view를 업데이트 시켜준다
-- MVC 패턴과는 다르게 presenter를 통해 model과 view를 완벽히 분리해주기 때문에 view는 model을 다로 알고 있지 ㅇ낳아도 된다는 장점이 있다
+- MVC 패턴과는 다르게 presenter를 통해 model과 view를 완벽히 분리해주기 때문에 view는 model을 다로 알고 있지 않아도 된다는 장점이 있다
 - 단점으로는 view와 1대1 관계이기 때문에 view와의 읜존성이 매우 강하다
 - MVC에서 컨트롤러가 presenter로 교체된 형태이고 presenter는 view와 같은 레벨에 있다. Presenter는 view와 model의 이벤트를 모두 받으면서 둘 사이의 상호작용을 조정한다
 

@@ -258,7 +258,7 @@
     - 다시 뒤로가기 버튼(Title)을 누르면 가장 위에 있던(top) SecondViewController가 pop되어 사라지고, 밑에 있던 root view가 나오게 된다
     - 가장 base에 있는 view는 사라지지 않고 top에 있는 view만 들어왔다 나갔다를 반복한다. 그리고 view의 스택에서 pop된 데이터는 메모리에서 사라지게 된다
     - 그래서 2st viewDidLoad만 출력이 되고 1st는 처음 한 번만 출력이 되는 것이다.
-    - viewDidLoad가 SecondViewController로 갈때만 호출이 되는 이유는 root view는 항상 메모리에 로드돼있는 상태에서 그 위에 추가되는 view들은 메모리에 로드되었다가 삭제되었다가를 반복하기 때문. viewDidLoad는 뷰의 컨트롤러가 메모리에 로드되고 난 후에 호출된다고 명시돼있음
+    - viewDidLoad가 SecondViewController로 갈때만 호출이 되는 이유는 root view는 항상 메모리에 load되어 있는 상태에서 그 위에 추가되는 view들은 메모리에 로드되었다가 삭제되었다가를 반복하기 때문. viewDidLoad는 뷰의 컨트롤러가 메모리에 로드되고 난 후에 호출된다고 명시돼있음
 
   - 코드
 
@@ -318,7 +318,7 @@
     2st viewDidAppear
     ```
 
-- What is better place for loading data from API?
+- (처음 배우던 입장에서 궁금했었던 질문)What is better place for loading data from API?
 
   ```
   viewDidLoad method is called first time when UIViewController is first loaded and when it pop and then you reenter in it at that time viewDidLoad is called.
