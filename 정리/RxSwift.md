@@ -151,9 +151,9 @@
 
 ### DisposableBag
 
-- Just like in notifications we remove observer to clear ARC count like that we have to remove observer in order to decrease reference count.To overcome this RxSwift gives us a tool to deallocate memory automatically .i.e DisposableBag
+- Just like in notifications we remove observer to clear ARC count like that we have to remove observer in order to decrease reference count. To overcome this RxSwift gives us a tool to deallocate memory automatically .i.e DisposableBag
 
-- It is given in RxSwift to deal with ARC and memory management.This is a virtual “bag” of Observer objects which are disposed of when their parent object is deallocated.If object contains DisposableBag as a property, then it will automatically deallocate it.
+- It is given in RxSwift to deal with ARC and memory management. This is a virtual “bag” of Observer objects which are disposed of when their parent object is deallocated.If object contains DisposableBag as a property, then it will automatically deallocate it.
 
 - Without a DisposableBag, you’d get one of two results: either the Observer would create a retain cycle, hanging on to what it’s observing indefinitely, or it could get deallocated out from under your object, causing a crash.
 
