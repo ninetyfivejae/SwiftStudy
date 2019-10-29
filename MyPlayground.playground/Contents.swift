@@ -1,126 +1,133 @@
 import UIKit
 
-enum Weekday{
-    case mon
-    case tue
-}
-print(Weekday.mon.hashValue)
+extension UserDefaults {
 
-var yourName: String? = "jae"
-print(yourName)
-
-if let name = yourName {
-    print(name)
+func set<T: Encodable>(encodable: T, forKey key: String) {
+	if let data = try? JSONEncoder().encode(encodable) {
+		set(data, forKey: key)
+	}
 }
 
-yourName! + "aaa"
-
-var myName: String! = "yagom"
-print(myName) //yagom
-myName = nil
-
-//---------------------------------------------------
-
-prefix operator ++
-
-struct Position {
-    var x: Int
-    var y: Int
+func value<T: Decodable>(_ type: T.Type, forKey key: String) -> T? {
+	if let data = object(forKey: key) as? Data,
+		let value = try? JSONDecoder().decode(type, from: data) {
+		return value
+	}
+	return nil
 }
 
-extension Position {
-    static func + (left: Position, right: Position) -> Position {
-        return Position(x: left.x + right.x, y: left.y + right.y)
-    }
-    
-    static prefix func - (vector: Position) -> Position {
-        return Position(x: -vector.x, y: -vector.y)
-    }
-    
-    static func += (left: inout Position, right: Position) {
-        left = left + right
-    }
 }
 
-extension Position {
-    static func == (left: Position, right: Position) -> Bool {
-        return (left.x == right.x) && (left.y == right.y)
-    }
-
-    static func != (left: Position, right: Position) -> Bool {
-        return !(left == right)
-    }
+class City: Codable {
+var name: String?
+var latitude: Double?
+var longitude: Double?
+var currentTime: String?
+var currentTemperature: String?
 }
 
-extension Position {
-    static prefix func ++ (position: inout Position) -> Position {
-        position.x += 1
-        position.y += 1
-        return position
-    }
+var cityTest = City()
+cityTest.name = "first city"
+cityTest.latitude = 1111
+cityTest.longitude = 2222
+
+// Save
+UserDefaults.standard.set(encodable: City(), forKey: "CityTest")
+
+print(cityTest.name)
+print(cityTest.latitude)
+print(cityTest.longitude)
+print(cityTest.currentTime)
+print(cityTest.currentTemperature)
+
+UserDefaults.standard.synchronize()
+
+// Load
+let city = UserDefaults.standard.value(City.self, forKey: "CityTest")
+
+print(city!.name)
+print(city!.latitude)
+print(city!.longitude)
+print(city!.currentTime)
+print(city!.currentTemperature)
+
+
+
+
+
+struct CellPhone : Codable {
+	//String, Double confirm to Codable types.
+	var name : String?
+	var price : Double?
+	//OsType are also Codable types
+	var operatingSystem : OsType?
+	enum CodingKeys : String,CodingKey{
+		case name
+		case price
+		case operatingSystem
+	}
+}
+//String confirm to Codable.
+enum OsType  : String, Codable
+{
+	case android
+	case ios
+	case windows
+	case blackberry
 }
 
-var myPosition: Position = Position(x: 10, y: 10)
-var yourPosition: Position = Position(x: -5, y: -5)
-
-print(myPosition + yourPosition)
-print(-myPosition)
-
-myPosition += yourPosition
-print(myPosition)
-
-print(myPosition == yourPosition)
-print(myPosition != yourPosition)
-
-print(++myPosition)
-
-//---------------------------------------------------
-
-//public func sorted(by areInIncreasingOrder: (Element, Element) -> Bool) -> [Element]
-
-let names: [String] = ["wizplan", "eric", "yagom", "jenny"]
-
-
-
-func backwards(first: String, second: String) -> Bool {
-    print("\(first) \(second) 비교 중")
-    return first > second
+class User : NSObject, Codable {
+	var name: String?
+	var phoneNumber: Int?
+	
+	//	required init?(coder aDecoder: NSCoder) {
+	//		//Returns an object initialized from data in a provided unarchiver.
+	//		self.name = aDecoder.decodeObject(forKey: "name") as? String
+	//		self.phoneNumber = aDecoder.decodeObject(forKey: "phoneNumber") as? Int
+	//	}
+	//
+	//	func encode(with aCoder: NSCoder) {
+	//		//Encodes the given object using provided archiver.
+	//		aCoder.encode(self.name, forKey: "name")
+	//		aCoder.encode(self.phoneNumber, forKey: "phoneNumber")
+	//	}
 }
-let firstReversed: [String] = names.sorted(by: backwards)
-print(firstReversed)
 
+//create the cellPhoneObject
+let cellPhoneObject = CellPhone(name : "IphoneX",price : 100000,operatingSystem : .ios)
+let user = User()
+user.name = "test"
+user.phoneNumber = 12345
+var test: [User] = []
+test.append(user)
 
-
-let secondReversed: [String] = names.sorted(by: { (first: String, second: String) -> Bool in
-    return first > second
-})
-print(secondReversed)
-
-
-
-let thirdReversed: [String] = names.sorted() { (first: String, second: String) -> Bool in
-    return first > second
+let encodedData = try? JSONEncoder().encode(test)
+if let data = encodedData{
+	let cellPhoneObject = try? JSONDecoder().decode([User].self,from: data)
 }
-print(thirdReversed)
 
-
-
-let fourthReversed: [String] = names.sorted { (first: String, second: String) -> Bool in
-    return first > second
+func save(){
+	UserDefaults.standard.set(try? PropertyListEncoder().encode(test), forKey: "test")
 }
-print(fourthReversed)
 
+var test2: [User] = []
 
-
-let fifthReversed: [String] = names.sorted() {
-    return $0 > $1
+func load(){
+	if let data = UserDefaults.standard.object(forKey: "test") as? Data {
+		test2 = try! PropertyListDecoder().decode([User].self, from: data)
+	}
 }
-print(fifthReversed)
 
+save()
+load()
 
+print(test)
+print(test2)
 
-let sixthReversed: [String] = names.sorted { $0 > $1 }
-print(sixthReversed)
-
-//---------------------------------------------------
-
+////encode the object with the help of JSONEncoder.
+//let encodedData = try? JSONEncoder().encode(cellPhoneObject)
+//
+////use the JSONDecoder to decode the encoded data
+//if let data = encodedData{
+//	let cellPhoneObject = try? JSONDecoder().decode(CellPhone.self,from: data)
+//}
