@@ -65,17 +65,17 @@
 - func 키워드 / 함수이름 / (parameter name: 데이터 타입) / return arrow 반환타입
 
 ```swift
-func hello(name: String) -> String{
+func hello(name: String) -> String {
     return "Hello~ " + name
 }
 
 //반환값이 없으면 생략하거나 void로 명시
-func hello2(name: String) -> Void{
+func hello2(name: String) -> Void {
     
 }
 
 //안 적어줘도 상관 없음
-func hello3(name: String){
+func hello3(name: String) {
     
 }
 
@@ -101,7 +101,7 @@ let message = hello(name: "jae")
 - Formal Parameter: 함수 내부에서 사용되는 x
 
   ```swift
-  func plusOne(x: Int) -> Int{
+  func plusOne(x: Int) -> Int {
       return x + 1
   }
   
@@ -114,7 +114,7 @@ let message = hello(name: "jae")
 
   ```swift
   //error: MyPlayground.playground:6:7: error: cannot assign to value: 'x' is a 'let' constant
-  func test(_ x: Int) -> Int{
+  func test(_ x: Int) -> Int {
       x = x + 1
       return x
   }
@@ -134,11 +134,11 @@ let message = hello(name: "jae")
   - argument label이 달라도 함수 오버로딩이 된다. argument label이 있는 함수는 같이 써줘야 함수를 사용할 수 있기 때문.
 
   ```swift
-  func calculate(multiflyFirstNumber num1: Int, bySecondNumber num2: Int) -> Int{
+  func calculate(multiflyFirstNumber num1: Int, bySecondNumber num2: Int) -> Int {
       return num1 + num2
   }
   
-  func calculate(_ num1: Int, _ num2: Int) -> Int{
+  func calculate(_ num1: Int, _ num2: Int) -> Int {
       return num1 * num2
   }
   
@@ -179,9 +179,9 @@ let message = hello(name: "jae")
 - 가변 파라미터는 함수 내부에 배열로 전달된다
 
   ```swift
-  func addNumbers(numbers: Int...) -> Int{
+  func addNumbers(numbers: Int...) -> Int {
       var sum = 0
-      for num in numbers{
+      for num in numbers {
           sum += num
       }
       return sum
@@ -190,7 +190,7 @@ let message = hello(name: "jae")
   addNumbers(numbers: 1,2,3,4,5)
   
   //다른 변수랑도 사용 가능
-  func test(number x: Int, numbers list: Int...) -> Int{
+  func test(number x: Int, numbers list: Int...) -> Int {
       return list[0]
   }
   
@@ -213,7 +213,7 @@ let message = hello(name: "jae")
   ```swift
   //매개변수들은 let키워드로 상수임을 알 수 있다.
   //함수 인자로 전달해준 값들을 실수로 함수 안에서 값을 변경하지 못하게 하기 위해서이다
-  func addTwoNumber(num1: Int, num2: inout Int) -> Int{
+  func addTwoNumber(num1: Int, num2: inout Int) -> Int {
       num2 = 7
       return num1 + num2
   }
@@ -233,12 +233,12 @@ let message = hello(name: "jae")
 
   ```swift
   //구조체 타입으로 반환
-  struct Stat{
+  struct Stat {
       let sum: Double
       let avg: Double
   }
   
-  func statistics(_ numbers: Int...) -> Stat{
+  func statistics(_ numbers: Int...) -> Stat {
       for n in numbers{
           sum += n
       }
@@ -250,7 +250,7 @@ let message = hello(name: "jae")
   print(result.avg)
   
   //반환값이 여러개인 함수, 튜플 타입으로 반환
-  func myInfo() -> (name: String, weight: Int){
+  func myInfo() -> (name: String, weight: Int) {
       return ("jae", 70)
   }
   
@@ -274,7 +274,7 @@ let message = hello(name: "jae")
   
   var function: ((Int, Int) -> Int)?
   
-  switch op{
+  switch op {
       case "+":
       	function = add
       case "-":
@@ -287,14 +287,14 @@ let message = hello(name: "jae")
       	break
   }
   
-  func processResult(function f: (Int, Int) -> Int, lhs: Int, rhs: Int) -> Int{
+  func processResult(function f: (Int, Int) -> Int, lhs: Int, rhs: Int) -> Int {
       return f(lhs, rhs)
   }
   
-  if let calc = function{
+  if let calc = function {
       let result = processResult(function: calc, lhs: firstOperand, rhs: secondOperand)
       print("\(firstOperand) \(op) \(secondOperand) = \(result)")
-  }else{
+  } else {
       print("not supported")
   }
   ```
@@ -308,17 +308,17 @@ let message = hello(name: "jae")
 - 하지만 selectOperator 함수와 같이 함수 형식을 반환하는 경우에는 반환되는 함수를 통해 내포된 함수를 간접적으로 호출할 수 있다
 
   ```swift
-  func selectOperator(operator op: String) -> ((Int, Int) -> Int)?{
-      func add(_ a: Int, _ b: Int) -> Int{
+  func selectOperator(operator op: String) -> ((Int, Int) -> Int)? {
+      func add(_ a: Int, _ b: Int) -> Int {
           print(#function)
           return a+b
       }
-      func subtract(_ a: Int, _ b: Int) -> Int{
+      func subtract(_ a: Int, _ b: Int) -> Int {
           print(#function)
           return a-b
       }
       
-      switch op{
+      switch op {
           case "+":
           	return add
           case "-":

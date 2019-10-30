@@ -2,50 +2,49 @@
 
 ## 예습
 
-- [SwiftBasicExamples](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%98%88%EC%8A%B5/SwiftBasicExamples.md#swiftbasicexamples)
-- [Flashlight App](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%98%88%EC%8A%B5/FlashlightApp.md#flashlight-app)
+- SwiftBasicExamples
+- Flashlight App
 
 ## En#SwiftStudy
 
 ### 1. Swift에서 타입이란
 
-- [상수와 변수, 함수](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/let%2C%20var%2C%20func.md)
+- [상수와 변수, 함수](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/let_var_func.md#let--var--func)
 - [Property(Stored, Computed, Class)](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Property.md#propertystored-computed-class)
-- [Collection(Array, Dictionary, Set)](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Collection.md#collection-array-dictionary-set)
-- [Class / Struct / Enum](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Class%20:%20Struct%20:%20Enum.md#class--struct--enum)
-- [인스턴스 생성 및 소멸](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Initializer.md#%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%86%8C%EB%A9%B8)
-- [Optional / Optional Binding](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Optional.md#optional--optional-binding)
-- [Subscript](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Subscript.md#subscript)
+- [Collection(Array, Dictionary, Set)](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Collection.md#collection-array-dictionary-set)
+- [Class / Struct / Enum](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Class_Struct_Enum.md#class--struct--enum)
+- [인스턴스 생성 및 소멸](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Initializer.md#initializer)
+- [Optional / Optional Binding](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Optional.md#optional--optional-binding)
+- [Subscript](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Subscript.md#subscript)
 
 ### 2. UIKit 사용해보기
 
-- [스토리보드 / Frame, Bounds / Autolayout](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Views%26Controls.md#frame-and-bounds)
-- [UILabel / UIButton / UITextview / UITextField](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Views%26Controls.md#uitextview)
+- [Views and Controls /스토리보드 / Frame, Bounds / Autolayout](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Views%26Controls.md#views-and-controls)
+- [UILabel / UIButton / UITextview / UITextField](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Views%26Controls.md#uitextview)
 - [App Life Cycle & ViewController Life Cycle](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/AppLifeCycle%26ViewControllerLifeCycle.md#app-lifecycle-viewcontroller-lifecycle)
-- [UITableView / UICollectionView / UITabBarController](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/UIViewControllers.md#uiviewcontrollers)
-- [Segue](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Segue.md#segue)
+- [UITableView / UICollectionView / UITabBarController](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/UIViewControllers.md#uiviewcontrollers)
+- [Segue](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Segue.md#segue)
 - [Autolayout 정독하기(엄청 많음)](<https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853-CH7-SW1>)
   - [Intrinsic 컨텐트 사이즈 / Compression Resistance / Hugging](<https://dev17.tistory.com/1>)
   - Intrinsic 컨텐트 사이즈는 현제 컨텐트에 따른 사이즈임을 명시하고 있다. 포함한 컨텐트에 따라 사이즈가 변할 수 있다는 것이다
   - 주어진 상황이 빈 공간을 채워야 하는 상황이면 Hugging 우선도를 조절해서 배치하고, 겹쳐져있다면 Compression Resistance 우선도를 저절해서 배치하면 된다
-  - <https://medium.com/@vialyx/import-uikit-what-is-intrinsic-content-size-20ae302f21f3>
 
 ### 3. POP(Protocol Oriented Programming) 개요
 
-- [상속](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Inheritance.md#inheritance)
-- [TypeCasting](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/TypeCasting.md#type-casting)
-- [Generic](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Generic.md#%EC%A0%9C%EB%84%A4%EB%A6%AD)
-- [Protocol](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Protocol.md#protocol)
-- [Extension](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Extension.md#extension)
+- [상속](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Inheritance.md#inheritance)
+- [TypeCasting](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/TypeCasting.md#type-casting)
+- [Generic](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Generic.md#generic)
+- [Protocol](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Protocol.md#protocol)
+- [Extension](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Extension.md#extension)
 
 ### 4. Swift 기본 패턴
 
-- [Delegate](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Delegate.md#delegate)
+- [Delegate](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Delegate.md#delegate)
 - KVO: Key-Value Observing
 
 ### 5. 클로저와 ARC
 
-- [Closure](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Closure.md#closure>)
+- [Closure](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Closure.md#closure)
 - 고차함수(Map, Filter, Reduce)
 - ARC
 - 순환참조 해결
@@ -59,11 +58,11 @@
   > - 이미지 설정할 때, #imageLiteral로 지정하는 것
   > - TableView Cell 클릭시 하이라이트 계속 남아있는 버그 수정
   > - 16진수 컬러코드 사용해서 UIColor 생성
-  > - **[UserDefaults](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#6-userdefaults>)**
+  > - **[UserDefaults](https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#6-userdefaults)**
   > - UIImage의 URL 가져오기, URL을 통해서 UIImage 다시 생성하기
   > - 키보드 사라지는 타이밍 이슈
   > - UITableView Section Header에 button 추가 / 새로운 Cell 추가 후 reloadData
-  > - **[Dealing with magic number / magic string](<https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#10-dealing-with-magic-number--magic-string>)**
+  > - **[Dealing with magic number / magic string](https://github.com/ninetyfivejae/SwiftStudy/blob/master/SettingsApplication.md#10-dealing-with-magic-number--magic-string)**
 
 ## 추가 정리
 
@@ -274,17 +273,17 @@
 - iOS12.2 버전인데 iOS12.1 버전까지만 support file이 있었음
 - iOS 버전 업데이트할 때마다 새로운 device support 받아야함
 
-## [Swift의 기초, 객체지향 및 함수형 언어, RxSwift란?](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8%20%ED%8A%B9%EC%A7%95.md)
+## [Swift의 기초, 객체지향 및 함수형 언어, RxSwift란?](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/SwiftFeature.md#swift-feature)
 
-## [Realm](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Realm.md#realm)
+## [Realm](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Realm.md#realm)
 
-## [Observer Pattern in Swift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/ObserverPattern.md#observer-pattern-in-swift)
+## [Observer Pattern in Swift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/ObserverPattern.md#observer-pattern-in-swift)
 
-## [MVVM Architecture in Swift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/MVVM.md#mvvm)
+## [MVVM Architecture in Swift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/MVVM.md#mvvm)
 
-## [RxSwift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/RxSwift.md#rxswift)
+## [RxSwift](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/RxSwift.md#rxswift)
 
-## [Siri kit](https://github.com/ninetyfivejae/SwiftStudy/blob/master/정리/SiriKit.md)
+## [Siri kit](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/SiriKit.md#siri-kit)
 
 ## Dispatch
 
