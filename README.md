@@ -9,8 +9,8 @@
 
 ### 1. Swift에서 타입이란
 
-- [상수와 변수, 함수](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/%EC%83%81%EC%88%98%EC%99%80%20%EB%B3%80%EC%88%98%2C%20%ED%95%A8%EC%88%98.md#%EC%83%81%EC%88%98%EC%99%80-%EB%B3%80%EC%88%98-%ED%95%A8%EC%88%98)
-- [Property(Stored, Computed, Class)](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Property.md#propertystored-computed-class)
+- [상수와 변수, 함수](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/let%2C%20var%2C%20func.md)
+- [Property(Stored, Computed, Class)](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/Property.md#propertystored-computed-class)
 - [Collection(Array, Dictionary, Set)](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Collection.md#collection-array-dictionary-set)
 - [Class / Struct / Enum](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Class%20:%20Struct%20:%20Enum.md#class--struct--enum)
 - [인스턴스 생성 및 소멸](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Initializer.md#%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%86%8C%EB%A9%B8)
@@ -21,7 +21,7 @@
 
 - [스토리보드 / Frame, Bounds / Autolayout](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Views%26Controls.md#frame-and-bounds)
 - [UILabel / UIButton / UITextview / UITextField](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Views%26Controls.md#uitextview)
-- [App Life Cycle & ViewController Life Cycle](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/AppLifeCycle%26ViewControllerLifeCycle.md#app-lifecycle-viewcontroller-lifecycle)
+- [App Life Cycle & ViewController Life Cycle](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Docs/AppLifeCycle%26ViewControllerLifeCycle.md#app-lifecycle-viewcontroller-lifecycle)
 - [UITableView / UICollectionView / UITabBarController](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/UIViewControllers.md#uiviewcontrollers)
 - [Segue](https://github.com/ninetyfivejae/SwiftStudy/blob/master/%EC%A0%95%EB%A6%AC/Segue.md#segue)
 - [Autolayout 정독하기(엄청 많음)](<https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853-CH7-SW1>)
