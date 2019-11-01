@@ -10,7 +10,7 @@
 
    - 테이블뷰의 delegate, datasource가 ViewController 자신(self)임을 지정해야함
 
-     - 저번시간 예제 코드
+   - 저번시간 예제 코드
 
      ```swift
      import UIKit
@@ -120,7 +120,7 @@
 
 - 이와 같은 문제를 방지하기 위해서는 **재사용될 때 속성 값이 초기화가 되어야한다**
 
-- ![prepareForReuseImage](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Image/prepareReuseImage.png?raw=true)
+- <img src="https://raw.githubusercontent.com/ninetyfivejae/SwiftStudy/master/Image/prepareReuseImage.png?token=AGASNDD2LXOWAG43M6RO5QS5YUDP6" alt="prepareForReuseImage" style="zoom:50%;" />
 
 - func tableView(**_** tableView: UITableView, cellForRowAt indexPath: IndexPath) 메소드는 Cell이 화면에 보여질 때마다 호출이 되는데, cell 재사용시 cell 객체가 재사용 가능하면 이 메소드 전에 prepareForReuse라는 메소드가 호출된다.
 
@@ -254,7 +254,6 @@
   
       func grabPhotos() {
           let imgManager = PHImageManager.default()
-          
           let requestOptions = PHImageRequestOptions()
           requestOptions.isSynchronous = true
           requestOptions.deliveryMode = .highQualityFormat
@@ -284,17 +283,13 @@
       
       override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-          
           let imageView = cell.viewWithTag(1) as! UIImageView
-          
           imageView.image = imageArray[indexPath.row]
-          
           return cell
       }
       
       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
           let width = collectionView.frame.width / 3 - 1
-          
           return CGSize(width: width, height: width)
       }
       

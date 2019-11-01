@@ -170,7 +170,9 @@
 
 ### Delegate 사용 데이터 전달 - <질문>
 
-- TabBarController에 포함된 ViewController마다 Delegate를 사용하여 데이터 전달하려고 하는데 동작하지 않았습니다 ==> **ViewController들을 포함하는 상위 TabBarController에서 대리자 설정을 해주던가, prepare함수가 혹시나 호출되는지도 확인해볼 것**
+- TabBarController에 포함된 ViewController마다 Delegate를 사용하여 데이터 전달하려고 하는데 동작하지 않았습니다
+
+- ==> **ViewController들을 포함하는 상위 TabBarController에서 대리자 설정을 해주던가, prepare함수가 혹시나 호출되는지도 확인해볼 것**
 
   - Protocol
 

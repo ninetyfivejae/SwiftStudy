@@ -2,13 +2,13 @@
 
 ## 1. iOS App Lifecycle
 
-![iOSAppLifeCylceImage](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Image/appLifeCylceImage.png?raw=true)
+<img src="https://raw.githubusercontent.com/ninetyfivejae/SwiftStudy/master/Image/appLifeCylceImage.png?token=AGASNDGRVFLBQYEPJ7KZ6YS5YPMKI" alt="iOSAppLifeCylceImage" style="zoom:67%;" />
 
 ### 앱의 실행 상태는 5개 상태로 구분
 
 - 앱 생명주기는 앱이 화면상에서 보이지 않는 background 상태, 화면에 올라와 있는 상태인 foreground 등과 같은 상태들을 정의한 것
   - **Not Running**: 앱이 실행되지 않은 상태
-  - **Foreground[Inactive]**: 앱이 실행중인 상태 그러나 아무런 이벤트를 받지 않는 상태. 앱이 Foreground 상태로 돌아가지만, 이벤트는 받지 않는 상태, 앱의 상태 전환 과정에서 잠깐 머무는 단계.
+  - **Foreground[Inactive]**: 앱이 실행중인 상태 그러나 아무런 이벤트를 받지 않는 상태. 앱이 Foreground 상태로 돌아가지만, 이벤트는 받지 않는 상태, 앱의 상태 전환 과정에서 잠깐 머무는 단계
   - **Foreground[Active]**: 앱이 실행중이며 이벤트가 발생한 상태. 일반적으로 앱이 돌아가는 상태
   - (Inactive와 Active 상태를 합쳐서 Foreground 라고 함)
   - **Background**: 앱이 백그라운드에 있는 상태 그러나 실행되는 코드가 있는 상태. 앱이 Suspended(유예 상태) 상태로 진입하기 전 거치는 상태
@@ -60,11 +60,10 @@
 
 - Main Event Loop를 실행(touch, text input등 유저의 액션을 받는 루프) 및 기타 설정
 
-  - ![mainRunLoopImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/event_draw_cycle_a_2x.png)
   - 사용자 발생 이벤트 처리.
     **UIApplication object** sets up the main run loop at launch time and uses it to process events and handle updates to view-based interfaces. 앱의 메인쓰레드에서 실행. user-related events 순차적으로 처리.
   - UIKit으로 setup된 포트로 터치와 같은 사용자가 발생한 이벤트를 전달받음. EventQueue에 들어온 이벤트들을 순차적으로 처리함
-
+  
 - 앱 실행
 
 - 종료
@@ -84,14 +83,14 @@
   - 앱상태가 전환되는 동안(ex : 앱 실행, 백그라운드로 전환 및 앱 종료) UIApplication 객체는 다음 메소드들 중 해당하는 delegate 메소드를 호출하여 앱이 응답할 수 있는 기회를 제공한다
   - 이러한 메소드가 올바른 시간에 호출되도록 하려고 특별한 작업을 수행 할 필요는 없음. 응용프로그램 객체가 해당작업을 알아서 처리함
 
-  ```swift
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
-  func applicationWillResignActive(_ application: UIApplication)
-  func applicationDidEnterBackground(_ application: UIApplication)
-  func applicationWillEnterForeground(_ application: UIApplication)
-  func applicationDidBecomeActive(_ application: UIApplication)
-  func applicationWillTerminate(_ application: UIApplication)
-  ```
+    ```swift
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+    func applicationWillResignActive(_ application: UIApplication)
+    func applicationDidEnterBackground(_ application: UIApplication)
+    func applicationWillEnterForeground(_ application: UIApplication)
+    func applicationDidBecomeActive(_ application: UIApplication)
+    func applicationWillTerminate(_ application: UIApplication)
+    ```
 
   - **application**: - 앱이 처음 시작될 때 실행
 
@@ -126,10 +125,8 @@
 - **Launching an app into the foreground**
   - To determine whether your app is launching into the foreground or background, check the `applicationState` property of the shared `UIApplication`object in your `application:willFinishLaunchingWithOptions:` or `application:didFinishLaunchingWithOptions:` delegate method.
   - When the app is launched into the foreground, this property contains the value `UIApplicationStateInactive`. When the app is launched into the background, the property contains the value `UIApplicationStateBackground` instead.
-  - ![launchingAppForegroundImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_fg_2x.png)
 - **Launching an app into the background**. 어떤 경우가 있는지 확실히 모르겠음
   - 그냥 똑같이 실행시키는데, app window를 보여주지 않는 것임
-  - ![launchingAppBackground](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_bg_2x.png)
 
 #### 2.2. Launching in Landscape Mode
 
@@ -153,7 +150,6 @@
   - Suspend any dispatch queues or operation queues executing non-critical code. (You can continue processing network requests and other time-sensitive background tasks while inactive.)
 - 다시 active 상태로 돌아오게 되면 `applicationWillResignActive:` method에서 수행했던 작업들을 다시 되돌려야한다
 - **alert-based interruption, 가령 전화가 오는 경우 아래와 같이 cycle이 수행된다**. 전화가 오면 실행 중인 앱이 inactive 상태로 되고, 사용자가 전화를 받을지 무시할지 이벤트를 기다린다.
-- ![temporaryInterruptionCycleImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_interruptions_2x.png)
 
 #### 2.5. App Enters the Foreground
 
@@ -162,8 +158,6 @@
 - The `applicationWillEnterForeground:` method should undo anything that was done in your `applicationDidEnterBackground:` method
 
 - The `applicationDidBecomeActive:` method should continue to perform the same activation tasks that it would at launch time.
-
-- ![appEntersForegroundCycleImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_enter_foreground_2x.png)
 
 - **Queued Notifications**
 
@@ -185,7 +179,6 @@
   - **Prepare to have your app’s picture taken.** When your `applicationDidEnterBackground:` method returns, the system takes a picture of your app’s user interface and uses the resulting image for transition animations. If any views in your interface contain sensitive information, you should hide or modify those views before the `applicationDidEnterBackground:` method returns. 
   - **Save any relevant app state information.** Prior to entering the background, your app should already have saved all critical user data. Use the transition to the background to save any last minute changes to your app’s state.
   - **Free up memory as needed.** Release any cached data that you do not need and do any simple cleanup that might reduce your app’s memory footprint. Apps with large memory footprints are the first to be terminated by the system, so release image resources, data caches, and any other objects that you no longer need.
-- ![backgroundTransitionCycleImage](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_bg_life_cycle_2x.png)
 - [출처1](https://medium.com/ios-development-with-swift/%EC%95%B1-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0-app-lifecycle-vs-%EB%B7%B0-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0-view-lifecycle-in-ios-336ae00d1855) / [출처2 objective-c 생명주기](http://j2enty.tistory.com/entry/iOS-iOS-Application-Life-Cycle) / [출처3 UIApplication클래스](https://zeddios.tistory.com/539?category=682195) / [출처4 AppDelegate.swift](https://zeddios.tistory.com/218?category=682195)
 
 ## 3. iOS ViewController LifeCycle
@@ -196,7 +189,7 @@
 
 - 이 때 각각의 뷰 컨트롤러는 자신만의 생명주기를 가지고 있고 이 생명주기를 잘 이해하고 있다면 뷰 컨트롤러의 상황에 따라 원하는 로직을 수행하도록 만들 수 있음
 
-  ![viewControllerLifeCycleImage](https://docs-assets.developer.apple.com/published/f06f30fa63/UIViewController_Class_Reference_2x_ddcaa00c-87d8-4c85-961e-ccfb9fa4aac2.png)
+  <img src="https://docs-assets.developer.apple.com/published/f06f30fa63/UIViewController_Class_Reference_2x_ddcaa00c-87d8-4c85-961e-ccfb9fa4aac2.png" alt="viewControllerLifeCycleImage" style="zoom:40%;" />
 
 - 여러개의 뷰 컨트롤러가 있는 앱이라고 한다면 각각의 뷰 컨트롤러는 자신만의 생명주기를 가진다
 
@@ -211,7 +204,7 @@
 
 - UIViewController 생명 주기
 
-  ![viewControllerLifeCycleImage](https://github.com/ninetyfivejae/SwiftStudy/blob/master/Image/viewControllerLifeCycle2Image.jpeg?raw=true)
+  <img src="https://raw.githubusercontent.com/ninetyfivejae/SwiftStudy/master/Image/viewControllerLifeCycle2Image.jpeg?token=AGASNDCBO5TPPQVBELS7B525YPMCQ" alt="viewControllerLifeCycleImage" style="zoom:50%;" />
 
   - **loadView**
 
@@ -248,7 +241,7 @@
 
   - 예제
 
-    ![stackArchitectureOfNavigationViewImage](https://docs-assets.developer.apple.com/published/83ef757907/NavigationViews_2x_e69e98a2-aaac-477e-9e33-92e633e29cc7.png)
+    <img src="https://docs-assets.developer.apple.com/published/83ef757907/NavigationViews_2x_e69e98a2-aaac-477e-9e33-92e633e29cc7.png" alt="stackArchitectureOfNavigationViewImage" style="zoom:50%;" />
 
   - **view의 스택 구조**
 
@@ -269,7 +262,6 @@
     
         override func viewDidLoad() {
             super.viewDidLoad()
-    
             print("2st viewDidLoad")
         }
         
@@ -290,8 +282,8 @@
         }
     }
     ```
-
-    ```
+    
+```
     //앱 처음 실행 root view
     1st viewDidload
     1st viewWillAppear
@@ -317,8 +309,10 @@
     1st viewDidDisappear
     2st viewDidAppear
     ```
+  
+- 근데 viewWillAppear에서 api를 불러오게 되면 api작업을 마칠 때까지 기다리기 때문에 앱 화면이 뜨기 전까지 delay가 생길 수 있다. viewWillAppear에 sleep(5) 사용하면 화면이 안 뜬 상태에서 기다리는 것을 알 수 있음.
 
-- (처음 배우던 입장에서 궁금했었던 질문)What is better place for loading data from API?
+- (처음 배우던 입장에서 궁금했었던 질문) Where is better place for loading data from API?
 
   ```
   viewDidLoad method is called first time when UIViewController is first loaded and when it pop and then you reenter in it at that time viewDidLoad is called.
@@ -332,7 +326,7 @@
   ```
 
   ```
-  근데 viewWillAppear에서 api를 불러오게 되면 api작업을 마칠 때까지 기다리기 때문에 앱 화면이 뜨기 전까지 delay가 생긴다. viewWillAppear에 sleep(5) 사용하면 화면이 안 뜬 상태에서 기다리는 것을 알 수 있음.
+  근데 viewWillAppear에서 api를 불러오게 되면 api작업을 마칠 때까지 기다리기 때문에 앱 화면이 뜨기 전까지 delay가 생길 수 있다. viewWillAppear에 sleep(5) 사용하면 화면이 안 뜬 상태에서 기다리는 것을 알 수 있음.
   
   그래서 api 불러오는 작업을 viewDidAppear에서 실행을 하여 일단 화면을 먼저 띄운 후에 작업을 진행하라고 하는 의견도 있었음
   
@@ -340,4 +334,3 @@
   ```
 
 - 출처: https://zeddios.tistory.com/44
-

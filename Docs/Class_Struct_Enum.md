@@ -143,7 +143,7 @@
   print(circleOne.radius)
   ```
 
-### [Choosing Between Structures and Classes](https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes)
+## [Choosing Between Structures and Classes](https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes)
 
 - **Choose structures by default**
   - 구조체는 값 타입이기 때문에, using stuctures makes it easier to reason about a portion of your code without needing to consider the whole state of your app
