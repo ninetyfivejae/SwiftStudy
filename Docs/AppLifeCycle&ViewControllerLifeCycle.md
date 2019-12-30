@@ -2,7 +2,7 @@
 
 ## 1. iOS App Lifecycle
 
-<img src="https://raw.githubusercontent.com/ninetyfivejae/SwiftStudy/master/Image/appLifeCylceImage.png?token=AGASNDGRVFLBQYEPJ7KZ6YS5YPMKI" alt="iOSAppLifeCylceImage" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ninetyfivejae/SwiftStudy/master/Image/appLifeCylceImage.png?token=AGASNDARJKUUZ34XAR37QVS56HXZE" style="zoom:67%;" />
 
 ### 앱의 실행 상태는 5개 상태로 구분
 
@@ -283,7 +283,7 @@
     }
     ```
     
-```
+    ```
     //앱 처음 실행 root view
     1st viewDidload
     1st viewWillAppear

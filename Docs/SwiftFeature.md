@@ -248,8 +248,7 @@
   - Functional programming
   - Data flows
   - Propagation of change
-- Observable: 비동기적으로 다수의 이벤트를 다루는 방법. Observer 패턴의 확장
-- Observable: 이벤트의 스트림
+- Observable: 비동기적으로 다수의 이벤트를 다루는 방법. Observer 패턴의 확장, 이벤트의 스트림
 - ReactiveX는 Functional Reactive Programming의 구현체, 이벤트를 발생하는 observable과 이것을 관찰하는 observer를 통해 비동기 이벤트들을 쉽고 안전하게 처리할 수 있는 라이브러리. iOS에서는 RxSwift로 사용가능함
 - observable 스트림을 사용하는 비동기 프로그래밍 api
 - Functional reactive programming은 시간이 흐르면서 연속적으로 변하는 값들을 처리하는 반면 ReactiveX는 시간이 흐르면서 발행되는 이산 값들을 처리한다

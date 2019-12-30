@@ -92,18 +92,8 @@
 - viewDidLoad에 addObserver 하면 oberveValue의 동작이 수행된다
 - 프로퍼티나 텍스트필드 등등에 적용가능.
 - 다른 클래스의 속성을 지켜보고 싶으면, 클래스의 인스턴스를 가지고 있어야한다
-- 여러 앱을 왔다갔다 하면서 사용하면 observing 추가한게 다른 앱에도 적용될 수 있어서, remove옵저버를 해줘야 좋다
+- 여러 앱을 왔다갔다 하면서 사용하면 observing 추가한게 다른 앱에도 적용될 수 있어서, remove 옵저버를 해줘야 좋다
 - notification 종류. nsnotification center 각 상황에 맞춰서 keyPath로 접근해서 값을 빼오는 것은 위험할 수 있음. 버전 올라가면서 바뀔 수 있으니까
-
-## 순환참조
-
-- 
-
-## 고차함수, 모나드
-
-- map
-- filter
-- reduce
 
 ## cocoapods
 
@@ -207,6 +197,7 @@
   
   $ cartfile update //전체 빌드
   $ carthage update --platform iOS //iOS만 빌드
+  $ carthage update --platform iOS --no-use-binaries
   ```
 
 - 라이브러리 프레임워크 추가
